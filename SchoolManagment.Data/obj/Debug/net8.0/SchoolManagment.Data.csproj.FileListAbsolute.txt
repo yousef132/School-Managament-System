@@ -1,0 +1,11 @@
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\bin\Debug\net8.0\SchoolManagment.Data.deps.json
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\bin\Debug\net8.0\SchoolManagment.Data.dll
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\bin\Debug\net8.0\SchoolManagment.Data.pdb
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\obj\Debug\net8.0\SchoolManagment.Data.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\obj\Debug\net8.0\SchoolManagment.Data.AssemblyInfoInputs.cache
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\obj\Debug\net8.0\SchoolManagment.Data.AssemblyInfo.cs
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\obj\Debug\net8.0\SchoolManagment.Data.csproj.CoreCompileInputs.cache
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\obj\Debug\net8.0\SchoolManagment.Data.dll
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\obj\Debug\net8.0\refint\SchoolManagment.Data.dll
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\obj\Debug\net8.0\SchoolManagment.Data.pdb
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Data\obj\Debug\net8.0\ref\SchoolManagment.Data.dll

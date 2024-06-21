@@ -1,0 +1,197 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{091E153D-2A81-4F14-BE39-9A63871B861C}|SchoolManagment.Services\\SchoolManagment.Services.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.services\\moduleservicedependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{091E153D-2A81-4F14-BE39-9A63871B861C}|SchoolManagment.Services\\SchoolManagment.Services.csproj|solutionrelative:schoolmanagment.services\\moduleservicedependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B34D2DF5-66D1-4B8E-9DB8-DD53E68139FD}|SchoolManagment.Infrastructure\\SchoolManagment.Infrastructure.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.infrastructure\\moduleinfrastructuredependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B34D2DF5-66D1-4B8E-9DB8-DD53E68139FD}|SchoolManagment.Infrastructure\\SchoolManagment.Infrastructure.csproj|solutionrelative:schoolmanagment.infrastructure\\moduleinfrastructuredependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FDD8B89-24EA-4752-A078-5AAB3EA43BBA}|SchoolManagment.Core\\SchoolManagment.Core.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.core\\modulecoredependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FDD8B89-24EA-4752-A078-5AAB3EA43BBA}|SchoolManagment.Core\\SchoolManagment.Core.csproj|solutionrelative:schoolmanagment.core\\modulecoredependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBA4B560-6029-47D4-9A0A-530031D3D4DE}|SchoolManagment.Data\\SchoolManagment.Data.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.data\\entities\\subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBA4B560-6029-47D4-9A0A-530031D3D4DE}|SchoolManagment.Data\\SchoolManagment.Data.csproj|solutionrelative:schoolmanagment.data\\entities\\subject.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A861095-C21D-497C-8FA1-73F3B35FCBC7}|SchoolManagment.Api\\SchoolManagment.Api.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{4A861095-C21D-497C-8FA1-73F3B35FCBC7}|SchoolManagment.Api\\SchoolManagment.Api.csproj|solutionrelative:schoolmanagment.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBA4B560-6029-47D4-9A0A-530031D3D4DE}|SchoolManagment.Data\\SchoolManagment.Data.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.data\\entities\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBA4B560-6029-47D4-9A0A-530031D3D4DE}|SchoolManagment.Data\\SchoolManagment.Data.csproj|solutionrelative:schoolmanagment.data\\entities\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{4A861095-C21D-497C-8FA1-73F3B35FCBC7}|SchoolManagment.Api\\SchoolManagment.Api.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{4A861095-C21D-497C-8FA1-73F3B35FCBC7}|SchoolManagment.Api\\SchoolManagment.Api.csproj|solutionrelative:schoolmanagment.api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B34D2DF5-66D1-4B8E-9DB8-DD53E68139FD}|SchoolManagment.Infrastructure\\SchoolManagment.Infrastructure.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B34D2DF5-66D1-4B8E-9DB8-DD53E68139FD}|SchoolManagment.Infrastructure\\SchoolManagment.Infrastructure.csproj|solutionrelative:schoolmanagment.infrastructure\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CBA4B560-6029-47D4-9A0A-530031D3D4DE}|SchoolManagment.Data\\SchoolManagment.Data.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.data\\entities\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CBA4B560-6029-47D4-9A0A-530031D3D4DE}|SchoolManagment.Data\\SchoolManagment.Data.csproj|solutionrelative:schoolmanagment.data\\entities\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 10,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{d212f56b-c48a-434c-a121-1c5d80b59b9f}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ModuleCoreDependencies.cs",
+              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Core\\ModuleCoreDependencies.cs",
+              "RelativeDocumentMoniker": "SchoolManagment.Core\\ModuleCoreDependencies.cs",
+              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Core\\ModuleCoreDependencies.cs",
+              "RelativeToolTip": "SchoolManagment.Core\\ModuleCoreDependencies.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAHAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T23:04:58.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ModuleInfrastructureDependencies.cs",
+              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Infrastructure\\ModuleInfrastructureDependencies.cs",
+              "RelativeDocumentMoniker": "SchoolManagment.Infrastructure\\ModuleInfrastructureDependencies.cs",
+              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Infrastructure\\ModuleInfrastructureDependencies.cs",
+              "RelativeToolTip": "SchoolManagment.Infrastructure\\ModuleInfrastructureDependencies.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAACAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T23:02:46.111Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ModuleServiceDependencies.cs",
+              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Services\\ModuleServiceDependencies.cs",
+              "RelativeDocumentMoniker": "SchoolManagment.Services\\ModuleServiceDependencies.cs",
+              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Services\\ModuleServiceDependencies.cs",
+              "RelativeToolTip": "SchoolManagment.Services\\ModuleServiceDependencies.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T23:01:15.599Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Subject.cs",
+              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Data\\Entities\\Subject.cs",
+              "RelativeDocumentMoniker": "SchoolManagment.Data\\Entities\\Subject.cs",
+              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Data\\Entities\\Subject.cs",
+              "RelativeToolTip": "SchoolManagment.Data\\Entities\\Subject.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T22:54:07.902Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Api\\appsettings.json",
+              "RelativeDocumentMoniker": "SchoolManagment.Api\\appsettings.json",
+              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Api\\appsettings.json",
+              "RelativeToolTip": "SchoolManagment.Api\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-06-21T22:49:01.012Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Api\\Program.cs",
+              "RelativeDocumentMoniker": "SchoolManagment.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Api\\Program.cs",
+              "RelativeToolTip": "SchoolManagment.Api\\Program.cs",
+              "ViewState": "AQIAAAYAAAAAAAAAAIA/wBIAAAAUAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T22:33:44.001Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "SchoolManagment.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "SchoolManagment.Infrastructure\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAAAQwA8AAAAJAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T22:28:17.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Department.cs",
+              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Data\\Entities\\Department.cs",
+              "RelativeDocumentMoniker": "SchoolManagment.Data\\Entities\\Department.cs",
+              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Data\\Entities\\Department.cs",
+              "RelativeToolTip": "SchoolManagment.Data\\Entities\\Department.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwBIAAAAmAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T22:23:49.648Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Student.cs",
+              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Data\\Entities\\Student.cs",
+              "RelativeDocumentMoniker": "SchoolManagment.Data\\Entities\\Student.cs",
+              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Data\\Entities\\Student.cs",
+              "RelativeToolTip": "SchoolManagment.Data\\Entities\\Student.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAzwA4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-06-21T22:05:21.17Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
