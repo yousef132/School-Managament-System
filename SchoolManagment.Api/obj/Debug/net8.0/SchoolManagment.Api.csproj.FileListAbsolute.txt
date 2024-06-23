@@ -145,3 +145,4 @@ C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.A
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Api\obj\Debug\net8.0\SchoolManagment.Api.sourcelink.json
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Api\bin\Debug\net8.0\MediatR.dll
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Api\bin\Debug\net8.0\MediatR.Contracts.dll
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Api\bin\Debug\net8.0\AutoMapper.dll

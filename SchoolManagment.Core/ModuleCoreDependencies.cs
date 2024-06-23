@@ -12,6 +12,11 @@ namespace SchoolManagment.Data
 	{
 		public static IServiceCollection AddCoreDependencies(this IServiceCollection services)
 		{
+
+			// AutoMapper
+			services.AddAutoMapper(Assembly.GetExecutingAssembly());
+
+			// Mediator Config.
 			services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 			return services;
 		}
