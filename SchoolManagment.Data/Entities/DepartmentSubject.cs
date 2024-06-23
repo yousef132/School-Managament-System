@@ -7,14 +7,15 @@ namespace SchoolManagment.Data.Entities
 	{
 		[Key]
 		public int DeptSubId {get;set;}
-		[ForeignKey("DeptId")]
 
 		public int DeptId { get; set; }
-		[ForeignKey("StudId")]
 		public int SubId { get; set; }
 
+		[ForeignKey("DeptId")]
 
 		public Department Department { get; set; }
+		[ForeignKey("StudId")]
+
 		public Subject Subject { get; set; }	
 
 	}

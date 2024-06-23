@@ -12,7 +12,7 @@ using SchoolManagment.Infrastructure.Data;
 namespace SchoolManagment.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240621225529_Initial")]
+    [Migration("20240623085548_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -51,23 +51,20 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("DeptSubId"));
 
-                    b.Property<int>("DepartmentDeptId")
+                    b.Property<int>("DeptId")
                         .HasColumnType("int");
 
-                    b.Property<int>("DeptId")
+                    b.Property<int>("StudId")
                         .HasColumnType("int");
 
                     b.Property<int>("SubId")
                         .HasColumnType("int");
 
-                    b.Property<int>("SubjectSubId")
-                        .HasColumnType("int");
-
                     b.HasKey("DeptSubId");
 
-                    b.HasIndex("DepartmentDeptId");
+                    b.HasIndex("DeptId");
 
-                    b.HasIndex("SubjectSubId");
+                    b.HasIndex("StudId");
 
                     b.ToTable("DepartmentSubjects");
                 });
@@ -151,13 +148,13 @@ namespace SchoolManagment.Infrastructure.Migrations
                 {
                     b.HasOne("SchoolManagment.Data.Entities.Department", "Department")
                         .WithMany("DepartmentSubjects")
-                        .HasForeignKey("DepartmentDeptId")
+                        .HasForeignKey("DeptId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("SchoolManagment.Data.Entities.Subject", "Subject")
                         .WithMany("DepartmentSubjects")
-                        .HasForeignKey("SubjectSubId")
+                        .HasForeignKey("StudId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

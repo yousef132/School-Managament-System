@@ -67,21 +67,20 @@ namespace SchoolManagment.Infrastructure.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     DeptId = table.Column<int>(type: "int", nullable: false),
                     SubId = table.Column<int>(type: "int", nullable: false),
-                    DepartmentDeptId = table.Column<int>(type: "int", nullable: false),
-                    SubjectSubId = table.Column<int>(type: "int", nullable: false)
+                    StudId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_DepartmentSubjects", x => x.DeptSubId);
                     table.ForeignKey(
-                        name: "FK_DepartmentSubjects_Departments_DepartmentDeptId",
-                        column: x => x.DepartmentDeptId,
+                        name: "FK_DepartmentSubjects_Departments_DeptId",
+                        column: x => x.DeptId,
                         principalTable: "Departments",
                         principalColumn: "DeptId",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_DepartmentSubjects_Subjects_SubjectSubId",
-                        column: x => x.SubjectSubId,
+                        name: "FK_DepartmentSubjects_Subjects_StudId",
+                        column: x => x.StudId,
                         principalTable: "Subjects",
                         principalColumn: "SubId",
                         onDelete: ReferentialAction.Cascade);
@@ -114,14 +113,14 @@ namespace SchoolManagment.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepartmentSubjects_DepartmentDeptId",
+                name: "IX_DepartmentSubjects_DeptId",
                 table: "DepartmentSubjects",
-                column: "DepartmentDeptId");
+                column: "DeptId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_DepartmentSubjects_SubjectSubId",
+                name: "IX_DepartmentSubjects_StudId",
                 table: "DepartmentSubjects",
-                column: "SubjectSubId");
+                column: "StudId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Students_DeptId",

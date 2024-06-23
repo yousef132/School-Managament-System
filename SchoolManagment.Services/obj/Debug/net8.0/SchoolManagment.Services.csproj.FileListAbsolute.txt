@@ -15,3 +15,4 @@ C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.S
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\refint\SchoolManagment.Services.dll
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolManagment.Services.pdb
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\ref\SchoolManagment.Services.dll
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolManagment.Services.sourcelink.json

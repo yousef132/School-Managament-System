@@ -1,6 +1,11 @@
 
 using Microsoft.EntityFrameworkCore;
+using SchoolManagment.Data;
+using SchoolManagment.Infrastructure;
+using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Infrastructure.Data;
+using SchoolManagment.Infrastructure.Repositories;
+using SchoolManagment.Services;
 
 namespace SchoolManagment.Api
 {
@@ -21,6 +26,12 @@ namespace SchoolManagment.Api
 				options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 			});
 
+			#region Dependency Injections
+			builder.Services.AddInfrastructureDependencies()
+				.AddServiceDependencies()
+				.AddCoreDependencies();
+
+			#endregion
 			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
