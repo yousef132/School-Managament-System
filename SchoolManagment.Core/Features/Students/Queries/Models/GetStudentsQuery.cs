@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using SchoolManagment.Core.Features.Students.Queries.Responses;
 using SchoolManagment.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace SchoolManagment.Core.Features.Students.Queries.Models
 {
     // this is the model of the request
     // request				// Response Type
-    public class GetStudentsQuery : IRequest<List<Student>>
+    public class GetStudentsQuery : IRequest<List<GetStudentsResponse>>
     {
 
     }
