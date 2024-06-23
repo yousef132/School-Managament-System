@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Students.Queries.Models;
 using SchoolManagment.Core.Features.Students.Queries.Responses;
 using SchoolManagment.Data.Entities;
@@ -13,7 +14,7 @@ using System.Threading.Tasks;
 namespace SchoolManagment.Core.Features.Students.Queries.Handler
 {
 	// GetStudentsQuery =>  request  , List<Student> =>  response type
-	public class StudentHandler : IRequestHandler<GetStudentsQuery, List<GetStudentsResponse>>
+	public class StudentHandler : ResponseHandler, IRequestHandler<GetStudentsQuery, Response<List<GetStudentsResponse>>>
 	{
 
 		#region Fields
@@ -33,11 +34,12 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
 		#region Handler Function
 
 		// method invoked to handle the request
-		public async Task<List<GetStudentsResponse>> Handle(GetStudentsQuery request, CancellationToken cancellationToken)
+		public async Task<Response<List<GetStudentsResponse>>> Handle(GetStudentsQuery request, CancellationToken cancellationToken)
 		{
 			var students = await studentService.GetStudentsAsync();
 			var mappedStudents = mapper.Map<List<GetStudentsResponse>>(students);	
-			return mappedStudents;
+
+			return Success<List<GetStudentsResponse>>(mappedStudents);
 		}
 		#endregion
 

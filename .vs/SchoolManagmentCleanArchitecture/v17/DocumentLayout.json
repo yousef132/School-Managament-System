@@ -1,28 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{1FDD8B89-24EA-4752-A078-5AAB3EA43BBA}|SchoolManagment.Core\\SchoolManagment.Core.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.core\\features\\students\\queries\\handler\\studenthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FDD8B89-24EA-4752-A078-5AAB3EA43BBA}|SchoolManagment.Core\\SchoolManagment.Core.csproj|solutionrelative:schoolmanagment.core\\features\\students\\queries\\handler\\studenthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FDD8B89-24EA-4752-A078-5AAB3EA43BBA}|SchoolManagment.Core\\SchoolManagment.Core.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.core\\features\\students\\queries\\models\\getstudentsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FDD8B89-24EA-4752-A078-5AAB3EA43BBA}|SchoolManagment.Core\\SchoolManagment.Core.csproj|solutionrelative:schoolmanagment.core\\features\\students\\queries\\models\\getstudentsquery.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1FDD8B89-24EA-4752-A078-5AAB3EA43BBA}|SchoolManagment.Core\\SchoolManagment.Core.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.core\\modulecoredependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1FDD8B89-24EA-4752-A078-5AAB3EA43BBA}|SchoolManagment.Core\\SchoolManagment.Core.csproj|solutionrelative:schoolmanagment.core\\modulecoredependencies.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A861095-C21D-497C-8FA1-73F3B35FCBC7}|SchoolManagment.Api\\SchoolManagment.Api.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.api\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A861095-C21D-497C-8FA1-73F3B35FCBC7}|SchoolManagment.Api\\SchoolManagment.Api.csproj|solutionrelative:schoolmanagment.api\\controllers\\studentcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{4A861095-C21D-497C-8FA1-73F3B35FCBC7}|SchoolManagment.Api\\SchoolManagment.Api.csproj|c:\\users\\youssif\\source\\repos\\schoolmanagmentcleanarchitecture\\schoolmanagment.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{4A861095-C21D-497C-8FA1-73F3B35FCBC7}|SchoolManagment.Api\\SchoolManagment.Api.csproj|solutionrelative:schoolmanagment.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
@@ -30,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 8,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -65,65 +44,8 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "StudentHandler.cs",
-              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Core\\Features\\Students\\Queries\\Handler\\StudentHandler.cs",
-              "RelativeDocumentMoniker": "SchoolManagment.Core\\Features\\Students\\Queries\\Handler\\StudentHandler.cs",
-              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Core\\Features\\Students\\Queries\\Handler\\StudentHandler.cs",
-              "RelativeToolTip": "SchoolManagment.Core\\Features\\Students\\Queries\\Handler\\StudentHandler.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAABoAAAAaAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T10:13:41.677Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "GetStudentsQuery.cs",
-              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Core\\Features\\Students\\Queries\\Models\\GetStudentsQuery.cs",
-              "RelativeDocumentMoniker": "SchoolManagment.Core\\Features\\Students\\Queries\\Models\\GetStudentsQuery.cs",
-              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Core\\Features\\Students\\Queries\\Models\\GetStudentsQuery.cs",
-              "RelativeToolTip": "SchoolManagment.Core\\Features\\Students\\Queries\\Models\\GetStudentsQuery.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAuwBAAAAABAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T10:11:21.296Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "StudentController.cs",
-              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Api\\Controllers\\StudentController.cs",
-              "RelativeDocumentMoniker": "SchoolManagment.Api\\Controllers\\StudentController.cs",
-              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Api\\Controllers\\StudentController.cs",
-              "RelativeToolTip": "SchoolManagment.Api\\Controllers\\StudentController.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABYAAABUAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T10:08:12.902Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Api\\Program.cs",
-              "RelativeDocumentMoniker": "SchoolManagment.Api\\Program.cs",
-              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Api\\Program.cs",
-              "RelativeToolTip": "SchoolManagment.Api\\Program.cs",
-              "ViewState": "AQIAAAwAAAAAAAAAAAAAwB8AAAAbAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T10:06:29.725Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ModuleCoreDependencies.cs",
-              "DocumentMoniker": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Core\\ModuleCoreDependencies.cs",
-              "RelativeDocumentMoniker": "SchoolManagment.Core\\ModuleCoreDependencies.cs",
-              "ToolTip": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Core\\ModuleCoreDependencies.cs",
-              "RelativeToolTip": "SchoolManagment.Core\\ModuleCoreDependencies.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAACAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-06-23T10:05:19.769Z"
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             }
           ]
         }
