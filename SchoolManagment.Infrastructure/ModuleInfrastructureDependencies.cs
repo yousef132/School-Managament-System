@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SchoolManagment.Data.Entities;
 using SchoolManagment.Infrastructure.Abstracts;
+using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Infrastructure.Repositories;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace SchoolManagment.Infrastructure
 		public static IServiceCollection AddInfrastructureDependencies(this IServiceCollection services)
 		{
 			services.AddScoped<IStudentRepository, StudentRepository>();
+			services.AddScoped(typeof(IGenericRepositoryAsync<>), typeof(GenericRepositoryAsync<>));
 
 
 			return services;
