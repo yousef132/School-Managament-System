@@ -12,10 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Students\Commands\Handler\" />
-    <Folder Include="Features\Students\Commands\Models\" />
     <Folder Include="Features\Students\Commands\Validations\" />
-    <Folder Include="Mapping\Students\CommandsMapping\" />
   </ItemGroup>
 
   <ItemGroup>

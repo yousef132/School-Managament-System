@@ -21,12 +21,34 @@ namespace SchoolManagment.Services.Implementations
 		{
 			this.studentRepository = studentRepository;
 		}
+
+	
 		#endregion
 
 		#region Functions
 		public async Task<List<Student>> GetStudentsAsync()
 		=> await studentRepository.GetStudentsAsync();
+		public async Task<Student> GetStudentByIdAsync(int id)
+		{
+			var student = studentRepository.GetTableAsNotTracked()
+				.FirstOrDefault(s => s.StudId == id);
 
+			return student;	
+
+		}
+
+		public async Task<string> AddAsync(Student student)
+		{
+			// check if name exist or not 
+			bool exist = studentRepository.GetTableAsNotTracked().Any(s => s.Name == student.Name);
+			if(exist)
+			{
+				return "Exist";
+			}
+			await studentRepository.AddAsync(student);
+			await studentRepository.SaveChangesAsync();
+			return "Success";
+		}
 
 		#endregion
 

@@ -64,7 +64,7 @@ namespace SchoolManagment.Core.Bases
 			};
 		}
 
-		public Response<T> Created<T>(T Entity , object meta = null)
+		public Response<T> Created<T>(object meta = null)
 		{
 			return new Response<T>
 			{
@@ -72,6 +72,16 @@ namespace SchoolManagment.Core.Bases
 				Succeeded = true,
 				Message = "Created" ,
 				Meta = meta
+			};
+		}
+
+		public Response<T> UnprocessableEntity<T>(string message = null)
+		{
+			return new Response<T>
+			{
+				StatusCode = System.Net.HttpStatusCode.UnprocessableEntity,
+				Succeeded = false,
+				Message = message == null ? "Unprocessable Entity" : message
 			};
 		}
 	}

@@ -13,6 +13,8 @@ namespace SchoolManagment.Core.Mapping.Students
 		public StudentProfile()
 		{
 			GetStudentsMapping();
+			GetStudentByIdMapping();
+			AddStudentCommandMapping();
 		}
 	}
 }
