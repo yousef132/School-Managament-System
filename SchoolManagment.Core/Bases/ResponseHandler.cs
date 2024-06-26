@@ -1,38 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchoolManagment.Core.Bases
+﻿namespace SchoolManagment.Core.Bases
 {
-	public  class ResponseHandler
+	public class ResponseHandler
 	{
-        public ResponseHandler()
-        {
-            
-        }
+		public ResponseHandler()
+		{
 
-        public Response<T> Deleted<T>()
-        {
-            return new Response<T>
-            {
-                StatusCode = System.Net.HttpStatusCode.OK,
-                Succeeded = true,
-                Message = "Deleted Successfuly"
+		}
 
-            };
-        }
-		public Response<T> Success<T>(T entity , object meta = null)
+		public Response<T> Deleted<T>(string message)
 		{
 			return new Response<T>
 			{
 				StatusCode = System.Net.HttpStatusCode.OK,
 				Succeeded = true,
-				Message = "Added Successfuly",
-                Data = entity,
-                Meta = meta
+				Message = "Deleted Successfuly"
 
+			};
+		}
+		public Response<T> Success<T>(T entity, object meta = null)
+		{
+			return new Response<T>
+			{
+				StatusCode = System.Net.HttpStatusCode.OK,
+				Succeeded = true,
+				Message = "Done Successfuly",
+				Data = entity,
+				Meta = meta
 			};
 		}
 		public Response<T> Unauthorized<T>()
@@ -70,7 +63,7 @@ namespace SchoolManagment.Core.Bases
 			{
 				StatusCode = System.Net.HttpStatusCode.Created,
 				Succeeded = true,
-				Message = "Created" ,
+				Message = "Created",
 				Meta = meta
 			};
 		}

@@ -24,19 +24,33 @@ namespace SchoolManagment.Infrastructure.InfrastructureBases
 
 
 		public async Task AddAsync(T entity)
-			=> await context.Set<T>().AddAsync(entity);
+		{
+			await context.Set<T>().AddAsync(entity);
+			await SaveChangesAsync();
+		}
 
 
 		public async Task AddRangeAsync(ICollection<T> entities)
-			=> await context.Set<T>().AddRangeAsync(entities);
+		{
+			await context.Set<T>().AddRangeAsync(entities);
+			await SaveChangesAsync();
+		}
 
 		public IDbContextTransaction BeginTransaction() => context.Database.BeginTransaction();
 
 		public void Commit() => context.Database.CommitTransaction();
-		public void Delete(T entity) => context.Set<T>().Remove(entity);
+		public async Task DeleteAsync(T entity)
+		{
+			context.Set<T>().Remove(entity);
+			await SaveChangesAsync();
+		}
 
-		public void DeleteRange(ICollection<T> entities)
-		=> context.RemoveRange(entities);
+		public async Task DeleteRangeAsync(ICollection<T> entities)
+		{
+			context.Set<T>().RemoveRange(entities);
+			await SaveChangesAsync();
+		}
+
 
 
 		public async Task<T> GetByIdAsync(int id) => await context.Set<T>().FindAsync(id);
@@ -49,11 +63,18 @@ namespace SchoolManagment.Infrastructure.InfrastructureBases
 
 		public void RollBack() => context.Database.RollbackTransaction();
 
-		public Task SaveChangesAsync() => context.SaveChangesAsync();
-		public void Update(T entity)
-			=> context.Set<T>().Update(entity);
-		public void UpdateRange(ICollection<T> entities)
-			=> context.Set<T>().UpdateRange(entities);
+		public async Task SaveChangesAsync() => await context.SaveChangesAsync();
+		public async Task UpdateAsync(T entity)
+		{
+			context.Set<T>().Update(entity);
+			await SaveChangesAsync();
+		}
+		public async Task UpdateRangeAsync(ICollection<T> entities)
+		{
+			context.Set<T>().UpdateRange(entities);
+			await SaveChangesAsync();
+		}
+
 
 		#endregion
 	}

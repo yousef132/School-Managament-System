@@ -1,11 +1,6 @@
 ﻿using SchoolManagment.Data.Entities;
 using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Services.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagment.Services.Implementations
 {
@@ -22,7 +17,7 @@ namespace SchoolManagment.Services.Implementations
 			this.studentRepository = studentRepository;
 		}
 
-	
+
 		#endregion
 
 		#region Functions
@@ -33,20 +28,54 @@ namespace SchoolManagment.Services.Implementations
 			var student = studentRepository.GetTableAsNotTracked()
 				.FirstOrDefault(s => s.StudId == id);
 
-			return student;	
+			return student;
 
 		}
 
 		public async Task<string> AddAsync(Student student)
 		{
-			// check if name exist or not 
-			bool exist = studentRepository.GetTableAsNotTracked().Any(s => s.Name == student.Name);
-			if(exist)
-			{
-				return "Exist";
-			}
+
+
 			await studentRepository.AddAsync(student);
-			await studentRepository.SaveChangesAsync();
+			try
+			{
+				await studentRepository.SaveChangesAsync();
+			}
+			catch (Exception ex)
+			{
+				throw new Exception("Department Id Not Valid");
+			}
+
+			return "Success";
+		}
+
+		public async Task<bool> IsNameExist(string name)
+		{
+			// check if name exist or not 
+			bool exist = studentRepository.GetTableAsNotTracked().Any(s => s.Name == name);
+			return exist ? true : false;
+		}
+
+		public async Task<bool> IsNameExistExcludeItself(string name, int id)
+		{
+			bool exist = studentRepository
+						 .GetTableAsNotTracked()
+						 .Any(s => s.Name == name && !s.StudId.Equals(id));
+			return exist ? true : false;
+
+
+		}
+
+		public async Task<string> EditStudentAsync(Student student)
+		{
+			await studentRepository.UpdateAsync(student);
+
+			return "Success";
+		}
+
+		public async Task<string> DeleteStudentAsync(Student student)
+		{
+			await studentRepository.DeleteAsync(student);
 			return "Success";
 		}
 

@@ -1,10 +1,9 @@
 
 using Microsoft.EntityFrameworkCore;
+using SchoolManagment.Core.Middleware;
 using SchoolManagment.Data;
 using SchoolManagment.Infrastructure;
-using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Infrastructure.Data;
-using SchoolManagment.Infrastructure.Repositories;
 using SchoolManagment.Services;
 
 namespace SchoolManagment.Api
@@ -44,7 +43,7 @@ namespace SchoolManagment.Api
 			app.UseHttpsRedirection();
 
 			app.UseAuthorization();
-
+			app.UseMiddleware<ErrorHandlerMiddleware>();
 
 			app.MapControllers();
 

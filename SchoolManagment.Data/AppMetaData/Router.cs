@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SchoolManagment.Data.AppMetaData
+﻿namespace SchoolManagment.Data.AppMetaData
 {
 	public class Router
 	{
@@ -21,9 +15,11 @@ namespace SchoolManagment.Data.AppMetaData
 			public const string List = $"{Prefix}List";
 			public const string GetById = $"{Prefix}" + "{id}";
 			public const string Create = $"{Prefix}" + "Create";
+			public const string Edit = $"{Prefix}" + "Edit";
+			public const string Delete = $"{Prefix}" + "Delete/{id}";
 
 
-		} 
+		}
 
 	}
 }

@@ -1,9 +1,4 @@
 ﻿using SchoolManagment.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagment.Services.Abstracts
 {
@@ -13,5 +8,11 @@ namespace SchoolManagment.Services.Abstracts
 		public Task<Student> GetStudentByIdAsync(int id);
 
 		public Task<string> AddAsync(Student student);
+
+		public Task<bool> IsNameExist(string name);
+		public Task<bool> IsNameExistExcludeItself(string name, int id);
+
+		public Task<string> EditStudentAsync(Student student);
+		public Task<string> DeleteStudentAsync(Student student);
 	}
 }

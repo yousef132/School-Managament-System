@@ -7,8 +7,10 @@ using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Students.Commands.Handler
 {
-	public class StudentCommandHandler : ResponseHandler, 
-		IRequestHandler<AddStudentCommand,Response<string>>
+	public class StudentCommandHandler : ResponseHandler,
+		IRequestHandler<AddStudentCommand, Response<string>>,
+		IRequestHandler<EditStudentCommand, Response<string>>,
+		IRequestHandler<DeleteStudentCommand, Response<string>>
 	{
 		#region Fields
 		private readonly IStudentService studentService;
@@ -16,8 +18,8 @@ namespace SchoolManagment.Core.Features.Students.Commands.Handler
 		#endregion
 
 		#region Constructor
-		public StudentCommandHandler(IStudentService studentService , IMapper mapper)
-        {
+		public StudentCommandHandler(IStudentService studentService, IMapper mapper)
+		{
 			this.studentService = studentService;
 			this.mapper = mapper;
 		}
@@ -31,13 +33,44 @@ namespace SchoolManagment.Core.Features.Students.Commands.Handler
 
 			string result = await studentService.AddAsync(student);
 
-			if (result == "Exist")
-				return UnprocessableEntity<string>($"{request.Name} Exists");
-
-			else if (result == "Success")
+			if (result == "Success")
 				return Created<string>();
 
 			else return BadRequest<string>();
+		}
+
+		public async Task<Response<string>> Handle(EditStudentCommand request, CancellationToken cancellationToken)
+		{
+			// check for student existence
+			var student = await studentService.GetStudentByIdAsync(request.Id);
+			if (student == null)
+				return NotFound<string>("No Student With This Id");
+
+			// map from request to student model
+			var mappedStudent = mapper.Map(request, student);
+
+			// call update service
+
+			var result = await studentService.EditStudentAsync(mappedStudent);
+
+			if (result == "Success")
+				return Success("Edit Successfully");
+
+			return BadRequest<string>();
+		}
+
+		public async Task<Response<string>> Handle(DeleteStudentCommand request, CancellationToken cancellationToken)
+		{
+			var student = await studentService.GetStudentByIdAsync(request.Id);
+			if (student == null)
+				return NotFound<string>($"Student with Id {request.Id} Not Found");
+
+			var res = await studentService.DeleteStudentAsync(student);
+
+			if (res == "Success")
+				return Deleted<string>("Deleted Successfully");
+
+			return BadRequest<string>();
 		}
 		#endregion
 

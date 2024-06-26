@@ -1,10 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using FluentValidation;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
+using SchoolManagment.Core.Bahaviors;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagment.Data
 {
@@ -18,6 +16,11 @@ namespace SchoolManagment.Data
 
 			// Mediator Config.
 			services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+
+
+			//validators 
+			services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 			return services;
 		}
 	}
