@@ -1,10 +1,5 @@
 ﻿using SchoolManagment.Core.Features.Students.Queries.Responses;
 using SchoolManagment.Data.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagment.Core.Mapping.Students
 {
@@ -14,7 +9,9 @@ namespace SchoolManagment.Core.Mapping.Students
 		public void GetStudentsMapping()
 		{
 			CreateMap<Student, GetStudentsResponse>()
-			   .ForMember(dest => dest.DepartmentName, options => options.MapFrom(src => src.Department.Name));
+			   .ForMember(dest => dest.DepartmentName, options => options.MapFrom(src => src.Department.Name))
+			   .ReverseMap();
 		}
+
 	}
 }

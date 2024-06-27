@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
+using SchoolManagment.Infrastructure.Specification;
 
 namespace SchoolManagment.Infrastructure.InfrastructureBases
 {
@@ -23,5 +24,9 @@ namespace SchoolManagment.Infrastructure.InfrastructureBases
 		Task UpdateRangeAsync(ICollection<T> entities);
 		void Commit();
 		void RollBack();
+
+
+		public Task<T> GetByIdWithSpecification(ISpecification<T> specs);
+		public Task<List<T>> GetAllWithSpecification(ISpecification<T> specs);
 	}
 }

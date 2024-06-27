@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using SchoolManagment.Infrastructure.Data;
+using SchoolManagment.Infrastructure.Specification;
 
 namespace SchoolManagment.Infrastructure.InfrastructureBases
 {
@@ -50,14 +51,9 @@ namespace SchoolManagment.Infrastructure.InfrastructureBases
 			context.Set<T>().RemoveRange(entities);
 			await SaveChangesAsync();
 		}
-
-
-
 		public async Task<T> GetByIdAsync(int id) => await context.Set<T>().FindAsync(id);
 
-
-
-		public IQueryable<T> GetTableAsTracked() => context.Set<T>().AsNoTracking().AsQueryable();
+		public IQueryable<T> GetTableAsTracked() => context.Set<T>().AsQueryable();
 
 		public IQueryable<T> GetTableAsNotTracked() => context.Set<T>().AsNoTracking().AsQueryable();
 
@@ -74,6 +70,16 @@ namespace SchoolManagment.Infrastructure.InfrastructureBases
 			context.Set<T>().UpdateRange(entities);
 			await SaveChangesAsync();
 		}
+
+		public async Task<T> GetByIdWithSpecification(ISpecification<T> specs)
+			=> await ApplySpecs(specs)?.FirstOrDefaultAsync();
+
+
+		private IQueryable<T> ApplySpecs(ISpecification<T> specs)
+		  => SpecificationEvaluater<T>.GetQuery(context.Set<T>(), specs);
+
+		public async Task<List<T>> GetAllWithSpecification(ISpecification<T> specs)
+			=> await ApplySpecs(specs).ToListAsync();
 
 
 		#endregion

@@ -3,13 +3,8 @@ using MediatR;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Students.Queries.Models;
 using SchoolManagment.Core.Features.Students.Queries.Responses;
-using SchoolManagment.Data.Entities;
+using SchoolManagment.Infrastructure.Specifications.Student;
 using SchoolManagment.Services.Abstracts;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagment.Core.Features.Students.Queries.Handler
 {
@@ -18,6 +13,7 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
 	// Many Request Handled By One Handler
 	public class StudentQueryHandler : ResponseHandler,
 		IRequestHandler<GetStudentsQuery, Response<List<GetStudentsResponse>>>,
+		IRequestHandler<GetStudentsWithPaginationQuery, Response<PaginatedResult<GetSingleStudentResponse>>>,
 		IRequestHandler<GetStudentByIdQuery, Response<GetSingleStudentResponse>>
 	{
 
@@ -28,7 +24,7 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
 		#endregion
 
 		#region Constructor
-		public StudentQueryHandler(IStudentService studentService , IMapper mapper)
+		public StudentQueryHandler(IStudentService studentService, IMapper mapper)
 		{
 			this.studentService = studentService;
 			this.mapper = mapper;
@@ -41,21 +37,35 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
 		public async Task<Response<List<GetStudentsResponse>>> Handle(GetStudentsQuery request, CancellationToken cancellationToken)
 		{
 			var students = await studentService.GetStudentsAsync();
-			var mappedStudents = mapper.Map<List<GetStudentsResponse>>(students);	
+			var mappedStudents = mapper.Map<List<GetStudentsResponse>>(students);
 
 			return Success(mappedStudents);
 		}
 
 		public async Task<Response<GetSingleStudentResponse>> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
 		{
-			var student = await studentService.GetStudentByIdAsync(request.Id);
-			
+			var student = await studentService.GetStudentByIdWithSpecificationsAsync(request.Id);
+
 			if (student == null)
 				return NotFound<GetSingleStudentResponse>("Student Not Found");
 
 			var mappedStudent = mapper.Map<GetSingleStudentResponse>(student);
 
 			return Success(mappedStudent);
+		}
+
+		public async Task<Response<PaginatedResult<GetSingleStudentResponse>>> Handle(GetStudentsWithPaginationQuery request, CancellationToken cancellationToken)
+		{
+			var mappedSpecs = mapper.Map<StudentSpecification>(request);
+
+			var students = await studentService.GetStudentsWithSpecificationsAsync(mappedSpecs);
+
+			// Exception
+			var mappedStudents = mapper.Map<List<GetSingleStudentResponse>>(students);
+
+			var paginatedList = new PaginatedResult<GetSingleStudentResponse>(request.PageIndex, request.PageSize, mappedStudents);
+
+			return Success(paginatedList);
 		}
 		#endregion
 

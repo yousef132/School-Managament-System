@@ -3,15 +3,10 @@ using SchoolManagment.Data.Entities;
 using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Infrastructure.Data;
 using SchoolManagment.Infrastructure.InfrastructureBases;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SchoolManagment.Infrastructure.Repositories
 {
-	public class StudentRepository : GenericRepositoryAsync<Student>,IStudentRepository
+	public class StudentRepository : GenericRepositoryAsync<Student>, IStudentRepository
 	{
 
 		#region Fields
@@ -20,20 +15,18 @@ namespace SchoolManagment.Infrastructure.Repositories
 		#endregion
 
 		#region Constructor
-		public StudentRepository(ApplicationDbContext context):base(context)
+		public StudentRepository(ApplicationDbContext context)
+			: base(context)
 		{
-			students = context.Set<Student>();	
+			students = context.Set<Student>();
 		}
 		#endregion
 
 
 		#region Functions
+
 		public async Task<List<Student>> GetStudentsAsync()
 			=> await students.ToListAsync();
-
-
-
 		#endregion
-
 	}
 }

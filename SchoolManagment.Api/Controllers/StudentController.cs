@@ -44,5 +44,11 @@ namespace SchoolManagment.Api.Controllers
 			var response = await mediator.Send(new DeleteStudentCommand(id));
 			return NewResult(response);
 		}
+		[HttpGet(Router.StudentRouting.Pagenation)]
+		public async Task<IActionResult> GetAllStudentsWithPagenation([FromQuery] GetStudentsWithPaginationQuery specs)
+		{
+			var response = await mediator.Send(specs);
+			return NewResult(response);
+		}
 	}
 }

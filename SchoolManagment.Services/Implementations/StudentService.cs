@@ -1,5 +1,6 @@
 ﻿using SchoolManagment.Data.Entities;
 using SchoolManagment.Infrastructure.Abstracts;
+using SchoolManagment.Infrastructure.Specifications.Student;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Services.Implementations
@@ -79,6 +80,19 @@ namespace SchoolManagment.Services.Implementations
 			return "Success";
 		}
 
+		public async Task<List<Student>> GetStudentsWithSpecificationsAsync(StudentSpecification inputSpecs)
+		{
+			var specs = new StudentsWithSpecifications(inputSpecs);
+			var result = await studentRepository.GetAllWithSpecification(specs);
+			return result;
+		}
+
+		public async Task<Student> GetStudentByIdWithSpecificationsAsync(int id)
+		{
+			var specs = new StudentsWithSpecifications(id);
+			var students = await studentRepository.GetByIdWithSpecification(specs);
+			return students;
+		}
 		#endregion
 
 

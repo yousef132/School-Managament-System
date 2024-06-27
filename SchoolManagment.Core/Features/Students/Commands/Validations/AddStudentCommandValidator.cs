@@ -36,7 +36,7 @@ namespace SchoolManagment.Core.Features.Students.Commands.Validations
 		{
 			RuleFor(st => st.Name)
 				// ok if true , error if false 
-				.MustAsync(async (key, CancellationToken) => await studentService.IsNameExist(key))
+				.MustAsync(async (key, CancellationToken) => !await studentService.IsNameExist(key))
 				.WithMessage("Name is Exist");
 		}
 
