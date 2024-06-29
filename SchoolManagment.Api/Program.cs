@@ -1,10 +1,12 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
 using SchoolManagment.Core.Middleware;
 using SchoolManagment.Data;
 using SchoolManagment.Infrastructure;
 using SchoolManagment.Infrastructure.Data;
 using SchoolManagment.Services;
+using System.Globalization;
 
 namespace SchoolManagment.Api
 {
@@ -31,6 +33,28 @@ namespace SchoolManagment.Api
 				.AddCoreDependencies();
 
 			#endregion
+
+			#region Localization
+			builder.Services.AddControllersWithViews();
+			builder.Services.AddLocalization(opt =>
+			{
+				opt.ResourcesPath = "";
+			});
+			builder.Services.Configure<RequestLocalizationOptions>(opt =>
+			{
+				List<CultureInfo> locales = new List<CultureInfo>
+				{
+					new CultureInfo("en-US"),
+					new CultureInfo("ar-EG")
+				};
+				opt.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
+				opt.SupportedCultures = locales;
+				opt.SupportedUICultures = locales;
+			});
+
+
+
+			#endregion
 			var app = builder.Build();
 
 			// Configure the HTTP request pipeline.
@@ -40,6 +64,11 @@ namespace SchoolManagment.Api
 				app.UseSwaggerUI();
 			}
 
+			#region Localization Middleware
+
+			var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
+			app.UseRequestLocalization(options.Value);
+			#endregion
 			app.UseHttpsRedirection();
 
 			app.UseAuthorization();

@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Students.Commands.Models;
+using SchoolManagment.Core.Resources;
 using SchoolManagment.Data.Entities;
 using SchoolManagment.Services.Abstracts;
 
@@ -15,13 +17,17 @@ namespace SchoolManagment.Core.Features.Students.Commands.Handler
 		#region Fields
 		private readonly IStudentService studentService;
 		private readonly IMapper mapper;
+		private readonly IStringLocalizer<SharedResource> stringLocalizer;
 		#endregion
 
 		#region Constructor
-		public StudentCommandHandler(IStudentService studentService, IMapper mapper)
+		public StudentCommandHandler(IStudentService studentService,
+			IMapper mapper,
+			IStringLocalizer<SharedResource> stringLocalizer) : base(stringLocalizer)
 		{
 			this.studentService = studentService;
 			this.mapper = mapper;
+			this.stringLocalizer = stringLocalizer;
 		}
 		#endregion
 

@@ -53,7 +53,7 @@ namespace SchoolManagment.Services.Implementations
 		public async Task<bool> IsNameExist(string name)
 		{
 			// check if name exist or not 
-			bool exist = studentRepository.GetTableAsNotTracked().Any(s => s.Name == name);
+			bool exist = studentRepository.GetTableAsNotTracked().Any(s => s.NameEn == name);
 			return exist ? true : false;
 		}
 
@@ -61,7 +61,7 @@ namespace SchoolManagment.Services.Implementations
 		{
 			bool exist = studentRepository
 						 .GetTableAsNotTracked()
-						 .Any(s => s.Name == name && !s.StudId.Equals(id));
+						 .Any(s => s.NameEn == name && !s.StudId.Equals(id));
 			return exist ? true : false;
 
 
@@ -83,7 +83,9 @@ namespace SchoolManagment.Services.Implementations
 		public async Task<List<Student>> GetStudentsWithSpecificationsAsync(StudentSpecification inputSpecs)
 		{
 			var specs = new StudentsWithSpecifications(inputSpecs);
+
 			var result = await studentRepository.GetAllWithSpecification(specs);
+
 			return result;
 		}
 

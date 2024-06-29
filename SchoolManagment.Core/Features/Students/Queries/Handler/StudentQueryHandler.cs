@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Students.Queries.Models;
 using SchoolManagment.Core.Features.Students.Queries.Responses;
+using SchoolManagment.Core.Resources;
 using SchoolManagment.Infrastructure.Specifications.Student;
 using SchoolManagment.Services.Abstracts;
 
@@ -20,26 +22,32 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
 		#region Fields
 		private readonly IStudentService studentService;
 		private readonly IMapper mapper;
+		private readonly IStringLocalizer<SharedResource> stringLocalizer;
 
 		#endregion
 
 		#region Constructor
-		public StudentQueryHandler(IStudentService studentService, IMapper mapper)
+		public StudentQueryHandler(IStudentService studentService,
+			IMapper mapper,
+			IStringLocalizer<SharedResource> stringLocalizer)
+			: base(stringLocalizer)
 		{
 			this.studentService = studentService;
 			this.mapper = mapper;
+			this.stringLocalizer = stringLocalizer;
 		}
 		#endregion
 
 		#region Handler Function
 
 		// methods invoked to handle the request
+		// Department not included
 		public async Task<Response<List<GetStudentsResponse>>> Handle(GetStudentsQuery request, CancellationToken cancellationToken)
 		{
 			var students = await studentService.GetStudentsAsync();
 			var mappedStudents = mapper.Map<List<GetStudentsResponse>>(students);
 
-			return Success(mappedStudents);
+			return Success(mappedStudents, new { Count = mappedStudents.Count() });
 		}
 
 		public async Task<Response<GetSingleStudentResponse>> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
@@ -47,27 +55,24 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
 			var student = await studentService.GetStudentByIdWithSpecificationsAsync(request.Id);
 
 			if (student == null)
-				return NotFound<GetSingleStudentResponse>("Student Not Found");
+				return NotFound<GetSingleStudentResponse>(stringLocalizer[SharedResourcesKeys.NotFound]);
 
 			var mappedStudent = mapper.Map<GetSingleStudentResponse>(student);
 
 			return Success(mappedStudent);
 		}
 
-		public async Task<Response<PaginatedResult<GetSingleStudentResponse>>> Handle(GetStudentsWithPaginationQuery request, CancellationToken cancellationToken)
+		// Department is included
+		public async Task<Response<PaginatedResult<GetSingleStudentResponse>>>
+			Handle(GetStudentsWithPaginationQuery request, CancellationToken cancellationToken)
 		{
 			var mappedSpecs = mapper.Map<StudentSpecification>(request);
-
 			var students = await studentService.GetStudentsWithSpecificationsAsync(mappedSpecs);
-
 			// Exception
 			var mappedStudents = mapper.Map<List<GetSingleStudentResponse>>(students);
-
 			var paginatedList = new PaginatedResult<GetSingleStudentResponse>(request.PageIndex, request.PageSize, mappedStudents);
-
-			return Success(paginatedList);
+			return Success(paginatedList, new { Count = paginatedList.Data.Count() });
 		}
 		#endregion
-
 	}
 }

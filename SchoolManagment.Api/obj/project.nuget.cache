@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "diXcUgOxzSY=",
+  "dgSpecHash": "gw7M1tHo5+g=",
   "success": true,
   "projectFilePath": "C:\\Users\\Youssif\\source\\repos\\SchoolManagmentCleanArchitecture\\SchoolManagment.Api\\SchoolManagment.Api.csproj",
   "expectedPackageFiles": [
@@ -37,6 +37,7 @@
     "C:\\Users\\Youssif\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
     "C:\\Users\\Youssif\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Youssif\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0\\microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512",
+    "C:\\Users\\Youssif\\.nuget\\packages\\microsoft.extensions.localization.abstractions\\8.0.6\\microsoft.extensions.localization.abstractions.8.0.6.nupkg.sha512",
     "C:\\Users\\Youssif\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0\\microsoft.extensions.logging.8.0.0.nupkg.sha512",
     "C:\\Users\\Youssif\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\Youssif\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",

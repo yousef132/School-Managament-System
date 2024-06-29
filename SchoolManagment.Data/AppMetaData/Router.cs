@@ -22,5 +22,13 @@
 
 		}
 
+
+		public static class DepartmentRouting
+		{
+			public const string Prefix = $"{Rule}Department/";
+			public const string GetById = $"{Prefix}" + "{id}";
+
+		}
+
 	}
 }

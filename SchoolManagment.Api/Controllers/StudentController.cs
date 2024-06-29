@@ -19,7 +19,7 @@ namespace SchoolManagment.Api.Controllers
 		}
 
 		[HttpGet(Router.StudentRouting.GetById)]
-		public async Task<ActionResult<List<Student>>> GetStudentById([FromRoute] int id)
+		public async Task<IActionResult> GetStudentById([FromRoute] int id)
 		{
 			return NewResult(await mediator.Send(new GetStudentByIdQuery(id)));
 		}

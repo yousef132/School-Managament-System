@@ -22,7 +22,11 @@ namespace SchoolManagment.Core.Features.Students.Commands.Validations
 		#region Actions
 		public void ApplyValidationsRules()
 		{
-			RuleFor(st => st.Name)
+			RuleFor(st => st.NameEn)
+				.NotEmpty().WithMessage("Should Have A Name")
+				.NotNull().WithMessage("Should Not Be Null")
+				.MaximumLength(200);
+			RuleFor(st => st.NameAr)
 				.NotEmpty().WithMessage("Should Have A Name")
 				.NotNull().WithMessage("Should Not Be Null")
 				.MaximumLength(200);
@@ -34,7 +38,11 @@ namespace SchoolManagment.Core.Features.Students.Commands.Validations
 		}
 		public void ApplyCustomValidationsRules()
 		{
-			RuleFor(st => st.Name)
+			RuleFor(st => st.NameEn)
+				// ok if true , error if false 
+				.MustAsync(async (model, key, CancellationToken) => !await studentService.IsNameExistExcludeItself(key, model.Id))
+				.WithMessage("Name is Exist");
+			RuleFor(st => st.NameAr)
 				// ok if true , error if false 
 				.MustAsync(async (model, key, CancellationToken) => !await studentService.IsNameExistExcludeItself(key, model.Id))
 				.WithMessage("Name is Exist");

@@ -5,7 +5,7 @@ namespace SchoolManagment.Infrastructure.Specifications.Student
 	public class StudentsWithSpecifications : BaseSpecification<SchoolManagment.Data.Entities.Student>
 	{
 		public StudentsWithSpecifications(StudentSpecification specs)
-			: base(student => (String.IsNullOrEmpty(specs.Search) || student.Name.Trim().ToLower().Contains(specs.Search)))
+			: base(student => (String.IsNullOrEmpty(specs.Search) || student.NameEn.Trim().ToLower().Contains(specs.Search)))
 		{
 			AddInclude(s => s.Department);
 
@@ -17,7 +17,7 @@ namespace SchoolManagment.Infrastructure.Specifications.Student
 						AddOrderBy(x => x.Address);
 						break;
 					default:
-						AddOrderBy(x => x.Name);
+						AddOrderBy(x => x.NameEn);
 						break;
 				}
 			}

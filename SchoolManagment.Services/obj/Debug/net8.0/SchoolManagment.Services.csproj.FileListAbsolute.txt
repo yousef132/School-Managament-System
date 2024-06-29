@@ -10,9 +10,9 @@ C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.S
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolManagment.Services.AssemblyInfoInputs.cache
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolManagment.Services.AssemblyInfo.cs
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolManagment.Services.csproj.CoreCompileInputs.cache
+C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolManagment.Services.sourcelink.json
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolMa.F4A77896.Up2Date
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolManagment.Services.dll
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\refint\SchoolManagment.Services.dll
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolManagment.Services.pdb
 C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\ref\SchoolManagment.Services.dll
-C:\Users\Youssif\source\repos\SchoolManagmentCleanArchitecture\SchoolManagment.Services\obj\Debug\net8.0\SchoolManagment.Services.sourcelink.json

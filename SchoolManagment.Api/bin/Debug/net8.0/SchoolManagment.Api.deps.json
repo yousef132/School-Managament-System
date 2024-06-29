@@ -517,6 +517,14 @@
           }
         }
       },
+      "Microsoft.Extensions.Localization.Abstractions/8.0.6": {
+        "runtime": {
+          "lib/net8.0/Microsoft.Extensions.Localization.Abstractions.dll": {
+            "assemblyVersion": "8.0.0.0",
+            "fileVersion": "8.0.624.26909"
+          }
+        }
+      },
       "Microsoft.Extensions.Logging/8.0.0": {
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection": "8.0.0",
@@ -966,11 +974,20 @@
           "FluentValidation.DependencyInjectionExtensions": "11.9.2",
           "MediatR": "12.3.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Localization.Abstractions": "8.0.6",
           "SchoolManagment.Data": "1.0.0",
           "SchoolManagment.Services": "1.0.0"
         },
         "runtime": {
           "SchoolManagment.Core.dll": {}
+        },
+        "resources": {
+          "Ar/SchoolManagment.Core.resources.dll": {
+            "locale": "Ar"
+          },
+          "En/SchoolManagment.Core.resources.dll": {
+            "locale": "En"
+          }
         }
       },
       "SchoolManagment.Data/1.0.0": {
@@ -1235,6 +1252,13 @@
       "sha512": "sha512-NSmDw3K0ozNDgShSIpsZcbFIzBX4w28nDag+TfaQujkXGazBm+lid5onlWoCBy4VsLxqnnKjEBbGSJVWJMf43g==",
       "path": "microsoft.extensions.dependencymodel/8.0.0",
       "hashPath": "microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512"
+    },
+    "Microsoft.Extensions.Localization.Abstractions/8.0.6": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-oQdKQ4xlb+Qa4t1gWGj58cocLdWZynP+wLExIAxozh2SrvffEzTvTGI2IbRx4mBNgg9jbbyoPE8nNOwJ1Thddg==",
+      "path": "microsoft.extensions.localization.abstractions/8.0.6",
+      "hashPath": "microsoft.extensions.localization.abstractions.8.0.6.nupkg.sha512"
     },
     "Microsoft.Extensions.Logging/8.0.0": {
       "type": "package",
