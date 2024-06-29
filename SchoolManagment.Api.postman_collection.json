@@ -1,0 +1,211 @@
+{
+	"info": {
+		"_postman_id": "1c015c09-2a75-4d57-8a91-4539441ca9d0",
+		"name": "SchoolManagment.Api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "33761565"
+	},
+	"item": [
+		{
+			"name": "Student",
+			"item": [
+				{
+					"name": "Get All Students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "{{BaseUrl}}/Student/List"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Student By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar-EG",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/Student/:Id",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"Student",
+								":Id"
+							],
+							"variable": [
+								{
+									"key": "Id",
+									"value": "7"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar-EG",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"nameEn\": \"Usef Saad \",\r\n  \"nameAr\": \"يوسف سعد\",\r\n  \"address\": \"Cairo\",\r\n  \"departmentId\":5,\r\n  \"phone\": \"01275016800\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseUrl}}/Student/Create"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Student",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"id\": 11,\r\n  \"nameAr\": \"يوسف سعد\",\r\n  \"nameEn\": \"Yousef Saad Eid\",\r\n  \"address\": \"Alex\",\r\n  \"departmentId\": 4,\r\n  \"phone\": \"252352345\"\r\n}\r\n\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "{{BaseUrl}}/Student/Edit"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Student",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": "{{BaseUrl}}/Student/Delete/2"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Paginated & Filtered Students",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar-EG",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/Student/Pagenation?Sort=Address&PageIndex=1&PageSize=5&Search=Ali",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"Student",
+								"Pagenation"
+							],
+							"query": [
+								{
+									"key": "Sort",
+									"value": "Address"
+								},
+								{
+									"key": "PageIndex",
+									"value": "1"
+								},
+								{
+									"key": "PageSize",
+									"value": "5"
+								},
+								{
+									"key": "Search",
+									"value": "Ali"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Department",
+			"item": [
+				{
+					"name": "Get By Id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept-Language",
+								"value": "ar-EG",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{BaseUrl}}/Department/:id",
+							"host": [
+								"{{BaseUrl}}"
+							],
+							"path": [
+								"Department",
+								":id"
+							],
+							"variable": [
+								{
+									"key": "id",
+									"value": "8"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "BaseUrl",
+			"value": "https://localhost:7283/Api/V1",
+			"type": "string"
+		}
+	]
+}
