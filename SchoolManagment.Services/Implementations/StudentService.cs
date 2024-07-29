@@ -64,13 +64,21 @@ namespace SchoolManagment.Services.Implementations
             return exist ? true : false;
         }
 
-        public async Task<bool> IsNameExistExcludeItself(string name, int id)
+        public async Task<bool> IsNameEnExistExcludeItself(string name, int id)
         {
             bool exist = studentRepository
                          .GetTableAsNotTracked()
                          .Any(s => s.NameEn == name && !s.StudId.Equals(id));
             return exist ? true : false;
 
+
+        }
+        public async Task<bool> IsNameArExistExcludeItself(string name, int id)
+        {
+            bool exist = studentRepository
+                         .GetTableAsNotTracked()
+                         .Any(s => s.NameAr == name && !s.StudId.Equals(id));
+            return exist ? true : false;
 
         }
 

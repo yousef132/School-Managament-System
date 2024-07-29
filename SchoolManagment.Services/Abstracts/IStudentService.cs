@@ -18,7 +18,8 @@ namespace SchoolManagment.Services.Abstracts
 
         public Task<bool> IsNameEnExist(string name);
         public Task<bool> IsNameArExist(string name);
-        public Task<bool> IsNameExistExcludeItself(string name, int id);
+        public Task<bool> IsNameArExistExcludeItself(string name, int id);
+        public Task<bool> IsNameEnExistExcludeItself(string name, int id);
 
         public Task<string> EditStudentAsync(Student student);
         public Task<string> DeleteStudentAsync(Student student);

@@ -1,52 +1,65 @@
 ﻿using FluentValidation;
+using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Features.Students.Commands.Models;
+using SchoolManagment.Core.Resources;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Students.Commands.Validations
 {
     public class EditStudentCommandValidator : AbstractValidator<EditStudentCommand>
     {
-        #region Fields
-        private readonly IStudentService studentService;
 
+
+        #region Fields
+        private readonly IStudentService _studentService;
+        private readonly IStringLocalizer<SharedResource> _localizer;
         #endregion
-        #region Constructor
-        public EditStudentCommandValidator(IStudentService studentService)
+
+
+
+        #region Constructors
+        public EditStudentCommandValidator(IStudentService studentService,
+                                   IStringLocalizer<SharedResource> localizer,
+                                   IDepartmentService departmentService)
         {
+            _studentService = studentService;
+            _localizer = localizer;
+            // assign value for the fields before calling validation methods 
             ApplyValidationsRules();
-            this.studentService = studentService;
             ApplyCustomValidationsRules();
         }
         #endregion
 
+
         #region Actions
         public void ApplyValidationsRules()
         {
-
             RuleFor(st => st.NameEn)
-                .NotEmpty().WithMessage("Should Have A Name")
-                .NotNull().WithMessage("Should Not Be Null")
-                .MaximumLength(200);
+                .NotEmpty().WithMessage(_localizer[SharedResourcesKeys.NotEmpty])
+                .NotNull().WithMessage(_localizer[SharedResourcesKeys.Required])
+                .MaximumLength(100).WithMessage(_localizer[SharedResourcesKeys.MaxLengthIs100]);
+
             RuleFor(st => st.NameAr)
-                .NotEmpty().WithMessage("Should Have A Name")
-                .NotNull().WithMessage("Should Not Be Null")
-                .MaximumLength(200);
+                .NotEmpty().WithMessage(_localizer[SharedResourcesKeys.NotEmpty])
+                .NotNull().WithMessage(_localizer[SharedResourcesKeys.Required])
+                .MaximumLength(100).WithMessage(_localizer[SharedResourcesKeys.MaxLengthIs100]);
 
             RuleFor(st => st.Address)
-                .NotEmpty().WithMessage("Should Have an {PropertyName}")
-                .NotNull().WithMessage("{PropertyName }Should Not Be Null")
-                .MaximumLength(200);
+                .NotEmpty().WithMessage(_localizer[SharedResourcesKeys.NotEmpty])
+                .NotNull().WithMessage(_localizer[SharedResourcesKeys.Required])
+                .MaximumLength(100).WithMessage(_localizer[SharedResourcesKeys.MaxLengthIs100]);
         }
         public void ApplyCustomValidationsRules()
         {
             RuleFor(st => st.NameEn)
                 // ok if true , error if false 
-                .MustAsync(async (model, key, CancellationToken) => !await studentService.IsNameExistExcludeItself(key, model.Id))
-                .WithMessage("Name is Exist");
+                .MustAsync(async (model, key, CancellationToken) => !await _studentService.IsNameEnExistExcludeItself(key, model.Id))
+               .WithMessage(_localizer[SharedResourcesKeys.IsExist]);
+
             RuleFor(st => st.NameAr)
                 // ok if true , error if false 
-                .MustAsync(async (model, key, CancellationToken) => !await studentService.IsNameExistExcludeItself(key, model.Id))
-                .WithMessage("Name is Exist");
+                .MustAsync(async (model, key, CancellationToken) => !await _studentService.IsNameArExistExcludeItself(key, model.Id))
+                 .WithMessage(_localizer[SharedResourcesKeys.IsExist]);
         }
 
         #endregion
