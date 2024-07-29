@@ -126,6 +126,15 @@
   <data name="Edited" xml:space="preserve">
     <value>Object Edited Successfully</value>
   </data>
+  <data name="IsExist" xml:space="preserve">
+    <value>This Value Exists</value>
+  </data>
+  <data name="MaxLengthIs100" xml:space="preserve">
+    <value>Max Length Is 100</value>
+  </data>
+  <data name="NotEmpty" xml:space="preserve">
+    <value>This Filed Should Not Be Empty</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>Object Not Found</value>
   </data>

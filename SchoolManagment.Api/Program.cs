@@ -1,4 +1,5 @@
 
+using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SchoolManagment.Core.Middleware;
@@ -24,8 +25,10 @@ namespace SchoolManagment.Api
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("Remote"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Local"));
             });
+
+            //builder.Services.AddSingleton<SharedResource>();
 
             #region Dependency Injections
             builder.Services.AddInfrastructureDependencies()
@@ -40,16 +43,20 @@ namespace SchoolManagment.Api
             {
                 opt.ResourcesPath = "";
             });
-            builder.Services.Configure<RequestLocalizationOptions>(opt =>
+
+            builder.Services.Configure<RequestLocalizationOptions>(options =>
             {
-                List<CultureInfo> locales = new List<CultureInfo>
+                List<CultureInfo> supportedCultures = new List<CultureInfo>
                 {
-                    new CultureInfo("en-US"),
-                    new CultureInfo("ar-EG")
+                     new CultureInfo("en-US"),
+                     new CultureInfo("de-DE"),
+                     new CultureInfo("fr-FR"),
+                     new CultureInfo("ar-EG")
                 };
-                opt.DefaultRequestCulture = new Microsoft.AspNetCore.Localization.RequestCulture("en-US");
-                opt.SupportedCultures = locales;
-                opt.SupportedUICultures = locales;
+
+                options.DefaultRequestCulture = new RequestCulture("en-US");
+                options.SupportedCultures = supportedCultures;
+                options.SupportedUICultures = supportedCultures;
             });
 
 
@@ -83,7 +90,6 @@ namespace SchoolManagment.Api
             app.UseSwaggerUI();
 
             #region Localization Middleware
-
             var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(options.Value);
             #endregion

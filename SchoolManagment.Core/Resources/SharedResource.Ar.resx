@@ -126,6 +126,15 @@
   <data name="Edited" xml:space="preserve">
     <value>تم التعديل بنجاح</value>
   </data>
+  <data name="IsExist" xml:space="preserve">
+    <value>هذه القيمه موجود بالفعل </value>
+  </data>
+  <data name="MaxLengthIs100" xml:space="preserve">
+    <value>اقصى طول هو 100</value>
+  </data>
+  <data name="NotEmpty" xml:space="preserve">
+    <value>الحقل فارغ</value>
+  </data>
   <data name="NotFound" xml:space="preserve">
     <value>غير متوفر</value>
   </data>

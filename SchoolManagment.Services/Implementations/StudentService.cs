@@ -51,10 +51,16 @@ namespace SchoolManagment.Services.Implementations
             return "Success";
         }
 
-        public async Task<bool> IsNameExist(string name)
+        public async Task<bool> IsNameEnExist(string name)
         {
             // check if name exist or not 
             bool exist = studentRepository.GetTableAsNotTracked().Any(s => s.NameEn == name);
+            return exist ? true : false;
+        }
+        public async Task<bool> IsNameArExist(string name)
+        {
+            // check if name exist or not 
+            bool exist = studentRepository.GetTableAsNotTracked().Any(s => s.NameAr == name);
             return exist ? true : false;
         }
 
