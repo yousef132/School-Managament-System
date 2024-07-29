@@ -57,7 +57,7 @@ namespace SchoolManagment.Core.Features.Students.Commands.Validations
 
             RuleFor(x => x.DepartmentId)
            .MustAsync(async (Key, CancellationToken) => await _departmentService.IsDepartmentIdExist(Key))
-           .WithMessage(_localizer[SharedResourcesKeys.NotFound]);
+           .WithMessage(_localizer[SharedResourcesKeys.DepartmentIsNotExist]);
 
         }
 

@@ -123,6 +123,9 @@
   <data name="Deleted" xml:space="preserve">
     <value>Object Deleted Successfully</value>
   </data>
+  <data name="DepartmentIsNotExist" xml:space="preserve">
+    <value>Department Is Not Exist</value>
+  </data>
   <data name="Edited" xml:space="preserve">
     <value>Object Edited Successfully</value>
   </data>

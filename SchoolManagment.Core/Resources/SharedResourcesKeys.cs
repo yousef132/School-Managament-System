@@ -11,6 +11,7 @@
         public const string NotEmpty = "NotEmpty";
         public const string MaxLengthIs100 = "MaxLengthIs100";
         public const string IsExist = "IsExist";
+        public const string DepartmentIsNotExist = "DepartmentIsNotExist";
 
     }
 }
