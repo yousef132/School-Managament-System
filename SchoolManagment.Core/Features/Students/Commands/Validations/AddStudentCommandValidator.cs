@@ -4,72 +4,61 @@ using SchoolManagment.Core.Features.Students.Commands.Models;
 using SchoolManagment.Core.Resources;
 using SchoolManagment.Services.Abstracts;
 
+
 namespace SchoolManagment.Core.Features.Students.Commands.Validations
 {
     public class AddStudentCommandValidator : AbstractValidator<AddStudentCommand>
     {
         #region Fields
-        private readonly IStudentService studentService;
-        private readonly IStringLocalizer<SharedResource> localizer;
-        private readonly IDepartmentService departmentService;
-
+        private readonly IStudentService _studentService;
+        private readonly IStringLocalizer<SharedResource> _localizer;
+        private readonly IDepartmentService _departmentService;
         #endregion
-        #region Constructor
+
+        #region Constructors
         public AddStudentCommandValidator(IStudentService studentService,
-                                          IStringLocalizer<SharedResource> localizer,
-                                          IDepartmentService departmentService)
+                                   IStringLocalizer<SharedResource> localizer,
+                                   IDepartmentService departmentService)
         {
+            _studentService = studentService;
+            _localizer = localizer;
             ApplyValidationsRules();
-            this.studentService = studentService;
-            this.localizer = localizer;
-            this.departmentService = departmentService;
             ApplyCustomValidationsRules();
+            _departmentService = departmentService;
         }
         #endregion
 
         #region Actions
-        public void ApplyValidationsRules()
+        private void ApplyValidationsRules()
         {
+            RuleFor(x => x.NameAr)
+                 .NotEmpty().WithMessage(_localizer[SharedResourcesKeys.NotEmpty])
+                 .NotNull().WithMessage(_localizer[SharedResourcesKeys.Required])
+                 .MaximumLength(100).WithMessage(_localizer[SharedResourcesKeys.MaxLengthIs100]);
 
-            //////TODO : Fluent Validation Exception
-            ///
-            RuleFor(st => st.NameEn)
-                .NotNull().WithMessage("Temp")
-                .NotEmpty().WithMessage("Temp")
-                .MaximumLength(200);
+            RuleFor(x => x.Address)
+                .NotEmpty().WithMessage(_localizer[SharedResourcesKeys.NotEmpty])
+                .NotNull().WithMessage(_localizer[SharedResourcesKeys.Required])
+                .MaximumLength(100).WithMessage(_localizer[SharedResourcesKeys.MaxLengthIs100]);
 
-            //////TODO : Fluent Validation Exception
-            RuleFor(st => st.NameAr)
-                .NotNull().WithMessage("Temp")
-                .NotEmpty().WithMessage("Temp")
-                .MaximumLength(200);
-
-            RuleFor(st => st.Address)
-                .NotEmpty().WithMessage("Temp")
-                .NotNull().WithMessage("Temp")
-                .MaximumLength(200);
-
-            RuleFor(st => st.DepartmentId)
-                .NotEmpty().WithMessage("Temp")
-                .NotNull().WithMessage("Temp");
+            RuleFor(x => x.DepartmentId)
+                 .NotEmpty().WithMessage(_localizer[SharedResourcesKeys.NotEmpty])
+                 .NotNull().WithMessage(_localizer[SharedResourcesKeys.Required]);
         }
-        public void ApplyCustomValidationsRules()
-        {
-            RuleFor(st => st.NameEn)
-                // ok if true , error if false 
-                .MustAsync(async (key, CancellationToken) => !await studentService.IsNameExist(key))
-                .WithMessage("Name is Exist");
-            RuleFor(st => st.NameAr)
-                // ok if true , error if false 
-                .MustAsync(async (key, CancellationToken) => !await studentService.IsNameExist(key))
-                .WithMessage("Name is Exist");
 
-            When(p => p?.DepartmentId != null, () =>
-            {
-                RuleFor(st => st.DepartmentId)
-                    .MustAsync(async (key, CancellationToken) => await departmentService.IsDepartmentIdExist(key))
-                    .WithMessage(localizer[SharedResourcesKeys.NotFound]);
-            });
+        private void ApplyCustomValidationsRules()
+        {
+            RuleFor(x => x.NameAr)
+                .MustAsync(async (Key, CancellationToken) => !await _studentService.IsNameArExist(Key))
+                .WithMessage(_localizer[SharedResourcesKeys.IsExist]);
+            RuleFor(x => x.NameEn)
+               .MustAsync(async (Key, CancellationToken) => !await _studentService.IsNameEnExist(Key))
+               .WithMessage(_localizer[SharedResourcesKeys.IsExist]);
+
+            RuleFor(x => x.DepartmentId)
+           .MustAsync(async (Key, CancellationToken) => await _departmentService.IsDepartmentIdExist(Key))
+           .WithMessage(_localizer[SharedResourcesKeys.NotFound]);
+
         }
 
         #endregion
