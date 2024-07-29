@@ -2,9 +2,11 @@
 
 namespace SchoolManagment.Services.Abstracts
 {
-	public interface IDepartmentService
-	{
-		Task<Department> GetDepartmentById(int id);
+    public interface IDepartmentService
+    {
+        Task<Department> GetDepartmentById(int id);
 
-	}
+        Task<bool> IsDepartmentIdExist(int id);
+
+    }
 }

@@ -6,22 +6,22 @@ using System.Reflection;
 
 namespace SchoolManagment.Data
 {
-	public static class ModuleCoreDependencies
-	{
-		public static IServiceCollection AddCoreDependencies(this IServiceCollection services)
-		{
+    public static class ModuleCoreDependencies
+    {
+        public static IServiceCollection AddCoreDependencies(this IServiceCollection services)
+        {
 
-			// AutoMapper
-			services.AddAutoMapper(Assembly.GetExecutingAssembly());
+            // AutoMapper
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
-			// Mediator Config.
-			services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
+            // Mediator Config.
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
 
 
-			//validators 
-			services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
-			services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
-			return services;
-		}
-	}
+            //validators 
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+            return services;
+        }
+    }
 }
