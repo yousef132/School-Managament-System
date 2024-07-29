@@ -18,8 +18,6 @@ namespace SchoolManagment.Services.Implementations
         {
             this.studentRepository = studentRepository;
         }
-
-
         #endregion
 
         #region Functions
@@ -36,18 +34,8 @@ namespace SchoolManagment.Services.Implementations
 
         public async Task<string> AddAsync(Student student)
         {
-
-
             await studentRepository.AddAsync(student);
-            try
-            {
-                await studentRepository.SaveChangesAsync();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Department Id Not Valid");
-            }
-
+            await studentRepository.SaveChangesAsync();
             return "Success";
         }
 
@@ -91,8 +79,20 @@ namespace SchoolManagment.Services.Implementations
 
         public async Task<string> DeleteStudentAsync(Student student)
         {
-            await studentRepository.DeleteAsync(student);
-            return "Success";
+
+            var transaction = studentRepository.BeginTransaction();
+            try
+            {
+                await studentRepository.DeleteAsync(student);
+                transaction.Commit();
+                return "Success";
+
+            }
+            catch (Exception ex)
+            {
+                await transaction.RollbackAsync();
+                return "Failed";
+            }
         }
 
         public async Task<List<Student>> GetStudentsWithSpecificationsAsync(StudentSpecification inputSpecs)
