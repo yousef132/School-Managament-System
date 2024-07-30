@@ -45,7 +45,15 @@ namespace SchoolManagment.Api.Controllers
         {
             var result = await mediator.Send(new GetUserListQuery());
             return NewResult(result);
+        }
 
+        [HttpPut]
+
+        [Route(Router.ApplicationUserRouting.Edit)]
+        public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand command)
+        {
+            var result = await mediator.Send(command);
+            return NewResult(result);
         }
 
 
