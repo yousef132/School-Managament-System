@@ -11,7 +11,8 @@ namespace SchoolManagment.Core.Features.AppUser.Commands.Handler
 {
     public class UserCommandHandler : ResponseHandler,
         IRequestHandler<AddUserCommand, Response<string>>,
-        IRequestHandler<UpdateUserCommand, Response<string>>
+        IRequestHandler<UpdateUserCommand, Response<string>>,
+        IRequestHandler<DeleteUserCommand, Response<string>>
     {
         #region Fields
         private readonly IStringLocalizer<SharedResource> localizer;
@@ -72,6 +73,20 @@ namespace SchoolManagment.Core.Features.AppUser.Commands.Handler
             return Success((string)localizer[SharedResourcesKeys.Edited]);
 
         }
-        #endregion
+
+        public async Task<Response<string>> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
+        {
+            var user = await userManager.FindByIdAsync(request.Id.ToString());
+            if (user == null)
+                return NotFound<string>(localizer[SharedResourcesKeys.UserNotFound]);
+
+            var result = await userManager.DeleteAsync(user);
+
+            if (!result.Succeeded)
+                return BadRequest<string>(string.Join("; ", result.Errors.Select(e => e.Description)));
+
+            return Deleted<string>(localizer[SharedResourcesKeys.Deleted]);
+        }
+        #endregion  
     }
 }
