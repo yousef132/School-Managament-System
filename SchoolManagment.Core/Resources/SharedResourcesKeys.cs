@@ -12,6 +12,11 @@
         public const string MaxLengthIs100 = "MaxLengthIs100";
         public const string IsExist = "IsExist";
         public const string DepartmentIsNotExist = "DepartmentIsNotExist";
+        public const string PasswordDisMatch = "PasswordDisMatch";
+        public const string EmailAlreadyExists = "EmailAlreadyExists";
+        public const string UserNameAlreadyExists = "UserNameAlreadyExists";
+        public const string RegistrationFailed = "RegistrationFailed";
+        public const string UserNotFound = "UserNotFound";
 
     }
 }

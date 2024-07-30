@@ -1,7 +1,7 @@
-
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
+using SchoolManagment.Api.Bases;
 using SchoolManagment.Core.Middleware;
 using SchoolManagment.Data;
 using SchoolManagment.Infrastructure;
@@ -28,12 +28,14 @@ namespace SchoolManagment.Api
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Local"));
             });
 
-            //builder.Services.AddSingleton<SharedResource>();
+
 
             #region Dependency Injections
             builder.Services.AddInfrastructureDependencies()
                 .AddServiceDependencies()
-                .AddCoreDependencies();
+                .AddCoreDependencies()
+                .AddServiceRegistration(builder.Configuration);
+
 
             #endregion
 

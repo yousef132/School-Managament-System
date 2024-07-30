@@ -129,6 +129,9 @@
   <data name="Edited" xml:space="preserve">
     <value>Object Edited Successfully</value>
   </data>
+  <data name="EmailAlreadyExists" xml:space="preserve">
+    <value>Email Already Exists</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>This Value Exists</value>
   </data>
@@ -141,10 +144,22 @@
   <data name="NotFound" xml:space="preserve">
     <value>Object Not Found</value>
   </data>
+  <data name="PasswordDisMatch" xml:space="preserve">
+    <value>Password DisMatch</value>
+  </data>
+  <data name="RegistrationFailed" xml:space="preserve">
+    <value>Registration Failed</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>This Field Is Required</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>Operation Done Successfully</value>
+  </data>
+  <data name="UserNameAlreadyExists" xml:space="preserve">
+    <value>UserName Already Exists</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>User Not Found</value>
   </data>
 </root>

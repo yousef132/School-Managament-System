@@ -40,7 +40,7 @@ namespace SchoolManagment.Core.Features.Students.Commands.Handler
             string result = await studentService.AddAsync(student);
 
             if (result == "Success")
-                return Created<string>();
+                return Created(result);
 
             else return BadRequest<string>();
         }
