@@ -12,7 +12,8 @@ namespace SchoolManagment.Core.Features.AppUser.Commands.Handler
     public class UserCommandHandler : ResponseHandler,
         IRequestHandler<AddUserCommand, Response<string>>,
         IRequestHandler<UpdateUserCommand, Response<string>>,
-        IRequestHandler<DeleteUserCommand, Response<string>>
+        IRequestHandler<DeleteUserCommand, Response<string>>,
+        IRequestHandler<UpdateUserPasswordCommand, Response<string>>
     {
         #region Fields
         private readonly IStringLocalizer<SharedResource> localizer;
@@ -87,6 +88,22 @@ namespace SchoolManagment.Core.Features.AppUser.Commands.Handler
 
             return Deleted<string>(localizer[SharedResourcesKeys.Deleted]);
         }
-        #endregion  
+
+        public async Task<Response<string>> Handle(UpdateUserPasswordCommand request, CancellationToken cancellationToken)
+        {
+            var user = await userManager.FindByIdAsync(request.Id.ToString());
+            if (user == null)
+                return NotFound<string>(localizer[SharedResourcesKeys.UserNotFound]);
+
+            var result = await userManager.ChangePasswordAsync(user, request.CurrentPassword, request.NewPassword);
+
+
+            if (!result.Succeeded)
+                return BadRequest<string>(string.Join("; ", result.Errors.Select(e => e.Description)));
+
+            return Success<string>(localizer[SharedResourcesKeys.PasswordChangedSuccessfully]);
+
+        }
+        #endregion
     }
 }

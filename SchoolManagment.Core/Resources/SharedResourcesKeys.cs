@@ -20,6 +20,8 @@
         public const string UnAuthorized = "UnAuthorized";
         public const string BadRequest = "BadRequest";
         public const string UnProcessableEntity = "UnProcessableEntity";
+        public const string PasswordChangedSuccessfully = "PasswordChangedSuccessfully";
+        public const string NewPasswordCannotMatchCurrentPassword = "NewPasswordCannotMatchCurrentPassword";
 
     }
 }

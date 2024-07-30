@@ -141,11 +141,17 @@
   <data name="MaxLengthIs100" xml:space="preserve">
     <value>اقصى طول هو 100</value>
   </data>
+  <data name="NewPasswordCannotMatchCurrentPassword" xml:space="preserve">
+    <value>كلمه لمرور الجديده هى نفسها الحاليه </value>
+  </data>
   <data name="NotEmpty" xml:space="preserve">
     <value>الحقل فارغ</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>غير متوفر</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>تم تغيير الباسورد بنجاح</value>
   </data>
   <data name="PasswordDisMatch" xml:space="preserve">
     <value>كلمة المرور غير متطابقة</value>

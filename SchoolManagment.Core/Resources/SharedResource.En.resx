@@ -141,11 +141,17 @@
   <data name="MaxLengthIs100" xml:space="preserve">
     <value>Max Length Is 100</value>
   </data>
+  <data name="NewPasswordCannotMatchCurrentPassword" xml:space="preserve">
+    <value>New Password Can not Match Current Password</value>
+  </data>
   <data name="NotEmpty" xml:space="preserve">
     <value>This Filed Should Not Be Empty</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Object Not Found</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Password Changed Successfully</value>
   </data>
   <data name="PasswordDisMatch" xml:space="preserve">
     <value>Password DisMatch</value>
