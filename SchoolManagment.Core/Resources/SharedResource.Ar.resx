@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BadRequest" xml:space="preserve">
+    <value>طلب خاطئ</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>تم الاضافه بنجاح</value>
   </data>
@@ -138,11 +141,17 @@
   <data name="MaxLengthIs100" xml:space="preserve">
     <value>اقصى طول هو 100</value>
   </data>
+  <data name="NewPasswordCannotMatchCurrentPassword" xml:space="preserve">
+    <value>كلمه لمرور الجديده هى نفسها الحاليه </value>
+  </data>
   <data name="NotEmpty" xml:space="preserve">
     <value>الحقل فارغ</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>غير متوفر</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>تم تغيير الباسورد بنجاح</value>
   </data>
   <data name="PasswordDisMatch" xml:space="preserve">
     <value>كلمة المرور غير متطابقة</value>
@@ -155,6 +164,12 @@
   </data>
   <data name="Success" xml:space="preserve">
     <value>تمت العمليه بتجاح</value>
+  </data>
+  <data name="UnAuthorized" xml:space="preserve">
+    <value>غير مصرح</value>
+  </data>
+  <data name="UnProcessableEntity" xml:space="preserve">
+    <value>كيان غير قابل للمعالجة</value>
   </data>
   <data name="UserNameAlreadyExists" xml:space="preserve">
     <value>اسم المستخدم موجود بالفعل </value>

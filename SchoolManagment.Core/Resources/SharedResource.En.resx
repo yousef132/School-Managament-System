@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="BadRequest" xml:space="preserve">
+    <value>Bad Request</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>Object Created Successfully</value>
   </data>
@@ -138,11 +141,17 @@
   <data name="MaxLengthIs100" xml:space="preserve">
     <value>Max Length Is 100</value>
   </data>
+  <data name="NewPasswordCannotMatchCurrentPassword" xml:space="preserve">
+    <value>New Password Can not Match Current Password</value>
+  </data>
   <data name="NotEmpty" xml:space="preserve">
     <value>This Filed Should Not Be Empty</value>
   </data>
   <data name="NotFound" xml:space="preserve">
     <value>Object Not Found</value>
+  </data>
+  <data name="PasswordChangedSuccessfully" xml:space="preserve">
+    <value>Password Changed Successfully</value>
   </data>
   <data name="PasswordDisMatch" xml:space="preserve">
     <value>Password DisMatch</value>
@@ -155,6 +164,12 @@
   </data>
   <data name="Success" xml:space="preserve">
     <value>Operation Done Successfully</value>
+  </data>
+  <data name="UnAuthorized" xml:space="preserve">
+    <value>UnAuthorized</value>
+  </data>
+  <data name="UnProcessableEntity" xml:space="preserve">
+    <value>UnProcessable Entity</value>
   </data>
   <data name="UserNameAlreadyExists" xml:space="preserve">
     <value>UserName Already Exists</value>

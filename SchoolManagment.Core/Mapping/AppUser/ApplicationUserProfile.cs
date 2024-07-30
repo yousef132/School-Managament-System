@@ -9,6 +9,7 @@ namespace SchoolManagment.Core.Mapping.AppUser
             AddUserMapping();
             GetUsersListMapping();
             GetUserByIdMapping();
+            UpdateUserMapping();
         }
     }
 }

@@ -39,7 +39,7 @@ namespace SchoolManagment.Core.Bases
             {
                 StatusCode = System.Net.HttpStatusCode.Unauthorized,
                 Succeeded = false,
-                Message = "Unauthorized",
+                Message = stringLocalizer[SharedResourcesKeys.UnAuthorized],
             };
         }
         public Response<T> BadRequest<T>(string message = null)
@@ -48,7 +48,7 @@ namespace SchoolManagment.Core.Bases
             {
                 StatusCode = System.Net.HttpStatusCode.BadRequest,
                 Succeeded = false,
-                Message = message == null ? "Bad Request" : message
+                Message = message == null ? stringLocalizer[SharedResourcesKeys.BadRequest] : message
             };
         }
 
@@ -58,7 +58,7 @@ namespace SchoolManagment.Core.Bases
             {
                 StatusCode = System.Net.HttpStatusCode.NotFound,
                 Succeeded = false,
-                Message = message == null ? "Not Found" : message
+                Message = message == null ? stringLocalizer[SharedResourcesKeys.NotFound] : message
             };
         }
 
@@ -74,13 +74,13 @@ namespace SchoolManagment.Core.Bases
             };
         }
 
-        public Response<T> UnprocessableEntity<T>(string message = null)
+        public Response<T> UnProcessableEntity<T>(string message = null)
         {
             return new Response<T>
             {
                 StatusCode = System.Net.HttpStatusCode.UnprocessableEntity,
                 Succeeded = false,
-                Message = message == null ? "Unprocessable Entity" : message
+                Message = message == null ? stringLocalizer[SharedResourcesKeys.UnProcessableEntity] : message
             };
         }
     }
