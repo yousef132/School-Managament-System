@@ -129,6 +129,9 @@
   <data name="Edited" xml:space="preserve">
     <value>تم التعديل بنجاح</value>
   </data>
+  <data name="EmailAlreadyExists" xml:space="preserve">
+    <value>الايميل موجود بالفعل</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>هذه القيمه موجود بالفعل </value>
   </data>
@@ -141,10 +144,19 @@
   <data name="NotFound" xml:space="preserve">
     <value>غير متوفر</value>
   </data>
+  <data name="PasswordDisMatch" xml:space="preserve">
+    <value>كلمة المرور غير متطابقة</value>
+  </data>
+  <data name="RegistrationFailed" xml:space="preserve">
+    <value>فشل فى التسجيل</value>
+  </data>
   <data name="Required" xml:space="preserve">
     <value>هذا الحقل مطلوب</value>
   </data>
   <data name="Success" xml:space="preserve">
     <value>تمت العمليه بتجاح</value>
+  </data>
+  <data name="UserNameAlreadyExists" xml:space="preserve">
+    <value>اسم المستخدم موجود بالفعل </value>
   </data>
 </root>

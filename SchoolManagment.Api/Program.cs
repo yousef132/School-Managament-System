@@ -1,12 +1,9 @@
-
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SchoolManagment.Api.Bases;
 using SchoolManagment.Core.Middleware;
 using SchoolManagment.Data;
-using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Infrastructure;
 using SchoolManagment.Infrastructure.Data;
 using SchoolManagment.Services;
@@ -31,17 +28,7 @@ namespace SchoolManagment.Api
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Local"));
             });
 
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole<int>>(opt =>
-            {
-                opt.SignIn.RequireConfirmedEmail = true;
-                opt.Password.RequireDigit = true;
-                opt.Password.RequireLowercase = true;
-                opt.Password.RequireUppercase = true;
-                opt.Password.RequireNonAlphanumeric = true;
-                opt.SignIn.RequireConfirmedAccount = false;
-            })
-             .AddEntityFrameworkStores<ApplicationDbContext>()
-             .AddDefaultTokenProviders();
+
 
             #region Dependency Injections
             builder.Services.AddInfrastructureDependencies()
