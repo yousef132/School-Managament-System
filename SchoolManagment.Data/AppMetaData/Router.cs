@@ -34,6 +34,8 @@
         {
             public const string Prefix = $"{Rule}User/";
             public const string Create = $"{Prefix}Create";
+            public const string List = $"{Prefix}List";
+            public const string GetById = $"{Prefix}" + "{id}";
         }
 
     }

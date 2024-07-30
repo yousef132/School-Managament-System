@@ -7,6 +7,8 @@ namespace SchoolManagment.Core.Mapping.AppUser
         public ApplicationUserProfile()
         {
             AddUserMapping();
+            GetUsersListMapping();
+            GetUserByIdMapping();
         }
     }
 }

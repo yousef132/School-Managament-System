@@ -16,6 +16,7 @@
         public const string EmailAlreadyExists = "EmailAlreadyExists";
         public const string UserNameAlreadyExists = "UserNameAlreadyExists";
         public const string RegistrationFailed = "RegistrationFailed";
+        public const string UserNotFound = "UserNotFound";
 
     }
 }

@@ -159,4 +159,7 @@
   <data name="UserNameAlreadyExists" xml:space="preserve">
     <value>اسم المستخدم موجود بالفعل </value>
   </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>المستخدم غير موجود</value>
+  </data>
 </root>
