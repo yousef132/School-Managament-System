@@ -31,6 +31,7 @@ namespace SchoolManagment.Core.Features.AppUser.Queries.Handler
             this.userManager = userManager;
         }
         #endregion
+
         #region Handler
         public async Task<Response<List<GetUserListResponse>>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
         {
