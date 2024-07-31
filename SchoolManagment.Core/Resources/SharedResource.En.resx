@@ -174,7 +174,13 @@
   <data name="UserNameAlreadyExists" xml:space="preserve">
     <value>UserName Already Exists</value>
   </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>UserName Not Exist</value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>User Not Found</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>Wrong Password</value>
   </data>
 </root>

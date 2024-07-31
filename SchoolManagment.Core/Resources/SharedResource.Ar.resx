@@ -174,7 +174,13 @@
   <data name="UserNameAlreadyExists" xml:space="preserve">
     <value>اسم المستخدم موجود بالفعل </value>
   </data>
+  <data name="UserNameNotExist" xml:space="preserve">
+    <value>اسم المستخدم غير موجود</value>
+  </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>المستخدم غير موجود</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>كلمه مرور خاطئه</value>
   </data>
 </root>

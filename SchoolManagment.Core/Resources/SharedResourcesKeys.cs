@@ -22,6 +22,8 @@
         public const string UnProcessableEntity = "UnProcessableEntity";
         public const string PasswordChangedSuccessfully = "PasswordChangedSuccessfully";
         public const string NewPasswordCannotMatchCurrentPassword = "NewPasswordCannotMatchCurrentPassword";
+        public const string UserNameNotExist = "UserNameNotExist";
+        public const string WrongPassword = "WrongPassword";
 
     }
 }

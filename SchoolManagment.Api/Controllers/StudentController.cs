@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolManagment.Api.Bases;
 using SchoolManagment.Core.Features.Students.Commands.Models;
 using SchoolManagment.Core.Features.Students.Queries.Models;
@@ -11,6 +12,7 @@ namespace SchoolManagment.Api.Controllers
     public class StudentController : AppControllerBase
     {
         [HttpGet(Router.StudentRouting.List)]
+        [Authorize]
         public async Task<ActionResult<List<Student>>> GetAllStudents()
         {
             // send request of type GetStudentQuery and return response of type List<Student>
