@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
-using SchoolManagment.Api.Bases;
 using SchoolManagment.Core.Middleware;
 using SchoolManagment.Data;
+using SchoolManagment.Data.Helper;
 using SchoolManagment.Infrastructure;
 using SchoolManagment.Infrastructure.Data;
 using SchoolManagment.Services;
@@ -29,13 +29,13 @@ namespace SchoolManagment.Api
             });
 
 
-
             #region Dependency Injections
-            builder.Services.AddInfrastructureDependencies()
+            builder.Services.AddInfrastructureDependencies(builder.Configuration)
                 .AddServiceDependencies()
                 .AddCoreDependencies()
                 .AddServiceRegistration(builder.Configuration);
 
+            builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 
             #endregion
 
@@ -61,8 +61,6 @@ namespace SchoolManagment.Api
                 options.SupportedUICultures = supportedCultures;
             });
 
-
-
             #endregion
 
             #region Cors
@@ -80,6 +78,7 @@ namespace SchoolManagment.Api
             });
 
             #endregion
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -95,6 +94,7 @@ namespace SchoolManagment.Api
             var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
             app.UseRequestLocalization(options.Value);
             #endregion
+
             app.UseHttpsRedirection();
             app.UseCors(Cors);
             app.UseAuthorization();

@@ -54,8 +54,6 @@ namespace SchoolManagment.Core.Features.AppUser.Commands.Handler
                 return BadRequest<string>(string.Join("; ", createResult.Errors.Select(e => e.Description)));
 
             return Created("User Created Successfully");
-
-
         }
 
         public async Task<Response<string>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
