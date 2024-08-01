@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagment.Api.Bases;
 using SchoolManagment.Core.Features.Authentication.Commands.Models;
+using SchoolManagment.Core.Features.Authentication.Queries.Model;
 using SchoolManagment.Data.AppMetaData;
 
 namespace SchoolManagment.Api.Controllers
@@ -20,8 +21,19 @@ namespace SchoolManagment.Api.Controllers
         }
 
         [HttpPost(Router.Authentication.SignIn)]
-        public async Task<IActionResult> SignIn([FromBody] SignInCommand command)
+        public async Task<IActionResult> SignIn([FromForm] SignInCommand command)
              => NewResult(await mediator.Send(command));
 
+
+
+        [HttpPost(Router.Authentication.RefreshToken)]
+        public async Task<IActionResult> RefreshToken([FromForm] RefreshTokenCommand command)
+             => NewResult(await mediator.Send(command));
+
+        [HttpGet(Router.Authentication.ValidateToken)]
+        public async Task<IActionResult> ValidateToken([FromQuery] AuthorizeUserQuery query)
+             => NewResult(await mediator.Send(query));
+
     }
+
 }

@@ -17,6 +17,7 @@ namespace SchoolManagment.Infrastructure
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<ISubjectRepository, SubjectRepository>();
             services.AddScoped<IStudentRepository, StudentRepository>();
+            services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             services.AddScoped<IInstructorRepository, InstructorRepository>();
             services.Configure<JWT>(configuration.GetSection("JWT"));
 
