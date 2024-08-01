@@ -33,6 +33,7 @@ namespace SchoolManagment.Infrastructure.Data
         public DbSet<Department> Departments { get; set; }
         public DbSet<StudentSubject> StudentSubjects { get; set; }
         public DbSet<DepartmentSubject> DepartmentSubjects { get; set; }
+        public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
 
     }
 }

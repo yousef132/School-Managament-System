@@ -8,5 +8,7 @@ namespace SchoolManagment.Data.Entities.Identity
         public string? Address { get; set; }
         public string? Country { get; set; }
 
+        public ICollection<UserRefreshToken> userRefreshTokens { get; set; } = new HashSet<UserRefreshToken>();
+
     }
 }

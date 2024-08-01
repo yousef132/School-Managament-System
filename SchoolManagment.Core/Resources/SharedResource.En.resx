@@ -135,6 +135,9 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>Email Already Exists</value>
   </data>
+  <data name="ExpiredToken" xml:space="preserve">
+    <value>Expired Token</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>This Value Exists</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>User Not Found</value>
+  </data>
+  <data name="ValidToken" xml:space="preserve">
+    <value>Valid Token</value>
   </data>
   <data name="WrongPassword" xml:space="preserve">
     <value>Wrong Password</value>

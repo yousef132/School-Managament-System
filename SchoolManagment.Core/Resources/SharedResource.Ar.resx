@@ -135,6 +135,9 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>الايميل موجود بالفعل</value>
   </data>
+  <data name="ExpiredToken" xml:space="preserve">
+    <value>رمز منتهية الصلاحية</value>
+  </data>
   <data name="IsExist" xml:space="preserve">
     <value>هذه القيمه موجود بالفعل </value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="UserNotFound" xml:space="preserve">
     <value>المستخدم غير موجود</value>
+  </data>
+  <data name="ValidToken" xml:space="preserve">
+    <value>رمز صالح</value>
   </data>
   <data name="WrongPassword" xml:space="preserve">
     <value>كلمه مرور خاطئه</value>

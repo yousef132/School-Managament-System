@@ -1,9 +1,9 @@
-﻿using SchoolManagment.Data.Entities;
+﻿using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 
 namespace SchoolManagment.Infrastructure.Abstracts
 {
-    public interface IDepartmentRepository : IGenericRepositoryAsync<Department>
+    public interface IRefreshTokenRepository : IGenericRepositoryAsync<UserRefreshToken>
     {
         //Task<Department> GetDepartmentById(int id);
     }

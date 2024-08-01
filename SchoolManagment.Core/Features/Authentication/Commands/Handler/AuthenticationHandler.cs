@@ -5,11 +5,14 @@ using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Authentication.Commands.Models;
 using SchoolManagment.Core.Resources;
 using SchoolManagment.Data.Entities.Identity;
+using SchoolManagment.Data.Helper;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Authentication.Commands.Handler
 {
-    internal class AuthenticationCommandHandler : ResponseHandler, IRequestHandler<SignInCommand, Response<string>>
+    internal class AuthenticationCommandHandler : ResponseHandler,
+        IRequestHandler<SignInCommand, Response<JwtAuthModel>>,
+        IRequestHandler<RefreshTokenCommand, Response<JwtAuthModel>>
     {
         #region Fields
         private readonly IStringLocalizer<SharedResource> localizer;
@@ -34,19 +37,25 @@ namespace SchoolManagment.Core.Features.Authentication.Commands.Handler
         }
         #endregion
         #region Handlers
-        public async Task<Response<string>> Handle(SignInCommand request, CancellationToken cancellationToken)
+        public async Task<Response<JwtAuthModel>> Handle(SignInCommand request, CancellationToken cancellationToken)
         {
             var user = await userManager.FindByNameAsync(request.UserName);
             if (user == null)
-                return BadRequest<string>((string)localizer[SharedResourcesKeys.UserNameNotExist]);
+                return BadRequest<JwtAuthModel>((string)localizer[SharedResourcesKeys.UserNameNotExist]);
 
             var result = await signInManager.CheckPasswordSignInAsync(user, request.Password, false);
 
             if (!result.Succeeded)
-                return BadRequest<string>((string)localizer[SharedResourcesKeys.WrongPassword]);
+                return BadRequest<JwtAuthModel>((string)localizer[SharedResourcesKeys.WrongPassword]);
 
             // generate token
-            return Success(await authenticationService.GenerateJWTToken(user));
+            return Success(await authenticationService.GenerateJWTTokenWithRefreshToken(user));
+        }
+
+        public async Task<Response<JwtAuthModel>> Handle(RefreshTokenCommand request, CancellationToken cancellationToken)
+        {
+            var result = await authenticationService.GetRefreshToken(request.AccessToken, request.RefreshToken);
+            return Success(result);
         }
         #endregion
     }

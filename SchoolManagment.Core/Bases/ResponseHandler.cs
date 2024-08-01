@@ -33,13 +33,13 @@ namespace SchoolManagment.Core.Bases
                 Meta = meta
             };
         }
-        public Response<T> Unauthorized<T>()
+        public Response<T> Unauthorized<T>(string message = null)
         {
             return new Response<T>
             {
                 StatusCode = System.Net.HttpStatusCode.Unauthorized,
                 Succeeded = false,
-                Message = stringLocalizer[SharedResourcesKeys.UnAuthorized],
+                Message = message == null ? stringLocalizer[SharedResourcesKeys.UnAuthorized] : message,
             };
         }
         public Response<T> BadRequest<T>(string message = null)
