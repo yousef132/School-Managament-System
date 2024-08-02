@@ -135,8 +135,8 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>الايميل موجود بالفعل</value>
   </data>
-  <data name="ExpiredToken" xml:space="preserve">
-    <value>رمز منتهية الصلاحية</value>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>رمز غير صالح</value>
   </data>
   <data name="IsExist" xml:space="preserve">
     <value>هذه القيمه موجود بالفعل </value>

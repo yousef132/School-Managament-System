@@ -42,7 +42,6 @@ namespace SchoolManagment.Services.Implementations
                 ExpiresOn = DateTime.UtcNow.AddDays(jwt.RefreshTokenExpiration),
                 UserName = user.UserName,
                 Token = GenerateRefreshToken()
-
             };
 
             #region Generate User Refresh Token And Save it in db
@@ -97,17 +96,18 @@ namespace SchoolManagment.Services.Implementations
                 audience: jwt.Audience,
                 signingCredentials: signingCredentials,
                 claims: claims,
-                expires: DateTime.UtcNow.AddSeconds(1)
-            // expires: DateTime.UtcNow.AddDays(jwt.AccessTokenExpiration)
+                expires: DateTime.UtcNow.AddDays(jwt.AccessTokenExpiration)
             );
             return jwtToken;
         }
-
-
         public async Task<JwtAuthModel> GetRefreshToken(string accessToken, string refreshToken)
         {
+            // refresh token 
             #region Read And Validate Access Token  
             var jwtSecurityToken = ReadJwtToken(accessToken);
+
+
+
             var userId = jwtSecurityToken.Claims.FirstOrDefault(x => x.Type == "userId").Value;
             var user = await userManager.FindByIdAsync(userId);
             if (user == null)
@@ -130,7 +130,7 @@ namespace SchoolManagment.Services.Implementations
                                              x.UserId == int.Parse(userId));
 
             if (userRefreshTokenRecord == null)
-                throw new SecurityTokenException("Invalid Refresh Operation");
+                throw new SecurityTokenException("Invalid Refresh Token Operation");
 
             if (userRefreshTokenRecord.ExpiryDate < DateTime.UtcNow)
             {
@@ -143,9 +143,13 @@ namespace SchoolManagment.Services.Implementations
             }
             #endregion
 
+            // right here you have a valid refresh token with an invalid access token
 
-            var newAccessToken = await GenerateJWTToken(user);
-            var newRefreshToken = GenerateRefreshToken();
+            //  update the access token of the current refresh token record
+            var newAccessToken = new JwtSecurityTokenHandler().WriteToken(await GenerateJWTToken(user));
+
+            userRefreshTokenRecord.Token = newAccessToken;
+            await refreshTokenRepository.UpdateAsync(userRefreshTokenRecord);
 
             var refreshTokenResult = new RefreshToken
             {
@@ -157,10 +161,10 @@ namespace SchoolManagment.Services.Implementations
             return new JwtAuthModel
             {
                 RefreshToken = refreshTokenResult,
-                AccessToken = new JwtSecurityTokenHandler().WriteToken(newAccessToken)
+                AccessToken = newAccessToken
             };
         }
-        private JwtSecurityToken ReadJwtToken(string accessToken)
+        public JwtSecurityToken ReadJwtToken(string accessToken)
         {
             if (string.IsNullOrEmpty(accessToken))
                 throw new ArgumentNullException(nameof(accessToken));
@@ -191,13 +195,7 @@ namespace SchoolManagment.Services.Implementations
 
             try
             {
-                var validator = handler.ValidateToken(accessToken, parameters, out SecurityToken validatedToken);
-
-                if (validator == null)
-                {
-                    return false;
-                }
-
+                handler.ValidateToken(accessToken, parameters, out _);
                 return true;
             }
             catch (Exception ex)
@@ -216,8 +214,10 @@ namespace SchoolManagment.Services.Implementations
                 ValidateIssuer = true,
                 ValidIssuer = jwt.Issuer,
                 ValidAudience = jwt.Audience,
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key))
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwt.Key)),
+                ClockSkew = TimeSpan.Zero
             };
         }
+
     }
 }

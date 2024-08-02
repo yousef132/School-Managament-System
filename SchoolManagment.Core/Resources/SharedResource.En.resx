@@ -135,8 +135,8 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>Email Already Exists</value>
   </data>
-  <data name="ExpiredToken" xml:space="preserve">
-    <value>Expired Token</value>
+  <data name="InvalidToken" xml:space="preserve">
+    <value>Invalid Token</value>
   </data>
   <data name="IsExist" xml:space="preserve">
     <value>This Value Exists</value>
