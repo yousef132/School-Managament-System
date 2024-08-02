@@ -24,7 +24,7 @@
         public const string NewPasswordCannotMatchCurrentPassword = "NewPasswordCannotMatchCurrentPassword";
         public const string UserNameNotExist = "UserNameNotExist";
         public const string WrongPassword = "WrongPassword";
-        public const string ExpiredToken = "ExpiredToken";
+        public const string InvalidToken = "InvalidToken";
         public const string ValidToken = "ValidToken";
 
     }

@@ -31,15 +31,7 @@ namespace SchoolManagment.Core.Features.Authentication.Queries.Handler
             if (valid)
                 return Success<string>(localizer[SharedResourcesKeys.ValidToken]);
 
-            return Unauthorized<string>(localizer[SharedResourcesKeys.ExpiredToken]);
-
-
-            //var validAccessToken = await authenticationService.ValidateAccessToken(request.AccessToken);
-
-            //if (validAccessToken == "Not Expired")
-            //    return Success<string>(localizer[SharedResourcesKeys.ValidToken]);
-
-            //return BadRequest<string>(localizer[SharedResourcesKeys.ValidToken]);
+            return Unauthorized<string>(localizer[SharedResourcesKeys.InvalidToken]);
 
         }
     }
