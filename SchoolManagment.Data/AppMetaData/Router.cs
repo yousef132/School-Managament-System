@@ -57,6 +57,7 @@
             public const string EditRole = $"{Prefix}Edit-Role";
             public const string RolesList = $"{Prefix}Roles-List";
             public const string GetById = $"{Prefix}" + "{id}";
+            public const string ManageUserRoles = $"{Prefix}" + "Manage-User-Roles/{userId}";
 
 
         }

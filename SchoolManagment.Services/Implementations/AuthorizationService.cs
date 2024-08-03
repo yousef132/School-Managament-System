@@ -9,14 +9,16 @@ namespace SchoolManagment.Services.Implementations
     public class AuthorizationService : IAuthorizationService
     {
         private readonly RoleManager<Role> roleManager;
+        private readonly UserManager<ApplicationUser> userManager;
         #region Fields
 
         #endregion
 
         #region Constructor
-        public AuthorizationService(RoleManager<Role> roleManager)
+        public AuthorizationService(RoleManager<Role> roleManager, UserManager<ApplicationUser> userManager)
         {
             this.roleManager = roleManager;
+            this.userManager = userManager;
         }
         #endregion
 
@@ -52,10 +54,37 @@ namespace SchoolManagment.Services.Implementations
         public Task<List<Role>> GetRolesAsync()
             => roleManager.Roles.ToListAsync();
 
-        public async Task<bool> IsRoleExistsAsync(string roleName)
+        public async Task<ManageUserRolesResponse?> GetUserWithRolesAsync(int userId)
         {
-            return await roleManager.RoleExistsAsync(roleName);
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+                return null;
+            var Roles = new List<UserRole>();
+            var response = new ManageUserRolesResponse();
+
+
+            var userRoles = await userManager.GetRolesAsync(user);
+
+            var roles = await roleManager.Roles.ToListAsync();
+            response.UserId = userId;
+
+
+            foreach (var role in roles)
+            {
+                Roles.Add(new UserRole
+                {
+                    Id = role.Id,
+                    Name = role.Name,
+                    HasRole = userRoles.Contains(role.Name)
+                });
+            }
+            response.Roles = Roles;
+            return response;
         }
+
+        public async Task<bool> IsRoleExistsAsync(string roleName)
+            => await roleManager.RoleExistsAsync(roleName);
+
         #endregion
     }
 }

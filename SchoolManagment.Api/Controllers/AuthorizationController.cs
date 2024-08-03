@@ -36,5 +36,12 @@ namespace SchoolManagment.Api.Controllers
         public async Task<IActionResult> GetRoleById([FromRoute] int id)
            => NewResult(await mediator.Send(new GetRoleByIdQuery(id)));
 
+
+        [SwaggerOperation(Summary = " ادارة صلاحيات المستخدمين", OperationId = "ManageUserRoles")]
+        [HttpGet(Router.Authorization.ManageUserRoles)]
+        public async Task<IActionResult> ManageUserRoles([FromRoute] int userId)
+        => NewResult(await mediator.Send(new ManageUserRolesQuery(userId)));
+
+
     }
 }
