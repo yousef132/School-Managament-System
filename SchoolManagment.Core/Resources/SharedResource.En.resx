@@ -135,6 +135,9 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>Email Already Exists</value>
   </data>
+  <data name="Failed" xml:space="preserve">
+    <value>Operation Failed</value>
+  </data>
   <data name="InvalidToken" xml:space="preserve">
     <value>Invalid Token</value>
   </data>

@@ -135,6 +135,9 @@
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>الايميل موجود بالفعل</value>
   </data>
+  <data name="Failed" xml:space="preserve">
+    <value>خطا اثناء تنفيذ العمليه</value>
+  </data>
   <data name="InvalidToken" xml:space="preserve">
     <value>رمز غير صالح</value>
   </data>

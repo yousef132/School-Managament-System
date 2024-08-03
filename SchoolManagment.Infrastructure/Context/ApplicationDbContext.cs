@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities;
 using SchoolManagment.Data.Entities.Identity;
@@ -7,7 +6,7 @@ using System.Reflection;
 
 namespace SchoolManagment.Infrastructure.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, int>
     {
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
