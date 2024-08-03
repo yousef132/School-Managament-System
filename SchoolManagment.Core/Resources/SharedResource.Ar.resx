@@ -138,6 +138,15 @@
   <data name="Failed" xml:space="preserve">
     <value>خطا اثناء تنفيذ العمليه</value>
   </data>
+  <data name="FailedToAddNewRoles" xml:space="preserve">
+    <value>فشل في اضافه أدوار المستخدم</value>
+  </data>
+  <data name="FailedToRemoveOldRoles" xml:space="preserve">
+    <value>فشل في  حذف أدوار المستخدم</value>
+  </data>
+  <data name="FailedToUpdateUserRoles" xml:space="preserve">
+    <value>فشل في تحديث أدوار المستخدم</value>
+  </data>
   <data name="InvalidToken" xml:space="preserve">
     <value>رمز غير صالح</value>
   </data>

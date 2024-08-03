@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Data.Requests;
+using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Services.Implementations
@@ -10,15 +11,19 @@ namespace SchoolManagment.Services.Implementations
     {
         private readonly RoleManager<Role> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly IGenericRepositoryAsync<Role> genericRepository;
         #region Fields
 
         #endregion
 
         #region Constructor
-        public AuthorizationService(RoleManager<Role> roleManager, UserManager<ApplicationUser> userManager)
+        public AuthorizationService(RoleManager<Role> roleManager,
+                                    UserManager<ApplicationUser> userManager,
+                                    IGenericRepositoryAsync<Role> genericRepository)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;
+            this.genericRepository = genericRepository;
         }
         #endregion
 
@@ -85,6 +90,41 @@ namespace SchoolManagment.Services.Implementations
         public async Task<bool> IsRoleExistsAsync(string roleName)
             => await roleManager.RoleExistsAsync(roleName);
 
+        public async Task<string> UpdateUserRoles(UpdateUserRolesRequest request)
+        {
+            var transaction = genericRepository.BeginTransaction();
+            try
+            {
+
+                var user = await userManager.FindByIdAsync(request.UserId.ToString());
+
+                if (user == null)
+                    return "UserIsNull";
+
+
+                var userRoles = await userManager.GetRolesAsync(user);
+                var removeResult = await userManager.RemoveFromRolesAsync(user, userRoles);
+                if (!removeResult.Succeeded)
+                    return "FailedToRemoveOldRoles";
+
+
+                var selectedRoles = request.Roles.Where(r => r.HasRole).Select(r => r.Name).ToList();
+                var addResult = await userManager.AddToRolesAsync(user, selectedRoles);
+
+                if (!addResult.Succeeded)
+                    return "FailedToAddNewRoles";
+
+                genericRepository.Commit();
+                return "Success";
+
+
+            }
+            catch (Exception ex)
+            {
+                genericRepository.RollBack();
+                return "FailedToUpdateUserRoles";
+            }
+        }
         #endregion
     }
 }

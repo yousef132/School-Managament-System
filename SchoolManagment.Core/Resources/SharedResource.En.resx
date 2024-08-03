@@ -138,6 +138,15 @@
   <data name="Failed" xml:space="preserve">
     <value>Operation Failed</value>
   </data>
+  <data name="FailedToAddNewRoles" xml:space="preserve">
+    <value>Failed To Add New Roles</value>
+  </data>
+  <data name="FailedToRemoveOldRoles" xml:space="preserve">
+    <value>Failed To Remove Old Roles</value>
+  </data>
+  <data name="FailedToUpdateUserRoles" xml:space="preserve">
+    <value>Failed To Update User Roles</value>
+  </data>
   <data name="InvalidToken" xml:space="preserve">
     <value>Invalid Token</value>
   </data>

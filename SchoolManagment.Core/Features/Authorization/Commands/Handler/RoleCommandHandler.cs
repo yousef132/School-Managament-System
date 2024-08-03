@@ -9,7 +9,8 @@ namespace SchoolManagment.Core.Features.Authorization.Commands.Handler
 {
     public class RoleCommandHandler : ResponseHandler,
         IRequestHandler<AddRoleCommand, Response<string>>,
-        IRequestHandler<EditRoleCommand, Response<string>>
+        IRequestHandler<EditRoleCommand, Response<string>>,
+         IRequestHandler<UpdateUserRolesCommand, Response<string>>
     {
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly IAuthorizationService authorizationService;
@@ -33,6 +34,19 @@ namespace SchoolManagment.Core.Features.Authorization.Commands.Handler
                 return Success((string)localizer[SharedResourcesKeys.Success]);
 
             return BadRequest<string>(localizer[SharedResourcesKeys.Failed]);
+        }
+
+        public async Task<Response<string>> Handle(UpdateUserRolesCommand request, CancellationToken cancellationToken)
+        {
+            var result = await authorizationService.UpdateUserRoles(request);
+            switch (result)
+            {
+                case "UserIsNull": return NotFound<string>(localizer[SharedResourcesKeys.UserNotFound]);
+                case "FailedToRemoveOldRoles": return BadRequest<string>(localizer[SharedResourcesKeys.FailedToRemoveOldRoles]);
+                case "FailedToAddNewRoles": return BadRequest<string>(localizer[SharedResourcesKeys.FailedToAddNewRoles]);
+                case "FailedToUpdateUserRoles": return BadRequest<string>(localizer[SharedResourcesKeys.FailedToUpdateUserRoles]);
+            }
+            return Success<string>(localizer[SharedResourcesKeys.Success]);
         }
     }
 }

@@ -43,5 +43,12 @@ namespace SchoolManagment.Api.Controllers
         => NewResult(await mediator.Send(new ManageUserRolesQuery(userId)));
 
 
+        [SwaggerOperation(Summary = " تعديل صلاحيات المستخدمين", OperationId = "UpdateUserRoles")]
+        [HttpPut(Router.Authorization.UpdateUserRoles)]
+        public async Task<IActionResult> UpdateUserRoles([FromBody] UpdateUserRolesCommand command)
+        => NewResult(await mediator.Send(command));
+
+
+
     }
 }
