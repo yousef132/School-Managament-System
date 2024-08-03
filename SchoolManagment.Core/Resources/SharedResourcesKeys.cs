@@ -26,6 +26,7 @@
         public const string WrongPassword = "WrongPassword";
         public const string InvalidToken = "InvalidToken";
         public const string ValidToken = "ValidToken";
+        public const string Failed = "Failed";
 
     }
 }

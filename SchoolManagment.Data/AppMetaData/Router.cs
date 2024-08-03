@@ -50,5 +50,16 @@
 
         }
 
+        public static class Authorization
+        {
+            public const string Prefix = $"{Rule}Authorization/";
+            public const string AddRole = $"{Prefix}Add-Role";
+            public const string EditRole = $"{Prefix}Edit-Role";
+            public const string RolesList = $"{Prefix}Roles-List";
+            public const string GetById = $"{Prefix}" + "{id}";
+
+
+        }
+
     }
 }

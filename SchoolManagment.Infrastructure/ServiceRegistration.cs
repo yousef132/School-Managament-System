@@ -18,7 +18,7 @@ namespace SchoolManagment.Infrastructure
 
             #region Identity
 
-            services.AddIdentity<ApplicationUser, IdentityRole<int>>(option =>
+            services.AddIdentity<ApplicationUser, Role>(option =>
             {
                 // Password settings.
                 option.Password.RequireDigit = true;

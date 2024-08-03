@@ -27,6 +27,8 @@ namespace SchoolManagment.Services.Implementations
             this.refreshTokenRepository = refreshTokenRepository;
             this.jwt = jwt.Value;
         }
+
+
         // must be called when register or login
         public async Task<JwtAuthModel> GenerateJWTTokenWithRefreshToken(ApplicationUser user)
         {
@@ -203,7 +205,6 @@ namespace SchoolManagment.Services.Implementations
                 return false;
             }
         }
-
         private TokenValidationParameters GetValidationParameters()
         {
             return new TokenValidationParameters()

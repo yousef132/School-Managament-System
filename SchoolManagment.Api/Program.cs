@@ -1,11 +1,14 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using SchoolManagment.Core.Middleware;
 using SchoolManagment.Data;
+using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Data.Helper;
 using SchoolManagment.Infrastructure;
 using SchoolManagment.Infrastructure.Data;
+using SchoolManagment.Infrastructure.Seeder;
 using SchoolManagment.Services;
 using System.Globalization;
 
@@ -13,7 +16,7 @@ namespace SchoolManagment.Api
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -80,6 +83,13 @@ namespace SchoolManagment.Api
             #endregion
 
             var app = builder.Build();
+            using (var scope = app.Services.CreateScope())
+            {
+                var userManager = scope.ServiceProvider.GetRequiredService<UserManager<ApplicationUser>>();
+                var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<Role>>();
+                await RoleSeeder.SeedAsync(roleManager);
+                await UserSeeder.SeedAsync(userManager);
+            }
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
@@ -97,6 +107,7 @@ namespace SchoolManagment.Api
 
             app.UseHttpsRedirection();
             app.UseCors(Cors);
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseMiddleware<ErrorHandlerMiddleware>();
 
