@@ -1,4 +1,4 @@
-﻿namespace SchoolManagment.Data.Requests
+﻿namespace SchoolManagment.Data.Responses
 {
     public class ManageUserRolesResponse
     {

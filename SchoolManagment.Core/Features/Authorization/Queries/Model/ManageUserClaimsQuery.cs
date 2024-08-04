@@ -4,9 +4,9 @@ using SchoolManagment.Data.Responses;
 
 namespace SchoolManagment.Core.Features.Authorization.Queries.Model
 {
-    public class ManageUserRolesQuery : IRequest<Response<ManageUserRolesResponse>>
+    public class ManageUserClaimsQuery : IRequest<Response<ManageUserClaimsResponse>>
     {
-        public ManageUserRolesQuery(int userId)
+        public ManageUserClaimsQuery(int userId)
         {
             UserId = userId;
         }

@@ -55,8 +55,10 @@
             public const string Prefix = $"{Rule}Authorization/";
             public const string AddRole = $"{Prefix}Add-Role";
             public const string EditRole = $"{Prefix}Edit-Role";
+            public const string DeleteRole = $"{Prefix}DeleteRole" + "{id}";
             public const string RolesList = $"{Prefix}Roles-List";
             public const string UpdateUserRoles = $"{Prefix}Update-User-Roles";
+            public const string ManageUserClaims = $"{Prefix}" + "Manage-User-Claims/{userId}";
             public const string GetById = $"{Prefix}" + "{id}";
             public const string ManageUserRoles = $"{Prefix}" + "Manage-User-Roles/{userId}";
 

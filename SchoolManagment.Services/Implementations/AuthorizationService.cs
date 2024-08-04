@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Data.Requests;
+using SchoolManagment.Data.Responses;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
 
@@ -12,6 +13,8 @@ namespace SchoolManagment.Services.Implementations
         private readonly RoleManager<Role> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IGenericRepositoryAsync<Role> genericRepository;
+
+
         #region Fields
 
         #endregion
@@ -27,10 +30,9 @@ namespace SchoolManagment.Services.Implementations
         }
         #endregion
 
+
+
         #region Handlers
-
-
-
 
         public async Task<bool> AddRoleAsync(string roleName)
         {
@@ -125,6 +127,38 @@ namespace SchoolManagment.Services.Implementations
                 return "FailedToUpdateUserRoles";
             }
         }
+
+        public async Task<ManageUserClaimsResponse?> GetUserWithClaimsAsync(int userId)
+        {
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+                return null;
+
+            var userClaims = await userManager.GetClaimsAsync(user);
+            var claims = ClaimsStore.Claims.Select(claim => new UserClaims
+            {
+                Type = claim.Type,
+                Value = userClaims.Any(uc => uc.Type == claim.Type)
+            }).ToList();
+
+            return new ManageUserClaimsResponse
+            {
+                UserId = userId,
+                Claims = claims
+            };
+        }
+
+        public async Task<bool> DeleteRole(int roleId)
+        {
+            var role = await roleManager.FindByIdAsync(roleId.ToString());
+            if (role == null)
+                return false;
+            var result = await roleManager.DeleteAsync(role);
+
+            return result.Succeeded;
+        }
+
+
         #endregion
     }
 }

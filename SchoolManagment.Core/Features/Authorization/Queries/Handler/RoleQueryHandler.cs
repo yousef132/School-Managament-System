@@ -7,7 +7,7 @@ using SchoolManagment.Core.Features.Authorization.Queries.Model;
 using SchoolManagment.Core.Features.Authorization.Queries.Response;
 using SchoolManagment.Core.Resources;
 using SchoolManagment.Data.Entities.Identity;
-using SchoolManagment.Data.Requests;
+using SchoolManagment.Data.Responses;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Authorization.Queries.Handler
@@ -33,6 +33,8 @@ namespace SchoolManagment.Core.Features.Authorization.Queries.Handler
             this.mapper = mapper;
             this.authorizationService = authorizationService;
         }
+
+
         public async Task<Response<IReadOnlyList<GetRolesListResponse>>> Handle(GetRolesListQuery request, CancellationToken cancellationToken)
         {
             var roles = await authorizationService.GetRolesAsync();

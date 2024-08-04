@@ -31,5 +31,4 @@ namespace SchoolManagment.Core.Bahaviors
             return await next();
         }
     }
-
 }
