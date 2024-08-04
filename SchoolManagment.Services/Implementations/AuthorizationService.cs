@@ -186,7 +186,6 @@ namespace SchoolManagment.Services.Implementations
                 if (!addClaimsResult.Succeeded)
                     return "FailedToAddNewClaims";
 
-
                 await transaction.CommitAsync();
                 return "Success";
             }
@@ -196,8 +195,6 @@ namespace SchoolManagment.Services.Implementations
                 return "FailedToUpdateClaims";
             }
         }
-
-
         #endregion
     }
 }
