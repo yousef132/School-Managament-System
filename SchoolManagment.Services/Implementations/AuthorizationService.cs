@@ -2,6 +2,8 @@
 using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Data.Requests;
+using SchoolManagment.Data.Responses;
+using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Services.Implementations
@@ -9,21 +11,28 @@ namespace SchoolManagment.Services.Implementations
     public class AuthorizationService : IAuthorizationService
     {
         private readonly RoleManager<Role> roleManager;
+        private readonly UserManager<ApplicationUser> userManager;
+        private readonly IGenericRepositoryAsync<Role> genericRepository;
+
+
         #region Fields
 
         #endregion
 
         #region Constructor
-        public AuthorizationService(RoleManager<Role> roleManager)
+        public AuthorizationService(RoleManager<Role> roleManager,
+                                    UserManager<ApplicationUser> userManager,
+                                    IGenericRepositoryAsync<Role> genericRepository)
         {
             this.roleManager = roleManager;
+            this.userManager = userManager;
+            this.genericRepository = genericRepository;
         }
         #endregion
 
+
+
         #region Handlers
-
-
-
 
         public async Task<bool> AddRoleAsync(string roleName)
         {
@@ -52,10 +61,104 @@ namespace SchoolManagment.Services.Implementations
         public Task<List<Role>> GetRolesAsync()
             => roleManager.Roles.ToListAsync();
 
-        public async Task<bool> IsRoleExistsAsync(string roleName)
+        public async Task<ManageUserRolesResponse?> GetUserWithRolesAsync(int userId)
         {
-            return await roleManager.RoleExistsAsync(roleName);
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+                return null;
+            var Roles = new List<UserRole>();
+            var response = new ManageUserRolesResponse();
+
+
+            var userRoles = await userManager.GetRolesAsync(user);
+
+            var roles = await roleManager.Roles.ToListAsync();
+            response.UserId = userId;
+
+
+            foreach (var role in roles)
+            {
+                Roles.Add(new UserRole
+                {
+                    Id = role.Id,
+                    Name = role.Name,
+                    HasRole = userRoles.Contains(role.Name)
+                });
+            }
+            response.Roles = Roles;
+            return response;
         }
+
+        public async Task<bool> IsRoleExistsAsync(string roleName)
+            => await roleManager.RoleExistsAsync(roleName);
+
+        public async Task<string> UpdateUserRoles(UpdateUserRolesRequest request)
+        {
+            var transaction = genericRepository.BeginTransaction();
+            try
+            {
+
+                var user = await userManager.FindByIdAsync(request.UserId.ToString());
+
+                if (user == null)
+                    return "UserIsNull";
+
+
+                var userRoles = await userManager.GetRolesAsync(user);
+                var removeResult = await userManager.RemoveFromRolesAsync(user, userRoles);
+                if (!removeResult.Succeeded)
+                    return "FailedToRemoveOldRoles";
+
+
+                var selectedRoles = request.Roles.Where(r => r.HasRole).Select(r => r.Name).ToList();
+                var addResult = await userManager.AddToRolesAsync(user, selectedRoles);
+
+                if (!addResult.Succeeded)
+                    return "FailedToAddNewRoles";
+
+                genericRepository.Commit();
+                return "Success";
+
+
+            }
+            catch (Exception ex)
+            {
+                genericRepository.RollBack();
+                return "FailedToUpdateUserRoles";
+            }
+        }
+
+        public async Task<ManageUserClaimsResponse?> GetUserWithClaimsAsync(int userId)
+        {
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+                return null;
+
+            var userClaims = await userManager.GetClaimsAsync(user);
+            var claims = ClaimsStore.Claims.Select(claim => new UserClaims
+            {
+                Type = claim.Type,
+                Value = userClaims.Any(uc => uc.Type == claim.Type)
+            }).ToList();
+
+            return new ManageUserClaimsResponse
+            {
+                UserId = userId,
+                Claims = claims
+            };
+        }
+
+        public async Task<bool> DeleteRole(int roleId)
+        {
+            var role = await roleManager.FindByIdAsync(roleId.ToString());
+            if (role == null)
+                return false;
+            var result = await roleManager.DeleteAsync(role);
+
+            return result.Succeeded;
+        }
+
+
         #endregion
     }
 }

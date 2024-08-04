@@ -7,12 +7,14 @@ using SchoolManagment.Core.Features.Authorization.Queries.Model;
 using SchoolManagment.Core.Features.Authorization.Queries.Response;
 using SchoolManagment.Core.Resources;
 using SchoolManagment.Data.Entities.Identity;
+using SchoolManagment.Data.Responses;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Authorization.Queries.Handler
 {
     public class RoleQueryHandler : ResponseHandler,
         IRequestHandler<GetRolesListQuery, Response<IReadOnlyList<GetRolesListResponse>>>,
+        IRequestHandler<ManageUserRolesQuery, Response<ManageUserRolesResponse>>,
         IRequestHandler<GetRoleByIdQuery, Response<GetRolesListResponse>>
 
     {
@@ -31,6 +33,8 @@ namespace SchoolManagment.Core.Features.Authorization.Queries.Handler
             this.mapper = mapper;
             this.authorizationService = authorizationService;
         }
+
+
         public async Task<Response<IReadOnlyList<GetRolesListResponse>>> Handle(GetRolesListQuery request, CancellationToken cancellationToken)
         {
             var roles = await authorizationService.GetRolesAsync();
@@ -46,6 +50,15 @@ namespace SchoolManagment.Core.Features.Authorization.Queries.Handler
 
             var mappedRole = mapper.Map<GetRolesListResponse>(role);
             return Success(mappedRole);
+        }
+
+        public async Task<Response<ManageUserRolesResponse>> Handle(ManageUserRolesQuery request, CancellationToken cancellationToken)
+        {
+            var result = await authorizationService.GetUserWithRolesAsync(request.UserId);
+            if (result == null)
+                return NotFound<ManageUserRolesResponse>(localizer[SharedResourcesKeys.UserNotFound]);
+
+            return Success(result);
         }
     }
 }

@@ -36,5 +36,30 @@ namespace SchoolManagment.Api.Controllers
         public async Task<IActionResult> GetRoleById([FromRoute] int id)
            => NewResult(await mediator.Send(new GetRoleByIdQuery(id)));
 
+
+        [HttpDelete(Router.Authorization.DeleteRole)]
+        public async Task<IActionResult> DeleteRole([FromRoute] int id)
+             => NewResult(await mediator.Send(new DeleteRoleCommand(id)));
+
+
+
+        [SwaggerOperation(Summary = " ادارة صلاحيات المستخدمين", OperationId = "ManageUserRoles")]
+        [HttpGet(Router.Authorization.ManageUserRoles)]
+        public async Task<IActionResult> ManageUserRoles([FromRoute] int userId)
+        => NewResult(await mediator.Send(new ManageUserRolesQuery(userId)));
+
+
+        [SwaggerOperation(Summary = " تعديل صلاحيات المستخدمين", OperationId = "UpdateUserRoles")]
+        [HttpPut(Router.Authorization.UpdateUserRoles)]
+        public async Task<IActionResult> UpdateUserRoles([FromBody] UpdateUserRolesCommand command)
+        => NewResult(await mediator.Send(command));
+
+
+        [SwaggerOperation(Summary = " ادارة صلاحيات الاستخدام للمستخدمين", OperationId = "ManageUserClaims")]
+        [HttpGet(Router.Authorization.ManageUserClaims)]
+        public async Task<IActionResult> ManageUserClaims([FromRoute] int userId)
+        => NewResult(await mediator.Send(new ManageUserClaimsQuery(userId)));
+
+
     }
 }

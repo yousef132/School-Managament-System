@@ -27,6 +27,9 @@
         public const string InvalidToken = "InvalidToken";
         public const string ValidToken = "ValidToken";
         public const string Failed = "Failed";
+        public const string FailedToRemoveOldRoles = "FailedToRemoveOldRoles";
+        public const string FailedToAddNewRoles = "FailedToAddNewRoles";
+        public const string FailedToUpdateUserRoles = "FailedToUpdateUserRoles";
 
     }
 }
