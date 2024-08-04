@@ -5,52 +5,43 @@ using SchoolManagment.Core.Features.Students.Commands.Models;
 using SchoolManagment.Core.Features.Students.Queries.Models;
 using SchoolManagment.Data.AppMetaData;
 using SchoolManagment.Data.Entities;
+using SchoolManagment.Data.Helper;
 
 namespace SchoolManagment.Api.Controllers
 {
-    [ApiController]
+    //[Authorize(Roles = Roles.Admin)]
+
     public class StudentController : AppControllerBase
     {
+
         [HttpGet(Router.StudentRouting.List)]
-        [Authorize]
         public async Task<ActionResult<List<Student>>> GetAllStudents()
-        {
-            // send request of type GetStudentQuery and return response of type List<Student>
-            var response = await mediator.Send(new GetStudentsQuery());
-            return NewResult(response);
-        }
+            => NewResult(await mediator.Send(new GetStudentsQuery()));
+
 
         [HttpGet(Router.StudentRouting.GetById)]
         public async Task<IActionResult> GetStudentById([FromRoute] int id)
-        {
-            return NewResult(await mediator.Send(new GetStudentByIdQuery(id)));
-        }
+            => NewResult(await mediator.Send(new GetStudentByIdQuery(id)));
+
 
         [HttpPost(Router.StudentRouting.Create)]
+        [Authorize(Policy = Policies.CreateStudent)]
         public async Task<IActionResult> Create([FromBody] AddStudentCommand command)
-        {
-            var response = await mediator.Send(command);
-            return NewResult(response);
-        }
+         => NewResult(await mediator.Send(command));
+
 
         [HttpPut(Router.StudentRouting.Edit)]
+        [Authorize(Policy = Policies.EditStudent)]
         public async Task<IActionResult> Edit([FromBody] EditStudentCommand command)
-        {
-            var response = await mediator.Send(command);
-            return NewResult(response);
-        }
+            => NewResult(await mediator.Send(command));
 
         [HttpDelete(Router.StudentRouting.Delete)]
+        [Authorize(Policy = Policies.DeleteStudent)]
         public async Task<IActionResult> Delete([FromRoute] int id)
-        {
-            var response = await mediator.Send(new DeleteStudentCommand(id));
-            return NewResult(response);
-        }
+            => NewResult(await mediator.Send(new DeleteStudentCommand(id)));
+
         [HttpGet(Router.StudentRouting.Pagenation)]
         public async Task<IActionResult> GetAllStudentsWithPagination([FromQuery] GetStudentsWithPaginationQuery specs)
-        {
-            var response = await mediator.Send(specs);
-            return NewResult(response);
-        }
+            => NewResult(await mediator.Send(specs));
     }
 }

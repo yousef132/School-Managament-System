@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using SchoolManagment.Data.Entities.Identity;
+using SchoolManagment.Data.Helper;
 using SchoolManagment.Infrastructure.Data;
 using System.Text;
 
@@ -100,15 +101,16 @@ namespace SchoolManagment.Infrastructure
 
             services.AddAuthorization(option =>
             {
-                option.AddPolicy("CreateStudent", policy =>
+                option.AddPolicy(Policies.CreateStudent, policy =>
                 {
+                    // if current user has 'Create Student' claim so he has this policy,and so on
                     policy.RequireClaim("Create Student", "True");
                 });
-                option.AddPolicy("DeleteStudent", policy =>
+                option.AddPolicy(Policies.DeleteStudent, policy =>
                 {
                     policy.RequireClaim("Delete Student", "True");
                 });
-                option.AddPolicy("EditStudent", policy =>
+                option.AddPolicy(Policies.EditStudent, policy =>
                 {
                     policy.RequireClaim("Edit Student", "True");
                 });
@@ -117,5 +119,6 @@ namespace SchoolManagment.Infrastructure
             return services;
         }
     }
+
 
 }

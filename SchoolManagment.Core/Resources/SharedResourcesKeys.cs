@@ -30,6 +30,9 @@
         public const string FailedToRemoveOldRoles = "FailedToRemoveOldRoles";
         public const string FailedToAddNewRoles = "FailedToAddNewRoles";
         public const string FailedToUpdateUserRoles = "FailedToUpdateUserRoles";
+        public const string FailedToRemoveOldClaims = "FailedToRemoveOldClaims";
+        public const string FailedToAddNewClaims = "FailedToAddNewClaims";
+        public const string FailedToUpdateClaims = "FailedToUpdateClaims";
 
     }
 }

@@ -2,8 +2,9 @@
 
 namespace SchoolManagment.Data.Requests
 {
-    public class UpdateUserRolesRequest : ManageUserRolesResponse
+    public class UpdateUserClaimsRequest : ManageUserClaimsResponse
     {
+
     }
 
 
