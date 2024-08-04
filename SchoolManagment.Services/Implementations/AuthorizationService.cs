@@ -5,6 +5,7 @@ using SchoolManagment.Data.Requests;
 using SchoolManagment.Data.Responses;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
+using System.Security.Claims;
 
 namespace SchoolManagment.Services.Implementations
 {
@@ -29,7 +30,6 @@ namespace SchoolManagment.Services.Implementations
             this.genericRepository = genericRepository;
         }
         #endregion
-
 
 
         #region Handlers
@@ -156,6 +156,45 @@ namespace SchoolManagment.Services.Implementations
             var result = await roleManager.DeleteAsync(role);
 
             return result.Succeeded;
+        }
+
+        public async Task<string> UpdateUserClaimsAsync(UpdateUserClaimsRequest request)
+        {
+            using var transaction = genericRepository.BeginTransaction();
+            try
+            {
+                var user = await userManager.FindByIdAsync(request.UserId.ToString());
+                if (user == null)
+                    return "UserNotFound";
+
+                // Remove old claims
+                var userClaims = await userManager.GetClaimsAsync(user);
+
+                var removeClaimsResult = await userManager.RemoveClaimsAsync(user, userClaims);
+
+
+                if (!removeClaimsResult.Succeeded)
+                    return "FailedToRemoveOldClaims";
+
+
+                // Add new claims
+                var newClaims = request.Claims
+                    .Where(x => x.Value)
+                    .Select(x => new Claim(x.Type, x.Value.ToString()));
+
+                var addClaimsResult = await userManager.AddClaimsAsync(user, newClaims);
+                if (!addClaimsResult.Succeeded)
+                    return "FailedToAddNewClaims";
+
+
+                await transaction.CommitAsync();
+                return "Success";
+            }
+            catch (Exception)
+            {
+                await transaction.RollbackAsync();
+                return "FailedToUpdateClaims";
+            }
         }
 
 

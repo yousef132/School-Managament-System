@@ -15,5 +15,7 @@ namespace SchoolManagment.Services.Abstracts
         Task<ManageUserClaimsResponse?> GetUserWithClaimsAsync(int userId);
         Task<string> UpdateUserRoles(UpdateUserRolesRequest request);
         Task<bool> DeleteRole(int roleId);
+
+        Task<string> UpdateUserClaimsAsync(UpdateUserClaimsRequest request);
     }
 }
