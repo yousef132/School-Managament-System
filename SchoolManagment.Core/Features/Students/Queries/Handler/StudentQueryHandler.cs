@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Students.Queries.Models;
 using SchoolManagment.Core.Features.Students.Queries.Responses;
@@ -23,18 +24,21 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
         private readonly IStudentService studentService;
         private readonly IMapper mapper;
         private readonly IStringLocalizer<SharedResource> stringLocalizer;
+        private readonly ILogger<StudentQueryHandler> loggerr;
 
         #endregion
 
         #region Constructor
         public StudentQueryHandler(IStudentService studentService,
             IMapper mapper,
-            IStringLocalizer<SharedResource> stringLocalizer)
+            IStringLocalizer<SharedResource> stringLocalizer,
+            ILogger<StudentQueryHandler> loggerr)
             : base(stringLocalizer)
         {
             this.studentService = studentService;
             this.mapper = mapper;
             this.stringLocalizer = stringLocalizer;
+            this.loggerr = loggerr;
         }
         #endregion
 
@@ -56,7 +60,7 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
             string s = stringLocalizer[SharedResourcesKeys.Required];
             if (student == null)
                 return NotFound<GetSingleStudentResponse>(s);
-
+            loggerr.LogError("Herrrrrrrrrrrreeeeeeeeeee");
             var mappedStudent = mapper.Map<GetSingleStudentResponse>(student);
 
             return Success(mappedStudent);

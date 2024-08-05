@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc.Routing;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolManagment.Services.Abstracts;
 using SchoolManagment.Services.Implementations;
+using SchoolProject.Service.AuthServices.Implementations;
+using SchoolProject.Service.AuthServices.Interfaces;
 
 namespace SchoolManagment.Services
 {
@@ -17,6 +19,7 @@ namespace SchoolManagment.Services
             services.AddScoped<IAuthorizationService, AuthorizationService>();
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ICurrentUserService, CurrentUserService>();
 
             services.AddTransient<IUrlHelper>(x =>
             {

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SchoolManagment.Api.Bases;
 using SchoolManagment.Core.Features.Students.Commands.Models;
 using SchoolManagment.Core.Features.Students.Queries.Models;
+using SchoolManagment.Core.Filters;
 using SchoolManagment.Data.AppMetaData;
 using SchoolManagment.Data.Entities;
 using SchoolManagment.Data.Helper;
@@ -19,7 +20,9 @@ namespace SchoolManagment.Api.Controllers
             => NewResult(await mediator.Send(new GetStudentsQuery()));
 
 
+
         [HttpGet(Router.StudentRouting.GetById)]
+        [Auth]
         public async Task<IActionResult> GetStudentById([FromRoute] int id)
             => NewResult(await mediator.Send(new GetStudentByIdQuery(id)));
 

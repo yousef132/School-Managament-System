@@ -2,6 +2,7 @@
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using SchoolManagment.Core.Bahaviors;
+using SchoolManagment.Core.Filters;
 using System.Reflection;
 
 namespace SchoolManagment.Data
@@ -16,7 +17,7 @@ namespace SchoolManagment.Data
 
             // Mediator Config.
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly()));
-
+            services.AddScoped<AuthAttribute>();
 
             //validators 
             services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
