@@ -34,6 +34,25 @@ namespace SchoolManagment.Api.Controllers
         public async Task<IActionResult> ValidateToken([FromQuery] AuthorizeUserQuery query)
              => NewResult(await mediator.Send(query));
 
+        [HttpGet(Router.Authentication.ConfirmEmail)]
+        public async Task<IActionResult> ConfirmEmail([FromQuery] ConfirmEmailQuery query)
+             => NewResult(await mediator.Send(query));
+
+
+
+        [HttpPost(Router.Authentication.SendResetEmail)]
+        public async Task<IActionResult> SendResetEmail([FromQuery] SendResetPasswordCommand command)
+             => NewResult(await mediator.Send(command));
+
+        [HttpGet(Router.Authentication.ConfirmResetPassword)]
+        public async Task<IActionResult> ConfirmResetPassword([FromQuery] ResetPasswordQuery query)
+             => NewResult(await mediator.Send(query));
+
+        [HttpPost(Router.Authentication.ResetPassword)]
+        public async Task<IActionResult> ResetPassword([FromForm] ResetPasswordCommand command)
+             => NewResult(await mediator.Send(command));
+
+
     }
 
 }

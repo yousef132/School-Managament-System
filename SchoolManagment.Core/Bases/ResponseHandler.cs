@@ -26,7 +26,7 @@ namespace SchoolManagment.Core.Bases
 
             };
         }
-        public Response<T> Success<T>(T entity, object meta = null)
+        public Response<T> Success<T>(T? entity, object meta = null)
         {
             return new Response<T>
             {

@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 using SchoolManagment.Core.Middleware;
 using SchoolManagment.Data;
 using SchoolManagment.Data.Entities.Identity;
-using SchoolManagment.Data.Helper;
 using SchoolManagment.Infrastructure;
 using SchoolManagment.Infrastructure.Data;
 using SchoolManagment.Infrastructure.Seeder;
@@ -38,7 +37,7 @@ namespace SchoolManagment.Api
                 .AddCoreDependencies()
                 .AddServiceRegistration(builder.Configuration);
 
-            builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
+            //builder.Services.Configure<JWT>(builder.Configuration.GetSection("JWT"));
 
             #endregion
 

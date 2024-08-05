@@ -38,7 +38,7 @@ namespace SchoolManagment.Infrastructure
                 option.User.AllowedUserNameCharacters =
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
                 option.User.RequireUniqueEmail = true;
-                option.SignIn.RequireConfirmedEmail = false;
+                option.SignIn.RequireConfirmedEmail = true;
 
             }).AddEntityFrameworkStores<ApplicationDbContext>()
             .AddDefaultTokenProviders();
@@ -94,8 +94,8 @@ namespace SchoolManagment.Infrastructure
                     Id = JwtBearerDefaults.AuthenticationScheme
                 }
             },
-            Array.Empty<string>()
-            }
+                 Array.Empty<string>()
+             }
                 });
             });
 

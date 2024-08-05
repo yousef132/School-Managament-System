@@ -9,7 +9,10 @@ using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Authentication.Queries.Handler
 {
-    public class AuthenticationQueryHandler : ResponseHandler, IRequestHandler<AuthorizeUserQuery, Response<string>>
+    public class AuthenticationQueryHandler : ResponseHandler,
+        IRequestHandler<AuthorizeUserQuery, Response<string>>,
+        IRequestHandler<ConfirmEmailQuery, Response<string>>,
+        IRequestHandler<ResetPasswordQuery, Response<string>>
     {
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly UserManager<ApplicationUser> userManager;
@@ -33,6 +36,29 @@ namespace SchoolManagment.Core.Features.Authentication.Queries.Handler
 
             return Unauthorized<string>(localizer[SharedResourcesKeys.InvalidToken]);
 
+        }
+
+        public async Task<Response<string>> Handle(ConfirmEmailQuery request, CancellationToken cancellationToken)
+        {
+            var confirmEmail = await authenticationService.ConfirmEmail(request.UserId, request.Code);
+
+            return confirmEmail switch
+            {
+                "UserNotFount" => BadRequest<string>(localizer[SharedResourcesKeys.UserNotFound]),
+                "ErrorWhileConfirmingEmail" => BadRequest<string>(localizer[SharedResourcesKeys.ErrorWhileConfirmingEmail]),
+                _ => Success<string>(localizer[SharedResourcesKeys.Success])
+            };
+        }
+
+        public async Task<Response<string>> Handle(ResetPasswordQuery request, CancellationToken cancellationToken)
+        {
+            var result = await authenticationService.ResetPassword(request.Code, request.Email);
+            return result switch
+            {
+                "UserNotFound" => BadRequest<string>(localizer[SharedResourcesKeys.UserNotFound]),
+                "Failed" => BadRequest<string>(localizer[SharedResourcesKeys.InvalidCode]),
+                _ => Success<string>(localizer[SharedResourcesKeys.Success])
+            };
         }
     }
 }

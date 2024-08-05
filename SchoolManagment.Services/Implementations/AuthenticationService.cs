@@ -5,11 +5,13 @@ using Microsoft.IdentityModel.Tokens;
 using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Data.Helper;
 using SchoolManagment.Infrastructure.Abstracts;
+using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
+using System.Web;
 
 namespace SchoolManagment.Services.Implementations
 {
@@ -17,14 +19,20 @@ namespace SchoolManagment.Services.Implementations
     {
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IRefreshTokenRepository refreshTokenRepository;
+        private readonly IEmailService emailService;
+        private readonly IGenericRepositoryAsync<ApplicationUser> genericRepository;
         private readonly JWT jwt;
 
         public AuthenticationService(UserManager<ApplicationUser> userManager
                                     , IOptions<JWT> jwt
-                                    , IRefreshTokenRepository refreshTokenRepository)
+                                    , IRefreshTokenRepository refreshTokenRepository,
+                                       IEmailService email,
+                                       IGenericRepositoryAsync<ApplicationUser> genericRepository)
         {
             this.userManager = userManager;
             this.refreshTokenRepository = refreshTokenRepository;
+            this.emailService = email;
+            this.genericRepository = genericRepository;
             this.jwt = jwt.Value;
         }
 
@@ -220,5 +228,96 @@ namespace SchoolManagment.Services.Implementations
             };
         }
 
+
+
+
+        public async Task<string> ConfirmEmail(int userId, string code)
+        {
+            var user = await userManager.FindByIdAsync(userId.ToString());
+            if (user == null)
+                return "UserNotFount";
+
+            var confirmEmail = await userManager.ConfirmEmailAsync(user, HttpUtility.UrlDecode(code));
+
+            if (!confirmEmail.Succeeded)
+                return "ErrorWhileConfirmingEmail";
+
+            return "Success";
+        }
+
+        public async Task<string> SendResetPasswordCode(string email)
+        {
+            var transaction = genericRepository.BeginTransaction();
+
+            try
+            {
+                var user = await userManager.FindByEmailAsync(email);
+                if (user == null)
+                    return "UserNotFound";
+
+                var chars = "0123456789";
+                var random = new Random();
+                var randomNumber = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
+
+                //update User In Database Code
+                user.Code = randomNumber;
+                var updateResult = await userManager.UpdateAsync(user);
+
+                if (!updateResult.Succeeded)
+                    return "ErrorInUpdateUser";
+
+                var message = "Code To Reset Password : " + user.Code;
+                //Send Code To  Email 
+                await emailService.SendEmailAsync(user.Email, message, "Reset Password");
+                await transaction.CommitAsync();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return "Failed";
+            }
+        }
+
+        public async Task<string> ResetPassword(string code, string email)
+        {
+            var user = await userManager.FindByEmailAsync(email);
+            if (user == null)
+                return "UserNotFound";
+
+            var userCode = user.Code;
+
+            if (userCode == code)
+                return "Success";
+            return "Failed";
+        }
+
+        public async Task<string> UpdatePassword(string email, string password)
+        {
+            var transaction = genericRepository.BeginTransaction();
+            try
+            {
+                var user = await userManager.FindByEmailAsync(email);
+                if (user == null)
+                    return "UserNotFound";
+
+
+                var result = await userManager.RemovePasswordAsync(user);
+                if (!result.Succeeded) return "Failed";
+                result = await userManager.AddPasswordAsync(user, password);
+                if (!result.Succeeded) return "Failed";
+
+                await transaction.CommitAsync();
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                transaction.Rollback();
+                return "Failed";
+                throw;
+            }
+
+
+        }
     }
 }

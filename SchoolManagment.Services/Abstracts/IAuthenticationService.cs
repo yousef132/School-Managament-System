@@ -11,6 +11,11 @@ namespace SchoolManagment.Services.Abstracts
         Task<JwtAuthModel> GetRefreshToken(string accessToken, string refreshToken);
         Task<bool> ValidateAccessToken(string accessToken);
         JwtSecurityToken ReadJwtToken(string accessToken);
+        Task<string> ConfirmEmail(int userId, string code);
+        Task<string> SendResetPasswordCode(string email);
+        Task<string> ResetPassword(string code, string email);
+        Task<string> UpdatePassword(string email, string password);
+
 
     }
 }

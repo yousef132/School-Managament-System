@@ -47,6 +47,10 @@
             public const string SignIn = $"{Prefix}SignIn";
             public const string RefreshToken = $"{Prefix}Refresh-Token";
             public const string ValidateToken = $"{Prefix}Validate-Token";
+            public const string ConfirmResetPassword = $"{Prefix}Confirm-Reset-Password";
+            public const string ResetPassword = $"{Prefix}Reset-Password";
+            public const string SendResetEmail = $"{Prefix}Send-Reset-Email";
+            public const string ConfirmEmail = $"{Prefix}Confirm-Email";
 
         }
 
@@ -64,6 +68,12 @@
             public const string ManageUserRoles = $"{Prefix}" + "Manage-User-Roles/{userId}";
 
 
+        }
+
+        public static class Email
+        {
+            public const string Prefix = $"{Rule}Email/";
+            public const string SendEmail = $"{Prefix}Send-Email";
         }
 
     }

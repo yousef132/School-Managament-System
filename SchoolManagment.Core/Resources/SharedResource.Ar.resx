@@ -120,6 +120,9 @@
   <data name="BadRequest" xml:space="preserve">
     <value>طلب خاطئ</value>
   </data>
+  <data name="ConfirmEmail" xml:space="preserve">
+    <value>برجاء تاكيد بريدك الالكترونى</value>
+  </data>
   <data name="Created" xml:space="preserve">
     <value>تم الاضافه بنجاح</value>
   </data>
@@ -134,6 +137,9 @@
   </data>
   <data name="EmailAlreadyExists" xml:space="preserve">
     <value>الايميل موجود بالفعل</value>
+  </data>
+  <data name="ErrorWhileConfirmingEmail" xml:space="preserve">
+    <value>خطا اثناء تاكيد الايميل</value>
   </data>
   <data name="Failed" xml:space="preserve">
     <value>خطا اثناء تنفيذ العمليه</value>
@@ -150,11 +156,17 @@
   <data name="FailedToRemoveOldRoles" xml:space="preserve">
     <value>فشل في  حذف أدوار المستخدم</value>
   </data>
+  <data name="FailedToSendEmail" xml:space="preserve">
+    <value>خطا اثناء ارسال البريد</value>
+  </data>
   <data name="FailedToUpdateClaims" xml:space="preserve">
     <value>فشل في تحديث المطالبات</value>
   </data>
   <data name="FailedToUpdateUserRoles" xml:space="preserve">
     <value>فشل في تحديث أدوار المستخدم</value>
+  </data>
+  <data name="InvalidCode" xml:space="preserve">
+    <value>كود خاطئ</value>
   </data>
   <data name="InvalidToken" xml:space="preserve">
     <value>رمز غير صالح</value>
@@ -188,6 +200,9 @@
   </data>
   <data name="Success" xml:space="preserve">
     <value>تمت العمليه بتجاح</value>
+  </data>
+  <data name="TryAgainInAnotherTime" xml:space="preserve">
+    <value>حاول فى وقت لاحق</value>
   </data>
   <data name="UnAuthorized" xml:space="preserve">
     <value>غير مصرح</value>
