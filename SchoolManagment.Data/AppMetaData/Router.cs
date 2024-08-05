@@ -27,6 +27,7 @@
         {
             public const string Prefix = $"{Rule}Department/";
             public const string GetById = $"{Prefix}" + "{id}";
+            public const string DepartmentStudentCount = $"{Prefix}Department-Student-Count";
 
         }
 

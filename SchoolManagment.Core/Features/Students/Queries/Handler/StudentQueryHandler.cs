@@ -60,7 +60,6 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
             string s = stringLocalizer[SharedResourcesKeys.Required];
             if (student == null)
                 return NotFound<GetSingleStudentResponse>(s);
-            loggerr.LogError("Herrrrrrrrrrrreeeeeeeeeee");
             var mappedStudent = mapper.Map<GetSingleStudentResponse>(student);
 
             return Success(mappedStudent);

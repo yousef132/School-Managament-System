@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities;
+using SchoolManagment.Data.Entities.Views;
 using SchoolManagment.Infrastructure.Abstracts;
+using SchoolManagment.Infrastructure.Abstracts.Views;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Services.Implementations
@@ -8,10 +10,12 @@ namespace SchoolManagment.Services.Implementations
     public class DepartmentService : IDepartmentService
     {
         private readonly IDepartmentRepository departmentRepository;
+        private readonly IViewRepository<DepartmentView> viewRepository;
 
-        public DepartmentService(IDepartmentRepository departmentRepository)
+        public DepartmentService(IDepartmentRepository departmentRepository, IViewRepository<DepartmentView> viewRepository)
         {
             this.departmentRepository = departmentRepository;
+            this.viewRepository = viewRepository;
         }
 
         public async Task<Department> GetDepartmentById(int id)
@@ -33,6 +37,9 @@ namespace SchoolManagment.Services.Implementations
                                 .FirstOrDefaultAsync();
             return department ?? new Department();
         }
+
+        public async Task<List<DepartmentView>> GetDepartmentViewData()
+            => await viewRepository.GetTableAsNotTracked().ToListAsync();
 
         public async Task<bool> IsDepartmentIdExist(int id)
         {

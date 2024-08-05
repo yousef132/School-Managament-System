@@ -9,8 +9,12 @@ namespace SchoolManagment.Api.Controllers
     {
         [HttpGet(Router.DepartmentRouting.GetById)]
         public async Task<IActionResult> GetDepartmentById([FromRoute] int id)
-        {
-            return NewResult(await mediator.Send(new GetDepartmentByIdQuery(id)));
-        }
+            => NewResult(await mediator.Send(new GetDepartmentByIdQuery(id)));
+
+
+        [HttpGet(Router.DepartmentRouting.DepartmentStudentCount)]
+        public async Task<IActionResult> DepartmentStudentCount()
+         => NewResult(await mediator.Send(new GetDepartmentStudentCountQuery()));
+
     }
 }

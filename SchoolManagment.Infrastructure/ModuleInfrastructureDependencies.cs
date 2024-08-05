@@ -1,9 +1,12 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using SchoolManagment.Data.Entities.Views;
 using SchoolManagment.Data.Helper;
 using SchoolManagment.Infrastructure.Abstracts;
+using SchoolManagment.Infrastructure.Abstracts.Views;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Infrastructure.Repositories;
+using SchoolManagment.Infrastructure.Repositories.Views;
 
 namespace SchoolManagment.Infrastructure
 {
@@ -21,6 +24,10 @@ namespace SchoolManagment.Infrastructure
             services.AddScoped<IInstructorRepository, InstructorRepository>();
             services.Configure<JWT>(configuration.GetSection("JWT"));
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
+
+            #region Views
+            services.AddScoped<IViewRepository<DepartmentView>, DepartmentViewRepository>();
+            #endregion
 
 
 
