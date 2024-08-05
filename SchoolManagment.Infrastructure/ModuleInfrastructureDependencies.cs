@@ -20,6 +20,7 @@ namespace SchoolManagment.Infrastructure
             services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
             services.AddScoped<IInstructorRepository, InstructorRepository>();
             services.Configure<JWT>(configuration.GetSection("JWT"));
+            services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
 
 

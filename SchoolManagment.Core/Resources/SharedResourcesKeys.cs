@@ -33,6 +33,11 @@
         public const string FailedToRemoveOldClaims = "FailedToRemoveOldClaims";
         public const string FailedToAddNewClaims = "FailedToAddNewClaims";
         public const string FailedToUpdateClaims = "FailedToUpdateClaims";
+        public const string FailedToSendEmail = "FailedToSendEmail";
+        public const string ConfirmEmail = "ConfirmEmail";
+        public const string ErrorWhileConfirmingEmail = "ErrorWhileConfirmingEmail";
+        public const string TryAgainInAnotherTime = "TryAgainInAnotherTime";
+        public const string InvalidCode = "InvalidCode";
 
     }
 }
