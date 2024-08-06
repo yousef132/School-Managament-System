@@ -5,13 +5,15 @@ using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Departments.Queries.Models;
 using SchoolManagment.Core.Features.Departments.Queries.Responses;
 using SchoolManagment.Core.Resources;
+using SchoolManagment.Data.Entities.Procedures;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Departments.Queries.Handler
 {
     public class DepartmentQueryHandler : ResponseHandler,
         IRequestHandler<GetDepartmentByIdQuery, Response<GetDepartmentByIdResponse>>,
-        IRequestHandler<GetDepartmentStudentCountQuery, Response<List<GetDepartmentStudentCountResponse>>>
+        IRequestHandler<GetDepartmentStudentCountQuery, Response<GetDepartmentStudentCountListResponse>>,
+        IRequestHandler<GetDepartmentStudentCountListQuery, Response<List<GetDepartmentStudentCountListResponse>>>
     {
 
 
@@ -49,13 +51,21 @@ namespace SchoolManagment.Core.Features.Departments.Queries.Handler
             return Success(mappedDepartment);
         }
 
-        public async Task<Response<List<GetDepartmentStudentCountResponse>>> Handle(GetDepartmentStudentCountQuery request, CancellationToken cancellationToken)
+        public async Task<Response<List<GetDepartmentStudentCountListResponse>>> Handle(GetDepartmentStudentCountListQuery request, CancellationToken cancellationToken)
         {
             var result = await departmentService.GetDepartmentViewData();
 
-            var mappedResult = mapper.Map<List<GetDepartmentStudentCountResponse>>(result);
+            var mappedResult = mapper.Map<List<GetDepartmentStudentCountListResponse>>(result);
 
             return Success(mappedResult);
+        }
+
+        public async Task<Response<GetDepartmentStudentCountListResponse>> Handle(GetDepartmentStudentCountQuery request, CancellationToken cancellationToken)
+        {
+            var result = await departmentService.GetDepartmentTotalStudents(new DepartmentTotalStudentsParam(request.DepartmentId));
+
+            return Success(mapper.Map<GetDepartmentStudentCountListResponse>(result.FirstOrDefault()));
+
         }
         #endregion
 
