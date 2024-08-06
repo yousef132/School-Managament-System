@@ -3,7 +3,9 @@ using EntityFrameworkCore.EncryptColumn.Util;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities;
+using SchoolManagment.Data.Entities.Functions;
 using SchoolManagment.Data.Entities.Identity;
+using SchoolManagment.Data.Entities.Views;
 using System.Reflection;
 
 namespace SchoolManagment.Infrastructure.Data
@@ -36,6 +38,14 @@ namespace SchoolManagment.Infrastructure.Data
         public DbSet<StudentSubject> StudentSubjects { get; set; }
         public DbSet<DepartmentSubject> DepartmentSubjects { get; set; }
         public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
+
+        #region Views
+        public DbSet<DepartmentView> DepartmentView { get; set; }
+        #endregion
+
+        #region Functions
+        public DbSet<GetTop3InstructorSalariesByDept> GetTop3InstructorSalariesByDept { get; set; }
+        #endregion
 
     }
 }
