@@ -38,6 +38,8 @@
         public const string ErrorWhileConfirmingEmail = "ErrorWhileConfirmingEmail";
         public const string TryAgainInAnotherTime = "TryAgainInAnotherTime";
         public const string InvalidCode = "InvalidCode";
+        public const string NoImage = "NoImage";
+        public const string FailedToUploadImage = "FailedToUploadImage";
 
     }
 }

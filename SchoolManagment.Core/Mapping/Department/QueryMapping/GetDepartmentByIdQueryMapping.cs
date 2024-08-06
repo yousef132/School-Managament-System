@@ -29,7 +29,7 @@ namespace SchoolManagment.Core.Mapping.Department
 
 
 
-            CreateMap<Instructor, InstructorResponse>()
+            CreateMap<Data.Entities.Instructor, InstructorResponse>()
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.InstId))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Localize(src.NameAr, src.NameEn)));
 

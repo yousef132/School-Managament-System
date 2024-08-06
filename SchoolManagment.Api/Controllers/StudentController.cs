@@ -43,7 +43,7 @@ namespace SchoolManagment.Api.Controllers
         public async Task<IActionResult> Delete([FromRoute] int id)
             => NewResult(await mediator.Send(new DeleteStudentCommand(id)));
 
-        [HttpGet(Router.StudentRouting.Pagenation)]
+        [HttpGet(Router.StudentRouting.Pagination)]
         public async Task<IActionResult> GetAllStudentsWithPagination([FromQuery] GetStudentsWithPaginationQuery specs)
             => NewResult(await mediator.Send(specs));
     }

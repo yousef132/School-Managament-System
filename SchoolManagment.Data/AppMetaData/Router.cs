@@ -17,13 +17,18 @@
             public const string Create = $"{Prefix}" + "Create";
             public const string Edit = $"{Prefix}" + "Edit";
             public const string Delete = $"{Prefix}" + "Delete/{id}";
-            public const string Pagenation = $"{Prefix}" + "Pagenation";
+            public const string Pagination = $"{Prefix}" + "Pagination";
 
 
         }
+        public static class Instructor
+        {
+            public const string Prefix = $"{Rule}Instructor/";
 
+            public const string Create = $"{Prefix}" + "Create";
+        }
 
-        public static class DepartmentRouting
+        public static class Department
         {
             public const string Prefix = $"{Rule}Department/";
             public const string GetById = $"{Prefix}" + "{id}";

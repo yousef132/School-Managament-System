@@ -7,19 +7,19 @@ namespace SchoolManagment.Api.Controllers
 {
     public class DepartmentController : AppControllerBase
     {
-        [HttpGet(Router.DepartmentRouting.GetById)]
+        [HttpGet(Router.Department.GetById)]
         public async Task<IActionResult> GetDepartmentById([FromRoute] int id)
             => NewResult(await mediator.Send(new GetDepartmentByIdQuery(id)));
 
 
-        [HttpGet(Router.DepartmentRouting.DepartmentStudentCount)]
+        [HttpGet(Router.Department.DepartmentStudentCount)]
         public async Task<IActionResult> DepartmentStudentCount()
          => NewResult(await mediator.Send(new GetDepartmentStudentCountListQuery()));
-        [HttpGet(Router.DepartmentRouting.DepartmentStudentCountById)]
+        [HttpGet(Router.Department.DepartmentStudentCountById)]
         public async Task<IActionResult> DepartmentStudentCountById([FromRoute] int id)
          => NewResult(await mediator.Send(new GetDepartmentStudentCountQuery(id)));
 
-        [HttpGet(Router.DepartmentRouting.GetTop3InstructorByDepartment)]
+        [HttpGet(Router.Department.GetTop3InstructorByDepartment)]
         public async Task<IActionResult> GetTop3InstructorByDepartment()
          => NewResult(await mediator.Send(new GetTop3InstructorSalariesByDeptQuery()));
 

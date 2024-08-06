@@ -27,7 +27,9 @@
     <Folder Include="Features\Email\Queries\Handler\" />
     <Folder Include="Features\Email\Queries\Models\" />
     <Folder Include="Features\Email\Queries\Responses\" />
+    <Folder Include="Features\Instructor\Queries\" />
     <Folder Include="Mapping\Department\CommandMapping\" />
+    <Folder Include="Mapping\Instructor\Queries\" />
   </ItemGroup>
 
 </Project>

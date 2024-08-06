@@ -165,6 +165,9 @@
   <data name="FailedToUpdateUserRoles" xml:space="preserve">
     <value>فشل في تحديث أدوار المستخدم</value>
   </data>
+  <data name="FailedToUploadImage" xml:space="preserve">
+    <value>خطا فى تحميل الصورة</value>
+  </data>
   <data name="InvalidCode" xml:space="preserve">
     <value>كود خاطئ</value>
   </data>
@@ -179,6 +182,9 @@
   </data>
   <data name="NewPasswordCannotMatchCurrentPassword" xml:space="preserve">
     <value>كلمه لمرور الجديده هى نفسها الحاليه </value>
+  </data>
+  <data name="NoImage" xml:space="preserve">
+    <value>لا يوجد صوره</value>
   </data>
   <data name="NotEmpty" xml:space="preserve">
     <value>الحقل فارغ</value>
