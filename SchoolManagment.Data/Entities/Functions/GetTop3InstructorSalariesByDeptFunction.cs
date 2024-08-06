@@ -1,10 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using SchoolManagment.Data.Common;
 
 namespace SchoolManagment.Data.Entities.Functions
 {
     [Keyless]
-    public class GetTop3InstructorSalariesByDept : GenerateLocalizableEntity
+    public class GetTop3InstructorSalariesByDept
     {
         public int DepartmentId { get; set; }
         public string DepartmentNameEn { get; set; }

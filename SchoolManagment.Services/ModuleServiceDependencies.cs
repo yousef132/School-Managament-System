@@ -20,6 +20,8 @@ namespace SchoolManagment.Services
             services.AddScoped<IEmailService, EmailService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ICurrentUserService, CurrentUserService>();
+            services.AddScoped<IFileService, FileService>();
+            services.AddScoped<IInstructorService, InstructorService>();
 
             services.AddTransient<IUrlHelper>(x =>
             {

@@ -96,6 +96,7 @@ namespace SchoolManagment.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
+            app.UseStaticFiles();
             app.UseSwagger();
             app.UseSwaggerUI();
 
