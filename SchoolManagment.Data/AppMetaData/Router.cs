@@ -29,6 +29,7 @@
             public const string GetById = $"{Prefix}" + "{id}";
             public const string DepartmentStudentCountById = $"{Prefix}Department-Student-Count-ById" + "/{id}";
             public const string DepartmentStudentCount = $"{Prefix}Department-Student-Count";
+            public const string GetTop3InstructorByDepartment = $"{Prefix}Get-Top3-Instructor-By-Department";
 
         }
 

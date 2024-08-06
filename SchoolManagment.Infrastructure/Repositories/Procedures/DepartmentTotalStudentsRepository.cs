@@ -1,5 +1,5 @@
 ﻿using SchoolManagment.Data.Entities.Procedures;
-using SchoolManagment.Infrastructure.Abstracts.Views;
+using SchoolManagment.Infrastructure.Abstracts.Procedures;
 using SchoolManagment.Infrastructure.Data;
 using StoredProcedureEFCore;
 

@@ -1,6 +1,6 @@
 ﻿using SchoolManagment.Data.Entities.Procedures;
 
-namespace SchoolManagment.Infrastructure.Abstracts.Views
+namespace SchoolManagment.Infrastructure.Abstracts.Procedures
 {
     public interface IDepartmentTotalStudentsRepository
     {

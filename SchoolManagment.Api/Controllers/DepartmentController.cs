@@ -19,5 +19,9 @@ namespace SchoolManagment.Api.Controllers
         public async Task<IActionResult> DepartmentStudentCountById([FromRoute] int id)
          => NewResult(await mediator.Send(new GetDepartmentStudentCountQuery(id)));
 
+        [HttpGet(Router.DepartmentRouting.GetTop3InstructorByDepartment)]
+        public async Task<IActionResult> GetTop3InstructorByDepartment()
+         => NewResult(await mediator.Send(new GetTop3InstructorSalariesByDeptQuery()));
+
     }
 }
