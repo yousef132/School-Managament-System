@@ -1,11 +1,12 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Data.Helper;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
-using System.Web;
+using Serilog;
 
 namespace SchoolManagment.Services.Implementations
 {
@@ -16,18 +17,21 @@ namespace SchoolManagment.Services.Implementations
         private readonly IHttpContextAccessor context;
         private readonly IEmailService emailService;
         private readonly IUrlHelper urlHelper;
+        private readonly IDataProtector protector;
 
         public UserService(IGenericRepositoryAsync<ApplicationUser> genericRepository,
                            UserManager<ApplicationUser> userManager,
                            IHttpContextAccessor httpContext,
                            IEmailService emailService,
-                           IUrlHelper urlHelper)
+                           IUrlHelper urlHelper,
+                           IDataProtectionProvider protector)
         {
             this.genericRepository = genericRepository;
             this.userManager = userManager;
             this.context = httpContext;
             this.emailService = emailService;
             this.urlHelper = urlHelper;
+            this.protector = protector.CreateProtector(Encryptor.Key);
         }
         public async Task<string> AddUserAsync(ApplicationUser inputUser, string password)
         {
@@ -52,11 +56,19 @@ namespace SchoolManagment.Services.Implementations
                 await userManager.AddToRoleAsync(inputUser, Roles.User);
 
                 // send confirm email
-                var code = await userManager.GenerateEmailConfirmationTokenAsync(inputUser);
-                var requestAccess = context.HttpContext.Request;
 
-                var returnUrl = requestAccess.Scheme + "://" + requestAccess.Host + $"/Api/V1/Authentication/Confirm-Email?UserId={inputUser.Id}&code={HttpUtility.UrlEncode(code)}";
-                var sendEmailResult = await emailService.SendEmailAsync(inputUser.Email, returnUrl, "Confirming Email");
+                var code = await userManager.GenerateEmailConfirmationTokenAsync(inputUser);
+
+                code = protector.Protect(code); // encoding token
+
+                var requestAccess = context.HttpContext.Request;
+                var helper = urlHelper.Action("ConfirmEmail", "Authentication", new { userId = inputUser.Id, code = code });
+
+                var returnUrl = requestAccess.Scheme + "://" + requestAccess.Host + helper;
+                // generate message with encoded url
+                var message = $"To Confirm Email Click Link: <a href='{returnUrl}'>Confirm</a>";
+
+                var sendEmailResult = await emailService.SendEmailAsync(inputUser.Email, message, "Confirming Email");
 
                 if (sendEmailResult == "Failed")
                     return "FailedToSendEmail";
@@ -66,6 +78,7 @@ namespace SchoolManagment.Services.Implementations
             }
             catch (Exception ex)
             {
+                Log.Error("Failed To Add User");
                 transaction.Rollback();
                 return "Failed";
             }

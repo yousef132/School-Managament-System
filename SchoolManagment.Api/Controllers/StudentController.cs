@@ -10,7 +10,7 @@ using SchoolManagment.Data.Helper;
 
 namespace SchoolManagment.Api.Controllers
 {
-    //[Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = Roles.Admin)]
 
     public class StudentController : AppControllerBase
     {
@@ -18,8 +18,6 @@ namespace SchoolManagment.Api.Controllers
         [HttpGet(Router.StudentRouting.List)]
         public async Task<ActionResult<List<Student>>> GetAllStudents()
             => NewResult(await mediator.Send(new GetStudentsQuery()));
-
-
 
         [HttpGet(Router.StudentRouting.GetById)]
         [Auth]

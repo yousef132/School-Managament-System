@@ -4,11 +4,12 @@ using SchoolManagment.Api.Bases;
 using SchoolManagment.Core.Features.Authorization.Commands.Models;
 using SchoolManagment.Core.Features.Authorization.Queries.Model;
 using SchoolManagment.Data.AppMetaData;
+using SchoolManagment.Data.Helper;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace SchoolManagment.Api.Controllers
 {
-    //[Authorize(Roles = Roles.Admin)]
+    [Authorize(Roles = Roles.Admin)]
     public class AuthorizationController : AppControllerBase
     {
         private readonly IAuthorizationService authorizationService;

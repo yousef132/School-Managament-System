@@ -88,6 +88,7 @@ namespace SchoolManagment.Api
 
             #endregion
 
+            builder.Services.AddDataProtection();
 
 
             var app = builder.Build();
