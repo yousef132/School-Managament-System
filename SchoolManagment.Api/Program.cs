@@ -28,7 +28,7 @@ namespace SchoolManagment.Api
             builder.Services.AddSwaggerGen();
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
-                options.UseSqlServer(builder.Configuration.GetConnectionString("Local"));
+                options.UseSqlServer(builder.Configuration.GetConnectionString("Remote"));
             });
 
             #region Serilog

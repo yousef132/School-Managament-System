@@ -57,7 +57,7 @@
             public const string ValidateToken = $"{Prefix}Validate-Token";
             public const string ConfirmResetPassword = $"{Prefix}Confirm-Reset-Password";
             public const string ResetPassword = $"{Prefix}Reset-Password";
-            public const string SendResetEmail = $"{Prefix}Send-Reset-Email";
+            public const string SendResetPasswordCode = $"{Prefix}Send-Reset-Password-Code";
             public const string ConfirmEmail = $"{Prefix}Confirm-Email";
 
         }

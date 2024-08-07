@@ -46,14 +46,15 @@ namespace SchoolManagment.Core.Features.Authorization.Commands.Handler
         public async Task<Response<string>> Handle(UpdateUserRolesCommand request, CancellationToken cancellationToken)
         {
             var result = await authorizationService.UpdateUserRoles(request);
-            switch (result)
+            return result switch
             {
-                case "UserIsNull": return NotFound<string>(localizer[SharedResourcesKeys.UserNotFound]);
-                case "FailedToRemoveOldRoles": return BadRequest<string>(localizer[SharedResourcesKeys.FailedToRemoveOldRoles]);
-                case "FailedToAddNewRoles": return BadRequest<string>(localizer[SharedResourcesKeys.FailedToAddNewRoles]);
-                case "FailedToUpdateUserRoles": return BadRequest<string>(localizer[SharedResourcesKeys.FailedToUpdateUserRoles]);
-            }
-            return Success<string>(localizer[SharedResourcesKeys.Success]);
+                "InvalidRole" => BadRequest<string>(localizer[SharedResourcesKeys.InvalidRole]),
+                "UserIsNull" => NotFound<string>(localizer[SharedResourcesKeys.UserNotFound]),
+                "FailedToRemoveOldRoles" => BadRequest<string>(localizer[SharedResourcesKeys.FailedToRemoveOldRoles]),
+                "FailedToAddNewRoles" => BadRequest<string>(localizer[SharedResourcesKeys.FailedToAddNewRoles]),
+                "FailedToUpdateUserRoles" => BadRequest<string>(localizer[SharedResourcesKeys.FailedToUpdateUserRoles]),
+                _ => Success<string>(localizer[SharedResourcesKeys.Success])
+            };
         }
 
         public async Task<Response<string>> Handle(DeleteRoleCommand request, CancellationToken cancellationToken)

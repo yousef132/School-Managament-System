@@ -40,8 +40,8 @@ namespace SchoolManagment.Api.Controllers
 
 
 
-        [HttpPost(Router.Authentication.SendResetEmail)]
-        public async Task<IActionResult> SendResetEmail([FromQuery] SendResetPasswordCommand command)
+        [HttpPost(Router.Authentication.SendResetPasswordCode)]
+        public async Task<IActionResult> SendResetPasswordCode([FromQuery] SendResetPasswordCommand command)
              => NewResult(await mediator.Send(command));
 
         [HttpGet(Router.Authentication.ConfirmResetPassword)]

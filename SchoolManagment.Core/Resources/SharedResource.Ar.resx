@@ -171,6 +171,9 @@
   <data name="InvalidCode" xml:space="preserve">
     <value>كود خاطئ</value>
   </data>
+  <data name="InvalidRole" xml:space="preserve">
+    <value>هناك بعض الصلاحيات الخاطئه</value>
+  </data>
   <data name="InvalidToken" xml:space="preserve">
     <value>رمز غير صالح</value>
   </data>

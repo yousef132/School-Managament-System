@@ -104,6 +104,9 @@ namespace SchoolManagment.Services.Implementations
                 if (user == null)
                     return "UserIsNull";
 
+                foreach (var role in request.Roles)
+                    if (roleManager.Roles.Any(r => r.Id != role.Id && r.Name != role.Name))
+                        return "InvalidRole";
 
                 var userRoles = await userManager.GetRolesAsync(user);
                 var removeResult = await userManager.RemoveFromRolesAsync(user, userRoles);
@@ -112,6 +115,7 @@ namespace SchoolManagment.Services.Implementations
 
 
                 var selectedRoles = request.Roles.Where(r => r.HasRole).Select(r => r.Name).ToList();
+
                 var addResult = await userManager.AddToRolesAsync(user, selectedRoles);
 
                 if (!addResult.Succeeded)

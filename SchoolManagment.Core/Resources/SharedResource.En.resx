@@ -171,6 +171,9 @@
   <data name="InvalidCode" xml:space="preserve">
     <value>Invalid Code</value>
   </data>
+  <data name="InvalidRole" xml:space="preserve">
+    <value>There are some invalid roles</value>
+  </data>
   <data name="InvalidToken" xml:space="preserve">
     <value>Invalid Token</value>
   </data>

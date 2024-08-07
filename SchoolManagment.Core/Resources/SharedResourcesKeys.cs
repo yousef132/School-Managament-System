@@ -40,6 +40,7 @@
         public const string InvalidCode = "InvalidCode";
         public const string NoImage = "NoImage";
         public const string FailedToUploadImage = "FailedToUploadImage";
+        public const string InvalidRole = "InvalidRole";
 
     }
 }
