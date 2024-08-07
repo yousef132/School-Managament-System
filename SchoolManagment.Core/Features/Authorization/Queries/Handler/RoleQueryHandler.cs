@@ -18,15 +18,18 @@ namespace SchoolManagment.Core.Features.Authorization.Queries.Handler
         IRequestHandler<GetRoleByIdQuery, Response<GetRolesListResponse>>
 
     {
+        #region Fields
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly RoleManager<Role> roleManager;
         private readonly IMapper mapper;
         private readonly IAuthorizationService authorizationService;
 
+        #endregion
+        #region Constructor
         public RoleQueryHandler(IStringLocalizer<SharedResource> localizer,
-                                RoleManager<Role> roleManager,
-                                IMapper mapper,
-                                IAuthorizationService authorizationService) : base(localizer)
+                               RoleManager<Role> roleManager,
+                               IMapper mapper,
+                               IAuthorizationService authorizationService) : base(localizer)
         {
             this.localizer = localizer;
             this.roleManager = roleManager;
@@ -35,6 +38,8 @@ namespace SchoolManagment.Core.Features.Authorization.Queries.Handler
         }
 
 
+        #endregion
+        #region Handlers
         public async Task<Response<IReadOnlyList<GetRolesListResponse>>> Handle(GetRolesListQuery request, CancellationToken cancellationToken)
         {
             var roles = await authorizationService.GetRolesAsync();
@@ -60,5 +65,6 @@ namespace SchoolManagment.Core.Features.Authorization.Queries.Handler
 
             return Success(result);
         }
+        #endregion
     }
 }

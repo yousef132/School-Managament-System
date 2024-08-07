@@ -233,9 +233,6 @@ namespace SchoolManagment.Services.Implementations
             };
         }
 
-
-
-
         public async Task<string> ConfirmEmail(int userId, string code)
         {
             var user = await userManager.FindByIdAsync(userId.ToString());
@@ -243,7 +240,6 @@ namespace SchoolManagment.Services.Implementations
                 return "UserNotFount";
 
             code = protector.Unprotect(code);
-            //  var decodedToken = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var confirmEmail = await userManager.ConfirmEmailAsync(user, code);
 
             if (!confirmEmail.Succeeded)
@@ -258,24 +254,26 @@ namespace SchoolManagment.Services.Implementations
 
             try
             {
+                // check for user 
                 var user = await userManager.FindByEmailAsync(email);
                 if (user == null)
                     return "UserNotFound";
 
+                // generate random number
                 var chars = "0123456789";
                 var random = new Random();
                 var randomNumber = new string(Enumerable.Repeat(chars, 6).Select(s => s[random.Next(s.Length)]).ToArray());
 
-                //update User In Database Code
-                user.Code = randomNumber;
+                //update User In Database With Protected Code
+                user.Code = protector.Protect(randomNumber);
                 var updateResult = await userManager.UpdateAsync(user);
 
                 if (!updateResult.Succeeded)
                     return "ErrorInUpdateUser";
 
-                var message = "Code To Reset Password : " + user.Code;
                 //Send Code To  Email 
-                await emailService.SendEmailAsync(user.Email, message, "Reset Password");
+                var message = "Code To Reset Password : " + randomNumber;
+                await emailService.SendEmailAsync(user?.Email ?? "", message, "Reset Password");
                 await transaction.CommitAsync();
                 return "Success";
             }
@@ -294,7 +292,7 @@ namespace SchoolManagment.Services.Implementations
             if (user == null)
                 return "UserNotFound";
 
-            var userCode = user.Code;
+            var userCode = protector.Unprotect(user?.Code ?? "");
 
             if (userCode == code)
                 return "Success";

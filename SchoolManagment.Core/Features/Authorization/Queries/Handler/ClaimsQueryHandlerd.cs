@@ -11,8 +11,10 @@ namespace SchoolManagment.Core.Features.Authorization.Queries.Handler
     public class ClaimsQueryHandler : ResponseHandler,
         IRequestHandler<ManageUserClaimsQuery, Response<ManageUserClaimsResponse>>
     {
+        #region Fields
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly IAuthorizationService authorizationService;
+        #endregion
         #region Constructor
         public ClaimsQueryHandler(IStringLocalizer<SharedResource> localizer, IAuthorizationService authorizationService) : base(localizer)
         {
