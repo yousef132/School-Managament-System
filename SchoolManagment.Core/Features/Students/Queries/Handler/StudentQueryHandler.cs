@@ -8,6 +8,7 @@ using SchoolManagment.Core.Features.Students.Queries.Responses;
 using SchoolManagment.Core.Resources;
 using SchoolManagment.Infrastructure.Specifications.Student;
 using SchoolManagment.Services.Abstracts;
+using Serilog;
 
 namespace SchoolManagment.Core.Features.Students.Queries.Handler
 {
@@ -50,7 +51,7 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
         {
             var students = await studentService.GetStudentsAsync();
             var mappedStudents = mapper.Map<List<GetStudentsResponse>>(students);
-
+            Log.Information("Get students from handler", students.Count());
             return Success(mappedStudents, new { Count = mappedStudents.Count() });
         }
 

@@ -7,6 +7,7 @@ using SchoolManagment.Data.Helper;
 using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
+using Serilog;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -210,6 +211,7 @@ namespace SchoolManagment.Services.Implementations
             }
             catch (Exception ex)
             {
+                Log.Error("Invalid Token", ex.Message);
                 return false;
             }
         }
@@ -274,6 +276,8 @@ namespace SchoolManagment.Services.Implementations
             }
             catch (Exception ex)
             {
+                Log.Error("Error Will Sending Reset Password Code", ex.Message);
+
                 transaction.Rollback();
                 return "Failed";
             }
@@ -312,6 +316,8 @@ namespace SchoolManagment.Services.Implementations
             }
             catch (Exception ex)
             {
+                Log.Error("Error While Updating Password", ex.Message);
+
                 transaction.Rollback();
                 return "Failed";
                 throw;
