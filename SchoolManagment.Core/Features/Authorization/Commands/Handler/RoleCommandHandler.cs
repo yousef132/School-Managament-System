@@ -13,15 +13,21 @@ namespace SchoolManagment.Core.Features.Authorization.Commands.Handler
          IRequestHandler<UpdateUserRolesCommand, Response<string>>,
          IRequestHandler<DeleteRoleCommand, Response<string>>
     {
+        #region Fields
+
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly IAuthorizationService authorizationService;
+        #endregion
 
+        #region Constructor
         public RoleCommandHandler(IStringLocalizer<SharedResource> localizer,
-                                 IAuthorizationService authorizationService) : base(localizer)
+                                IAuthorizationService authorizationService) : base(localizer)
         {
             this.localizer = localizer;
             this.authorizationService = authorizationService;
         }
+        #endregion
+        #region Handlers
         public async Task<Response<string>> Handle(AddRoleCommand request, CancellationToken cancellationToken)
         {
             var result = await authorizationService.AddRoleAsync(request.Role);
@@ -58,5 +64,6 @@ namespace SchoolManagment.Core.Features.Authorization.Commands.Handler
 
             return Success<string>(localizer[SharedResourcesKeys.Deleted]);
         }
+        #endregion
     }
 }

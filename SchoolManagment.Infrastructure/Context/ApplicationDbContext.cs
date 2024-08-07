@@ -1,6 +1,4 @@
-﻿using EntityFrameworkCore.EncryptColumn.Interfaces;
-using EntityFrameworkCore.EncryptColumn.Util;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities;
 using SchoolManagment.Data.Entities.Functions;
@@ -12,11 +10,10 @@ namespace SchoolManagment.Infrastructure.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, Role, int>
     {
-        private readonly IEncryptionProvider encryptionProvider;
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            encryptionProvider = new GenerateEncryptionProvider("x7F9rK2LQm6eJpVw3YbN0zZ1A4hTc");
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -28,7 +25,6 @@ namespace SchoolManagment.Infrastructure.Data
         {
             base.OnModelCreating(modelBuilder);
             modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-            //modelBuilder.UseEncryption(encryptionProvider);
 
         }
 
