@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using SchoolManagment.Services.Abstracts;
+using Serilog;
 
 namespace SchoolManagment.Services.Implementations
 {
@@ -37,6 +38,7 @@ namespace SchoolManagment.Services.Implementations
                 }
                 catch (Exception ex)
                 {
+                    Log.Error("FailedToUploadImage", image.Name);
                     return "FailedToUploadImage";
                     throw;
                 }

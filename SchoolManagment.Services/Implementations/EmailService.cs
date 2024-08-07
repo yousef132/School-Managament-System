@@ -3,6 +3,7 @@ using Microsoft.Extensions.Options;
 using MimeKit;
 using SchoolManagment.Data.Helper;
 using SchoolManagment.Services.Abstracts;
+using Serilog;
 
 namespace SchoolManagment.Services.Implementations
 {
@@ -43,6 +44,8 @@ namespace SchoolManagment.Services.Implementations
             }
             catch (Exception ex)
             {
+                Log.Error("Error While Sending Email", ex.Message);
+
                 return "Failed";
             }
         }

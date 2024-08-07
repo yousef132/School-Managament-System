@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Core.Bases;
+using Serilog;
 using System.Net;
 using System.Text.Json;
 
@@ -26,6 +27,7 @@ namespace SchoolManagment.Core.Middleware
             catch (Exception ex)
             {
                 var response = context.Response;
+                Log.Error("Exception caught in middleware", context.Request);
                 response.ContentType = "application/json";
                 response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 var responseModel = new Response<string>() { Succeeded = false, Message = ex?.Message ?? "" };

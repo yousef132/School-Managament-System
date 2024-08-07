@@ -2,6 +2,7 @@
 using SchoolManagment.Data.Entities;
 using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Services.Abstracts;
+using Serilog;
 
 namespace SchoolManagment.Services.Implementations
 {
@@ -45,8 +46,10 @@ namespace SchoolManagment.Services.Implementations
 
                 return "Success";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Error("Failed To Add Instructor", ex.Message);
+
                 return "FailedToAddInstructor";
             }
         }

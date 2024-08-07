@@ -5,6 +5,7 @@ using SchoolManagment.Data.Requests;
 using SchoolManagment.Data.Responses;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
+using Serilog;
 using System.Security.Claims;
 
 namespace SchoolManagment.Services.Implementations
@@ -123,6 +124,8 @@ namespace SchoolManagment.Services.Implementations
             }
             catch (Exception ex)
             {
+                Log.Error("Error While Updating User Roles", ex.Message);
+
                 genericRepository.RollBack();
                 return "FailedToUpdateUserRoles";
             }
@@ -189,8 +192,10 @@ namespace SchoolManagment.Services.Implementations
                 await transaction.CommitAsync();
                 return "Success";
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Log.Error("Error While Updating User Claims", ex.Message);
+
                 await transaction.RollbackAsync();
                 return "FailedToUpdateClaims";
             }

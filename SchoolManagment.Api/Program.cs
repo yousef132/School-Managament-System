@@ -9,6 +9,7 @@ using SchoolManagment.Infrastructure;
 using SchoolManagment.Infrastructure.Data;
 using SchoolManagment.Infrastructure.Seeder;
 using SchoolManagment.Services;
+using Serilog;
 using System.Globalization;
 
 namespace SchoolManagment.Api
@@ -30,6 +31,12 @@ namespace SchoolManagment.Api
                 options.UseSqlServer(builder.Configuration.GetConnectionString("Local"));
             });
 
+            #region Serilog
+            Log.Logger = new LoggerConfiguration()
+              .ReadFrom.Configuration(builder.Configuration).CreateLogger();
+            builder.Services.AddSerilog();
+
+            #endregion
 
             #region Dependency Injections
             builder.Services.AddInfrastructureDependencies(builder.Configuration)
@@ -80,6 +87,8 @@ namespace SchoolManagment.Api
             });
 
             #endregion
+
+
 
             var app = builder.Build();
             using (var scope = app.Services.CreateScope())
