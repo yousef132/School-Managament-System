@@ -1,13 +1,15 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagment.Api.Bases;
 using SchoolManagment.Core.Features.AppUser.Commands.Models;
 using SchoolManagment.Core.Features.AppUser.Queries.Models;
 using SchoolManagment.Data.AppMetaData;
+using SchoolManagment.Data.Helper;
 
 namespace SchoolManagment.Api.Controllers
 {
-
+    [Authorize(Roles = Roles.Admin)]
     public class ApplicationUserController : AppControllerBase
     {
         private readonly IMediator mediator;
@@ -20,6 +22,7 @@ namespace SchoolManagment.Api.Controllers
 
         [HttpPost]
         [Route(Router.ApplicationUserRouting.Create)]
+        [AllowAnonymous]
         public async Task<IActionResult> Create([FromBody] AddUserCommand command)
         => NewResult(await mediator.Send(command));
 

@@ -1,10 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using SchoolManagment.Api.Bases;
 using SchoolManagment.Core.Features.Departments.Queries.Models;
 using SchoolManagment.Data.AppMetaData;
+using SchoolManagment.Data.Helper;
 
 namespace SchoolManagment.Api.Controllers
 {
+
+    [Authorize(Roles = Roles.Admin)]
+
     public class DepartmentController : AppControllerBase
     {
         [HttpGet(Router.Department.GetById)]

@@ -16,7 +16,7 @@ namespace SchoolManagment.Infrastructure.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
-            encryptionProvider = new GenerateEncryptionProvider("lakhsdf0a9sdf23420239m908230j203fj230jf2-30u7rt23j082093u-=3jr02");
+            encryptionProvider = new GenerateEncryptionProvider("x7F9rK2LQm6eJpVw3YbN0zZ1A4hTc");
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

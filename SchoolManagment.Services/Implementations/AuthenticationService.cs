@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.DataProtection;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
@@ -12,7 +13,6 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
 using System.Text;
-using System.Web;
 
 namespace SchoolManagment.Services.Implementations
 {
@@ -22,18 +22,21 @@ namespace SchoolManagment.Services.Implementations
         private readonly IRefreshTokenRepository refreshTokenRepository;
         private readonly IEmailService emailService;
         private readonly IGenericRepositoryAsync<ApplicationUser> genericRepository;
+        private readonly IDataProtector protector;
         private readonly JWT jwt;
 
         public AuthenticationService(UserManager<ApplicationUser> userManager
                                     , IOptions<JWT> jwt
                                     , IRefreshTokenRepository refreshTokenRepository,
                                        IEmailService email,
-                                       IGenericRepositoryAsync<ApplicationUser> genericRepository)
+                                       IGenericRepositoryAsync<ApplicationUser> genericRepository,
+                                      IDataProtectionProvider protector)
         {
             this.userManager = userManager;
             this.refreshTokenRepository = refreshTokenRepository;
             this.emailService = email;
             this.genericRepository = genericRepository;
+            this.protector = protector.CreateProtector(Encryptor.Key); ;
             this.jwt = jwt.Value;
         }
 
@@ -239,7 +242,9 @@ namespace SchoolManagment.Services.Implementations
             if (user == null)
                 return "UserNotFount";
 
-            var confirmEmail = await userManager.ConfirmEmailAsync(user, HttpUtility.UrlDecode(code));
+            code = protector.Unprotect(code);
+            //  var decodedToken = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+            var confirmEmail = await userManager.ConfirmEmailAsync(user, code);
 
             if (!confirmEmail.Succeeded)
                 return "ErrorWhileConfirmingEmail";
