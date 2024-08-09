@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities;
+using SchoolManagment.Data.Responses;
 using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Services.Abstracts;
 using Serilog;
@@ -124,6 +125,47 @@ namespace SchoolManagment.Services.Implementations
                 return false;
                 throw;
             }
+        }
+
+        public async Task<IReadOnlyList<Subject>> GetAllSubjectsIncludingDepartments()
+            => await subjectRepository.GetTableAsNotTracked().Include(s => s.DepartmentSubjects).ThenInclude(ds => ds.Department).ToListAsync();
+
+        public async Task<IReadOnlyList<GetNumberOfStudentsForSubjectResponse>> GetNumberOfStudentsForSubjects()
+            => await subjectRepository.GetTableAsNotTracked()
+                                 .Include(s => s.StudentSubjects)
+                                 .Select(s => new GetNumberOfStudentsForSubjectResponse
+                                 {
+                                     SubjectId = s.SubId,
+                                     SubjectName = s.Localize(s.SubjectNameAr, s.SubjectNameEn),
+                                     NumberOfStudents = s.StudentSubjects.Count
+                                 })
+                                 .ToListAsync();
+
+        public async Task<IReadOnlyList<GetTopStudentInEachSubjectResponse>> GetTopStudentInEachSubject()
+        {
+            var result = await subjectRepository.GetTableAsNotTracked()
+                                  .Include(s => s.StudentSubjects)
+                                  .ThenInclude(ss => ss.Student)
+                                  .Select(s => new
+                                  {
+                                      Subject = s,
+                                      TopStudent = s.StudentSubjects
+                                          .OrderByDescending(ss => ss.Grade)
+                                          .FirstOrDefault(),
+
+                                  }).ToListAsync();
+
+
+            return result.Select(x => new GetTopStudentInEachSubjectResponse
+            {
+                SubjectId = x.Subject.SubId,
+                SubjectName = x.Subject.Localize(x?.Subject?.SubjectNameAr ?? "", x?.Subject?.SubjectNameEn ?? ""),
+                StudentId = x.TopStudent?.StudId ?? null,
+                StudentName = x.TopStudent?.Student?.Localize(x?.TopStudent?.Student?.NameAr ?? null, x?.TopStudent?.Student?.NameEn ?? null) ?? null,
+                Grade = x?.TopStudent?.Grade ?? null
+
+            }).ToList();
+
         }
     }
 }

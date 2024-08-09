@@ -1,4 +1,5 @@
 ﻿using SchoolManagment.Data.Entities;
+using SchoolManagment.Data.Responses;
 
 namespace SchoolManagment.Services.Abstracts
 {
@@ -14,5 +15,8 @@ namespace SchoolManagment.Services.Abstracts
         Task<bool> AddSubjectToDepartment(int subjectId, int departmentId);
         Task<bool> AddInstructorToSubject(int subjectId, int instructorId);
 
+        Task<IReadOnlyList<Subject>> GetAllSubjectsIncludingDepartments();
+        Task<IReadOnlyList<GetNumberOfStudentsForSubjectResponse>> GetNumberOfStudentsForSubjects();
+        Task<IReadOnlyList<GetTopStudentInEachSubjectResponse>> GetTopStudentInEachSubject();
     }
 }

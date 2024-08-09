@@ -13,6 +13,7 @@
 
 
             public const string List = $"{Prefix}List";
+            public const string AddStudentToDepartment = $"{Prefix}Add-Student-To-Department";
             public const string GetById = $"{Prefix}" + "{id}";
             public const string Create = $"{Prefix}" + "Create";
             public const string Edit = $"{Prefix}" + "Edit";
@@ -34,7 +35,10 @@
             public const string Create = $"{Prefix}" + "Create";
             public const string AddToDepartment = $"{Prefix}" + "Add-To-Department";
             public const string Edit = $"{Prefix}" + "Edit";
+            public const string GetSubjectWithDepartments = $"{Prefix}" + "Get-Subject-With-Departments";
             public const string AddInstructor = $"{Prefix}" + "Add-Instructor";
+            public const string GetTopStudentInEachSubject = $"{Prefix}" + "GetTopStudentInEachSubject";
+            public const string GetSubjectsStudentsCount = $"{Prefix}" + "Get-Subjects-Students-Count";
             public const string Delete = $"{Prefix}" + "Delete/{id}";
         }
 

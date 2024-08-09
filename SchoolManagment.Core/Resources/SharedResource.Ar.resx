@@ -207,6 +207,9 @@
   <data name="Required" xml:space="preserve">
     <value>هذا الحقل مطلوب</value>
   </data>
+  <data name="StudentAlreadyInDepartment" xml:space="preserve">
+    <value>الطالب بالفعل فى قسم</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>تمت العمليه بتجاح</value>
   </data>

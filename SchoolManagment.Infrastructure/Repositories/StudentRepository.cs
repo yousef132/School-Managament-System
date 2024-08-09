@@ -6,27 +6,27 @@ using SchoolManagment.Infrastructure.InfrastructureBases;
 
 namespace SchoolManagment.Infrastructure.Repositories
 {
-	public class StudentRepository : GenericRepositoryAsync<Student>, IStudentRepository
-	{
+    public class StudentRepository : GenericRepositoryAsync<Student>, IStudentRepository
+    {
 
-		#region Fields
-		private readonly DbSet<Student> students;
+        #region Fields
+        private readonly DbSet<Student> students;
 
-		#endregion
+        #endregion
 
-		#region Constructor
-		public StudentRepository(ApplicationDbContext context)
-			: base(context)
-		{
-			students = context.Set<Student>();
-		}
-		#endregion
+        #region Constructor
+        public StudentRepository(ApplicationDbContext context)
+            : base(context)
+        {
+            students = context.Set<Student>();
+        }
+        #endregion
 
 
-		#region Functions
+        #region Functions
 
-		public async Task<List<Student>> GetStudentsAsync()
-			=> await students.ToListAsync();
-		#endregion
-	}
+        public async Task<List<Student>> GetStudentsAsync()
+            => await students.Include(s => s.Department).ToListAsync();
+        #endregion
+    }
 }

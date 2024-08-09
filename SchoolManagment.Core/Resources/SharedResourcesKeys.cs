@@ -41,6 +41,7 @@
         public const string NoImage = "NoImage";
         public const string FailedToUploadImage = "FailedToUploadImage";
         public const string InvalidRole = "InvalidRole";
+        public const string StudentAlreadyInDepartment = "StudentAlreadyInDepartment";
 
     }
 }

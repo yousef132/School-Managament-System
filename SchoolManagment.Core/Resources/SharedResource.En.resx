@@ -207,6 +207,9 @@
   <data name="Required" xml:space="preserve">
     <value>This Field Is Required</value>
   </data>
+  <data name="StudentAlreadyInDepartment" xml:space="preserve">
+    <value>Student Already In Department</value>
+  </data>
   <data name="Success" xml:space="preserve">
     <value>Operation Done Successfully</value>
   </data>
