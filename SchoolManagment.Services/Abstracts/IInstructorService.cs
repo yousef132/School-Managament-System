@@ -8,6 +8,7 @@ namespace SchoolManagment.Services.Abstracts
 
         bool IsNameEnExist(string name);
         bool IsNameArExist(string name);
+        Task<bool> IsExist(int id);
 
         Task<string> AddInstructorAsync(Instructor instructor, IFormFile Image);
     }

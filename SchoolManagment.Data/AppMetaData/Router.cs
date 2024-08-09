@@ -27,6 +27,16 @@
 
             public const string Create = $"{Prefix}" + "Create";
         }
+        public static class Subject
+        {
+            public const string Prefix = $"{Rule}Subject/";
+
+            public const string Create = $"{Prefix}" + "Create";
+            public const string AddToDepartment = $"{Prefix}" + "Add-To-Department";
+            public const string Edit = $"{Prefix}" + "Edit";
+            public const string AddInstructor = $"{Prefix}" + "Add-Instructor";
+            public const string Delete = $"{Prefix}" + "Delete/{id}";
+        }
 
         public static class Department
         {

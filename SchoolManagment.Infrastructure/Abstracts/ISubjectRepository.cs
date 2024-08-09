@@ -3,8 +3,7 @@ using SchoolManagment.Infrastructure.InfrastructureBases;
 
 namespace SchoolManagment.Infrastructure.Abstracts
 {
-	public interface ISubjectRepository : IGenericRepositoryAsync<Subject>
-	{
-
-	}
+    public interface ISubjectRepository : IGenericRepositoryAsync<Subject>
+    {
+    }
 }

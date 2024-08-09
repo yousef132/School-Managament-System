@@ -28,8 +28,11 @@
     <Folder Include="Features\Email\Queries\Models\" />
     <Folder Include="Features\Email\Queries\Responses\" />
     <Folder Include="Features\Instructor\Queries\" />
+    <Folder Include="Features\Subject\Queries\Handler\" />
+    <Folder Include="Features\Subject\Queries\Models\" />
     <Folder Include="Mapping\Department\CommandMapping\" />
     <Folder Include="Mapping\Instructor\Queries\" />
+    <Folder Include="Mapping\Subject\QueryMapping\" />
   </ItemGroup>
 
 </Project>

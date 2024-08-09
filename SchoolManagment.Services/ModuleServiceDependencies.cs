@@ -22,6 +22,7 @@ namespace SchoolManagment.Services
             services.AddScoped<ICurrentUserService, CurrentUserService>();
             services.AddScoped<IFileService, FileService>();
             services.AddScoped<IInstructorService, InstructorService>();
+            services.AddScoped<ISubjectService, SubjectService>();
 
             services.AddTransient<IUrlHelper>(x =>
             {

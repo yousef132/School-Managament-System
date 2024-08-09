@@ -7,10 +7,7 @@ namespace SchoolManagment.Core.Bases
     {
         private readonly IStringLocalizer<SharedResource> stringLocalizer;
 
-        public ResponseHandler()
-        {
 
-        }
         public ResponseHandler(IStringLocalizer<SharedResource> stringLocalizer)
         {
             this.stringLocalizer = stringLocalizer;
