@@ -20,15 +20,21 @@ namespace SchoolManagment.Api.Controllers
         }
 
         [HttpPost(Router.Authorization.AddRole)]
+        [SwaggerOperation(summary: "اضافه صلاحيه")]
+
         public async Task<IActionResult> AddRole([FromQuery] string role)
            => NewResult(await mediator.Send(new AddRoleCommand(role)));
 
 
         [HttpPut(Router.Authorization.EditRole)]
+        [SwaggerOperation(summary: "تعديل صلاحيه")]
+
         public async Task<IActionResult> EditRole([FromForm] EditRoleCommand command)
            => NewResult(await mediator.Send(command));
 
         [HttpGet(Router.Authorization.RolesList)]
+        [SwaggerOperation(summary: "قائمه الصلاحيات")]
+
         public async Task<IActionResult> GetRolesList()
            => NewResult(await mediator.Send(new GetRolesListQuery()));
 
