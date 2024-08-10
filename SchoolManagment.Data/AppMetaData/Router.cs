@@ -27,6 +27,8 @@
             public const string Prefix = $"{Rule}Instructor/";
 
             public const string Create = $"{Prefix}" + "Create";
+            public const string GetAllInstructors = $"{Prefix}" + "GetAllInstructors";
+            public const string GetById = $"{Prefix}" + "GetInstructorById/{id}";
         }
         public static class Subject
         {
@@ -46,9 +48,13 @@
         {
             public const string Prefix = $"{Rule}Department/";
             public const string GetById = $"{Prefix}" + "{id}";
+            public const string Delete = $"{Prefix}" + "Delete/{id}";
             public const string DepartmentStudentCountById = $"{Prefix}Department-Student-Count-ById" + "/{id}";
             public const string DepartmentStudentCount = $"{Prefix}Department-Student-Count";
             public const string GetTop3InstructorByDepartment = $"{Prefix}Get-Top3-Instructor-By-Department";
+            public const string Create = $"{Prefix}Create";
+            public const string Update = $"{Prefix}Update";
+            public const string GetDepartmentsList = $"{Prefix}GetDepartmentsList";
 
         }
 

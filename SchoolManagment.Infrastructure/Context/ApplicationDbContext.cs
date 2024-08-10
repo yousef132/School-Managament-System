@@ -36,7 +36,7 @@ namespace SchoolManagment.Infrastructure.Data
         public DbSet<UserRefreshToken> UserRefreshTokens { get; set; }
 
         #region Views
-        public DbSet<DepartmentView> DepartmentView { get; set; }
+        public DbSet<DepartmentStudentsCount> DepartmentStudentsCount { get; set; }
         #endregion
 
         #region Functions

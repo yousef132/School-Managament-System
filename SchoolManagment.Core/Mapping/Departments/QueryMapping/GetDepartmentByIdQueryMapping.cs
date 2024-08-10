@@ -1,17 +1,17 @@
 ﻿using SchoolManagment.Core.Features.Departments.Queries.Responses;
 using SchoolManagment.Data.Entities;
 
-namespace SchoolManagment.Core.Mapping.Department
+namespace SchoolManagment.Core.Mapping.Departments
 {
     public partial class DepartmentProfile
     {
         public void GetDepartmentByIdQueryMapping()
         {
-            CreateMap<Data.Entities.Department, GetDepartmentByIdResponse>()
+            CreateMap<Department, GetDepartmentByIdResponse>()
                 .ForMember(dest => dest.ManagerName, opt => opt.MapFrom(src => src.Instructor.Localize(src.Instructor.NameAr, src.Instructor.NameEn)))
                 .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Localize(src.NameAr, src.NameEn)))
                 .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.DeptId))
-                .ForMember(dest => dest.Subjects, opt => opt.MapFrom(src => src.DepartmentSubjects))// Must Must Make Then Include To Subject
+                .ForMember(dest => dest.Subjects, opt => opt.MapFrom(src => src.DepartmentSubjects))// Must  Make Then Include To Subject
                 .ForMember(dest => dest.Instructors, opt => opt.MapFrom(src => src.Instructors))
                 .ForMember(dest => dest.Students, opt => opt.MapFrom(src => src.Students));
 

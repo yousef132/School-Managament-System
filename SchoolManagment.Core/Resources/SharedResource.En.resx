@@ -168,6 +168,9 @@
   <data name="FailedToUploadImage" xml:space="preserve">
     <value>Failed To Upload Image</value>
   </data>
+  <data name="InstructorIsAlreadyManager" xml:space="preserve">
+    <value>Instructor Is Already Manager</value>
+  </data>
   <data name="InvalidCode" xml:space="preserve">
     <value>Invalid Code</value>
   </data>

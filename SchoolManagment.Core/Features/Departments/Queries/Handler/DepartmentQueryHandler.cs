@@ -15,8 +15,9 @@ namespace SchoolManagment.Core.Features.Departments.Queries.Handler
     public class DepartmentQueryHandler : ResponseHandler,
         IRequestHandler<GetDepartmentByIdQuery, Response<GetDepartmentByIdResponse>>,
         IRequestHandler<GetDepartmentStudentCountQuery, Response<GetDepartmentStudentCountListResponse>>,
-        IRequestHandler<GetTop3InstructorSalariesByDeptQuery, Response<List<InstructorsSalaryDto>>>,
-        IRequestHandler<GetDepartmentStudentCountListQuery, Response<List<GetDepartmentStudentCountListResponse>>>
+        IRequestHandler<GetTop3InstructorSalariesByDeptQuery, Response<IReadOnlyList<InstructorsSalaryDto>>>,
+        IRequestHandler<GetDepartmentStudentCountListQuery, Response<IReadOnlyList<GetDepartmentStudentCountListResponse>>>,
+        IRequestHandler<GetAllDepartmentsQuery, Response<IReadOnlyList<GetAllDepartmentsResponse>>>
     {
 
 
@@ -56,11 +57,11 @@ namespace SchoolManagment.Core.Features.Departments.Queries.Handler
             return Success(mappedDepartment);
         }
 
-        public async Task<Response<List<GetDepartmentStudentCountListResponse>>> Handle(GetDepartmentStudentCountListQuery request, CancellationToken cancellationToken)
+        public async Task<Response<IReadOnlyList<GetDepartmentStudentCountListResponse>>> Handle(GetDepartmentStudentCountListQuery request, CancellationToken cancellationToken)
         {
             var result = await departmentService.GetDepartmentViewData();
 
-            var mappedResult = mapper.Map<List<GetDepartmentStudentCountListResponse>>(result);
+            var mappedResult = mapper.Map<IReadOnlyList<GetDepartmentStudentCountListResponse>>(result);
 
             return Success(mappedResult);
         }
@@ -73,7 +74,7 @@ namespace SchoolManagment.Core.Features.Departments.Queries.Handler
 
         }
 
-        public async Task<Response<List<InstructorsSalaryDto>>> Handle(GetTop3InstructorSalariesByDeptQuery request, CancellationToken cancellationToken)
+        public async Task<Response<IReadOnlyList<InstructorsSalaryDto>>> Handle(GetTop3InstructorSalariesByDeptQuery request, CancellationToken cancellationToken)
         {
             var result = await departmentGetTop3SalariesRepository.GetTop3Salaries();
 
@@ -82,11 +83,18 @@ namespace SchoolManagment.Core.Features.Departments.Queries.Handler
 
             return Success(mappedResult);
         }
+
+        public async Task<Response<IReadOnlyList<GetAllDepartmentsResponse>>> Handle(GetAllDepartmentsQuery request, CancellationToken cancellationToken)
+        {
+            var result = await departmentService.GetAllDepartmentsAsync();
+            var mappedDepartments = mapper.Map<IReadOnlyList<GetAllDepartmentsResponse>>(result);
+            return Success(mappedDepartments);
+        }
         #endregion
 
 
         #region Helper
-        private List<InstructorsSalaryDto> MapFunctionResult(List<GetTop3InstructorSalariesByDept> lst)
+        private IReadOnlyList<InstructorsSalaryDto> MapFunctionResult(List<GetTop3InstructorSalariesByDept> lst)
         {
             var result = lst.GroupBy(item => new { item.DepartmentId, item.DepartmentNameEn, item.DepartmentNameAr })
                 .Select(group => new InstructorsSalaryDto()

@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SchoolManagment.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using SchoolManagment.Infrastructure.Data;
 namespace SchoolManagment.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240810200134_EditDepartmentDeleteBehaviors")]
+    partial class EditDepartmentDeleteBehaviors
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -151,7 +154,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                         .IsUnique()
                         .HasFilter("[InsId] IS NOT NULL");
 
-                    b.ToTable("Departments", (string)null);
+                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.DepartmentSubject", b =>
@@ -166,7 +169,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("DeptId");
 
-                    b.ToTable("DepartmentSubjects", (string)null);
+                    b.ToTable("DepartmentSubjects");
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Functions.GetTop3InstructorSalariesByDept", b =>
@@ -199,7 +202,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                     b.Property<int>("rn")
                         .HasColumnType("int");
 
-                    b.ToTable("GetTop3InstructorSalariesByDept", (string)null);
+                    b.ToTable("GetTop3InstructorSalariesByDept");
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Identity.ApplicationUser", b =>
@@ -349,7 +352,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserRefreshTokens", (string)null);
+                    b.ToTable("UserRefreshTokens");
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Instructor", b =>
@@ -390,7 +393,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("SupervisorId");
 
-                    b.ToTable("Instructor", (string)null);
+                    b.ToTable("Instructor");
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Student", b =>
@@ -423,7 +426,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("DeptId");
 
-                    b.ToTable("Students", (string)null);
+                    b.ToTable("Students");
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.StudentSubject", b =>
@@ -441,7 +444,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("StudId");
 
-                    b.ToTable("StudentSubjects", (string)null);
+                    b.ToTable("StudentSubjects");
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Subject", b =>
@@ -463,7 +466,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasKey("SubId");
 
-                    b.ToTable("Subjects", (string)null);
+                    b.ToTable("Subjects");
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.SubjectInsturctor", b =>
@@ -478,7 +481,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("InsId");
 
-                    b.ToTable("SubjectInsturctor", (string)null);
+                    b.ToTable("SubjectInsturctor");
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Views.DepartmentView", b =>
@@ -497,7 +500,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                     b.Property<int>("Students")
                         .HasColumnType("int");
 
-                    b.ToTable("DepartmentView", (string)null);
+                    b.ToTable("DepartmentView");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>

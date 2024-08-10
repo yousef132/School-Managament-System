@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-namespace SchoolManagment.Core.Mapping.Department
+namespace SchoolManagment.Core.Mapping.Departments
 {
     public partial class DepartmentProfile : Profile
     {
@@ -8,7 +8,10 @@ namespace SchoolManagment.Core.Mapping.Department
         {
             GetDepartmentByIdQueryMapping();
             GetDepartmentStudentsCountQueryMapping();
-
+            CreateDepartmentCommandMapping();
+            GetTop3InstructorSalariesByDeptQueryMapping();
+            UpdateDepartmentCommandMapping();
+            GetAllDepartmentsMapping();
         }
     }
 }

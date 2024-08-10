@@ -168,6 +168,9 @@
   <data name="FailedToUploadImage" xml:space="preserve">
     <value>خطا فى تحميل الصورة</value>
   </data>
+  <data name="InstructorIsAlreadyManager" xml:space="preserve">
+    <value>المعلم بالفعل مدير</value>
+  </data>
   <data name="InvalidCode" xml:space="preserve">
     <value>كود خاطئ</value>
   </data>

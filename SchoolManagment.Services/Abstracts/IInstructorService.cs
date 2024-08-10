@@ -11,5 +11,9 @@ namespace SchoolManagment.Services.Abstracts
         Task<bool> IsExist(int id);
 
         Task<string> AddInstructorAsync(Instructor instructor, IFormFile Image);
+
+
+        Task<IReadOnlyList<Instructor>> GetAllInstructorsAsync();
+        Task<Instructor?> GetInstructorByIdAsync(int id);
     }
 }
