@@ -2,7 +2,7 @@
 
 namespace SchoolManagment.Infrastructure.Abstracts.Views
 {
-    public interface IViewRepository<T> : IGenericRepositoryAsync<T> where T : class
+    public interface IViewRepository<T> : IGenericRepository<T> where T : class
     {
 
     }

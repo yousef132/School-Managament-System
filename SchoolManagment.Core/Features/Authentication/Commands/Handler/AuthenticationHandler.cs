@@ -23,6 +23,7 @@ namespace SchoolManagment.Core.Features.Authentication.Commands.Handler
         private readonly IAuthenticationService authenticationService;
 
         #endregion
+
         #region Constructor
         public AuthenticationCommandHandler(IStringLocalizer<SharedResource> localizer,
                                             SignInManager<ApplicationUser> signInManager,
@@ -38,6 +39,7 @@ namespace SchoolManagment.Core.Features.Authentication.Commands.Handler
             this.authenticationService = authenticationService;
         }
         #endregion
+
         #region Handlers
         public async Task<Response<JwtAuthModel>> Handle(SignInCommand request, CancellationToken cancellationToken)
         {

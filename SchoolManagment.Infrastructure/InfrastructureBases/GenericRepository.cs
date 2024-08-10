@@ -5,7 +5,7 @@ using SchoolManagment.Infrastructure.Specification;
 
 namespace SchoolManagment.Infrastructure.InfrastructureBases
 {
-    public class GenericRepositoryAsync<T> : IGenericRepositoryAsync<T> where T : class
+    public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
 
         #region Vars / Props
@@ -14,7 +14,7 @@ namespace SchoolManagment.Infrastructure.InfrastructureBases
         #endregion
 
         #region Constructor
-        public GenericRepositoryAsync(ApplicationDbContext context)
+        public GenericRepository(ApplicationDbContext context)
         {
             this.context = context;
         }
@@ -22,8 +22,6 @@ namespace SchoolManagment.Infrastructure.InfrastructureBases
 
 
         #region Methods
-
-
         public async Task AddAsync(T entity)
         {
             await context.Set<T>().AddAsync(entity);

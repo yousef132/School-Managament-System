@@ -4,7 +4,7 @@ using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Subject.Queries.Models;
 using SchoolManagment.Core.Features.Subject.Responses;
-using SchoolManagment.Core.Resources;
+using SchoolManagment.Data.Resources;
 using SchoolManagment.Data.Responses;
 using SchoolManagment.Services.Abstracts;
 

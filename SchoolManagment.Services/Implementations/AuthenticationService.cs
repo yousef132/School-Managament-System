@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Data.Helper;
-using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
 using Serilog;
@@ -19,21 +18,21 @@ namespace SchoolManagment.Services.Implementations
     public class AuthenticationService : IAuthenticationService
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IRefreshTokenRepository refreshTokenRepository;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IEmailService emailService;
-        private readonly IGenericRepositoryAsync<ApplicationUser> genericRepository;
+        private readonly IGenericRepository<ApplicationUser> genericRepository;
         private readonly IDataProtector protector;
         private readonly JWT jwt;
 
         public AuthenticationService(UserManager<ApplicationUser> userManager,
                                       IOptions<JWT> jwt,
-                                      IRefreshTokenRepository refreshTokenRepository,
+                                      IUnitOfWork unitOfWork,
                                       IEmailService email,
-                                      IGenericRepositoryAsync<ApplicationUser> genericRepository,
+                                      IGenericRepository<ApplicationUser> genericRepository,
                                       IDataProtectionProvider protector)
         {
             this.userManager = userManager;
-            this.refreshTokenRepository = refreshTokenRepository;
+            this.unitOfWork = unitOfWork;
             this.emailService = email;
             this.genericRepository = genericRepository;
             this.protector = protector.CreateProtector(Encryptor.Key); ;
@@ -71,7 +70,7 @@ namespace SchoolManagment.Services.Implementations
                 Token = accessToken,
                 UserId = user.Id
             };
-            await refreshTokenRepository.AddAsync(userRefreshToken);
+            await unitOfWork.Repository<UserRefreshToken>().AddAsync(userRefreshToken);
             #endregion
 
             #region Return AuthModel (access & refresh tokens)
@@ -136,7 +135,7 @@ namespace SchoolManagment.Services.Implementations
 
             #region Read And Validate Refresh Token  
 
-            var userRefreshTokenRecord = await refreshTokenRepository
+            var userRefreshTokenRecord = await unitOfWork.Repository<UserRefreshToken>()
                         .GetTableAsNotTracked()
                         .FirstOrDefaultAsync(x => x.Token == accessToken &&
                                              x.RefreshToken == refreshToken &&
@@ -151,7 +150,7 @@ namespace SchoolManagment.Services.Implementations
                 // revoke refresh token
                 userRefreshTokenRecord.IsRevoked = true;
                 userRefreshTokenRecord.IsUsed = false;
-                await refreshTokenRepository.UpdateAsync(userRefreshTokenRecord);
+                await unitOfWork.Repository<UserRefreshToken>().UpdateAsync(userRefreshTokenRecord);
                 throw new SecurityTokenException("Refresh Token Is Expired");
             }
             #endregion
@@ -162,7 +161,7 @@ namespace SchoolManagment.Services.Implementations
             var newAccessToken = new JwtSecurityTokenHandler().WriteToken(await GenerateJWTToken(user));
 
             userRefreshTokenRecord.Token = newAccessToken;
-            await refreshTokenRepository.UpdateAsync(userRefreshTokenRecord);
+            await unitOfWork.Repository<UserRefreshToken>().UpdateAsync(userRefreshTokenRecord);
 
             var refreshTokenResult = new RefreshToken
             {

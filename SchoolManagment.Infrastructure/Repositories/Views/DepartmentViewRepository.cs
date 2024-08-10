@@ -6,7 +6,7 @@ using SchoolManagment.Infrastructure.InfrastructureBases;
 
 namespace SchoolManagment.Infrastructure.Repositories.Views
 {
-    public class DepartmentViewRepository : GenericRepositoryAsync<DepartmentStudentsCount>, IViewRepository<DepartmentStudentsCount>
+    public class DepartmentViewRepository : GenericRepository<DepartmentStudentsCount>, IViewRepository<DepartmentStudentsCount>
     {
         #region Fields & Properties
         private readonly DbSet<DepartmentStudentsCount> departments;

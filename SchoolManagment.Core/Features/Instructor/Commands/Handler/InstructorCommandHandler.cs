@@ -3,7 +3,7 @@ using MediatR;
 using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Instructor.Commands.Models;
-using SchoolManagment.Core.Resources;
+using SchoolManagment.Data.Resources;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Instructor.Commands.Handler
