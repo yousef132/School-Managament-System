@@ -1,5 +1,11 @@
 # School Management Project Using Clean Architecture
 
+## Endpoints
+
+You can access the API endpoints through the following link:
+
+- **[Swagger Documentation](http://schoolmanagmentsystem.runasp.net/swagger/index.html)**
+
 ## Table of Contents
 
 - [Introduction](#introduction)
