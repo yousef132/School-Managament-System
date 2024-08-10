@@ -12,14 +12,14 @@ namespace SchoolManagment.Services.Implementations
 {
     public class UserService : IUserService
     {
-        private readonly IGenericRepositoryAsync<ApplicationUser> genericRepository;
+        private readonly IGenericRepository<ApplicationUser> genericRepository;
         private readonly UserManager<ApplicationUser> userManager;
         private readonly IHttpContextAccessor context;
         private readonly IEmailService emailService;
         private readonly IUrlHelper urlHelper;
         private readonly IDataProtector protector;
 
-        public UserService(IGenericRepositoryAsync<ApplicationUser> genericRepository,
+        public UserService(IGenericRepository<ApplicationUser> genericRepository,
                            UserManager<ApplicationUser> userManager,
                            IHttpContextAccessor httpContext,
                            IEmailService emailService,

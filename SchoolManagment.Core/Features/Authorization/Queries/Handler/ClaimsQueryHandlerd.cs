@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Authorization.Queries.Model;
-using SchoolManagment.Core.Resources;
+using SchoolManagment.Data.Resources;
 using SchoolManagment.Data.Responses;
 using SchoolManagment.Services.Abstracts;
 

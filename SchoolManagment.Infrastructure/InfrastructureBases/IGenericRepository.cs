@@ -3,7 +3,7 @@ using SchoolManagment.Infrastructure.Specification;
 
 namespace SchoolManagment.Infrastructure.InfrastructureBases
 {
-	public interface IGenericRepositoryAsync<T> where T : class
+	public interface IGenericRepository<T> where T : class
 	{
 
 		Task DeleteRangeAsync(ICollection<T> entities);

@@ -1,7 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Features.Authentication.Commands.Models;
-using SchoolManagment.Core.Resources;
+using SchoolManagment.Data.Resources;
 
 namespace SchoolManagment.Core.Features.Authentication.Commands.Validations
 {

@@ -5,7 +5,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Data.Helper;
-using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Services.Abstracts;
 using Serilog;
@@ -19,21 +18,21 @@ namespace SchoolManagment.Services.Implementations
     public class AuthenticationService : IAuthenticationService
     {
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IRefreshTokenRepository refreshTokenRepository;
+        private readonly IUnitOfWork unitOfWork;
         private readonly IEmailService emailService;
-        private readonly IGenericRepositoryAsync<ApplicationUser> genericRepository;
+        private readonly IGenericRepository<ApplicationUser> genericRepository;
         private readonly IDataProtector protector;
         private readonly JWT jwt;
 
-        public AuthenticationService(UserManager<ApplicationUser> userManager
-                                    , IOptions<JWT> jwt
-                                    , IRefreshTokenRepository refreshTokenRepository,
-                                       IEmailService email,
-                                       IGenericRepositoryAsync<ApplicationUser> genericRepository,
+        public AuthenticationService(UserManager<ApplicationUser> userManager,
+                                      IOptions<JWT> jwt,
+                                      IUnitOfWork unitOfWork,
+                                      IEmailService email,
+                                      IGenericRepository<ApplicationUser> genericRepository,
                                       IDataProtectionProvider protector)
         {
             this.userManager = userManager;
-            this.refreshTokenRepository = refreshTokenRepository;
+            this.unitOfWork = unitOfWork;
             this.emailService = email;
             this.genericRepository = genericRepository;
             this.protector = protector.CreateProtector(Encryptor.Key); ;
@@ -71,7 +70,7 @@ namespace SchoolManagment.Services.Implementations
                 Token = accessToken,
                 UserId = user.Id
             };
-            await refreshTokenRepository.AddAsync(userRefreshToken);
+            await unitOfWork.Repository<UserRefreshToken>().AddAsync(userRefreshToken);
             #endregion
 
             #region Return AuthModel (access & refresh tokens)
@@ -83,7 +82,6 @@ namespace SchoolManagment.Services.Implementations
             };
             #endregion
         }
-
         private async Task<JwtSecurityToken> GenerateJWTToken(ApplicationUser user)
         {
             var userRoles = await userManager.GetRolesAsync(user);
@@ -137,7 +135,7 @@ namespace SchoolManagment.Services.Implementations
 
             #region Read And Validate Refresh Token  
 
-            var userRefreshTokenRecord = await refreshTokenRepository
+            var userRefreshTokenRecord = await unitOfWork.Repository<UserRefreshToken>()
                         .GetTableAsNotTracked()
                         .FirstOrDefaultAsync(x => x.Token == accessToken &&
                                              x.RefreshToken == refreshToken &&
@@ -152,7 +150,7 @@ namespace SchoolManagment.Services.Implementations
                 // revoke refresh token
                 userRefreshTokenRecord.IsRevoked = true;
                 userRefreshTokenRecord.IsUsed = false;
-                await refreshTokenRepository.UpdateAsync(userRefreshTokenRecord);
+                await unitOfWork.Repository<UserRefreshToken>().UpdateAsync(userRefreshTokenRecord);
                 throw new SecurityTokenException("Refresh Token Is Expired");
             }
             #endregion
@@ -163,7 +161,7 @@ namespace SchoolManagment.Services.Implementations
             var newAccessToken = new JwtSecurityTokenHandler().WriteToken(await GenerateJWTToken(user));
 
             userRefreshTokenRecord.Token = newAccessToken;
-            await refreshTokenRepository.UpdateAsync(userRefreshTokenRecord);
+            await unitOfWork.Repository<UserRefreshToken>().UpdateAsync(userRefreshTokenRecord);
 
             var refreshTokenResult = new RefreshToken
             {
@@ -186,11 +184,6 @@ namespace SchoolManagment.Services.Implementations
             var handler = new JwtSecurityTokenHandler();
             var response = handler.ReadJwtToken(accessToken);
             return response;
-            //bool tokenValidationResult = await ValidateToken(accessToken);
-            //if (!tokenValidationResult)
-            //    throw new SecurityTokenInvalidSignatureException();
-            //return validatedToken;
-
         }
         private string GenerateRefreshToken()
         {
@@ -199,7 +192,6 @@ namespace SchoolManagment.Services.Implementations
             generator.GetBytes(randomNumber);
             return Convert.ToBase64String(randomNumber);
         }
-
         public async Task<bool> ValidateAccessToken(string accessToken)
         {
 
@@ -232,7 +224,6 @@ namespace SchoolManagment.Services.Implementations
                 ClockSkew = TimeSpan.Zero
             };
         }
-
         public async Task<string> ConfirmEmail(int userId, string code)
         {
             var user = await userManager.FindByIdAsync(userId.ToString());
@@ -247,7 +238,6 @@ namespace SchoolManagment.Services.Implementations
 
             return "Success";
         }
-
         public async Task<string> SendResetPasswordCode(string email)
         {
             var transaction = genericRepository.BeginTransaction();
@@ -285,7 +275,6 @@ namespace SchoolManagment.Services.Implementations
                 return "Failed";
             }
         }
-
         public async Task<string> ResetPassword(string code, string email)
         {
             var user = await userManager.FindByEmailAsync(email);
@@ -298,7 +287,6 @@ namespace SchoolManagment.Services.Implementations
                 return "Success";
             return "Failed";
         }
-
         public async Task<string> UpdatePassword(string email, string password)
         {
             var transaction = genericRepository.BeginTransaction();

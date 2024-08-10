@@ -14,7 +14,7 @@ namespace SchoolManagment.Services.Implementations
     {
         private readonly RoleManager<Role> roleManager;
         private readonly UserManager<ApplicationUser> userManager;
-        private readonly IGenericRepositoryAsync<Role> genericRepository;
+        private readonly IGenericRepository<Role> genericRepository;
 
 
         #region Fields
@@ -24,7 +24,7 @@ namespace SchoolManagment.Services.Implementations
         #region Constructor
         public AuthorizationService(RoleManager<Role> roleManager,
                                     UserManager<ApplicationUser> userManager,
-                                    IGenericRepositoryAsync<Role> genericRepository)
+                                    IGenericRepository<Role> genericRepository)
         {
             this.roleManager = roleManager;
             this.userManager = userManager;

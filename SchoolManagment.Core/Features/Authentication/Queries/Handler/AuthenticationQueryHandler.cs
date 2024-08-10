@@ -3,8 +3,8 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Authentication.Queries.Model;
-using SchoolManagment.Core.Resources;
 using SchoolManagment.Data.Entities.Identity;
+using SchoolManagment.Data.Resources;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Authentication.Queries.Handler

@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Authentication.Commands.Models;
-using SchoolManagment.Core.Resources;
 using SchoolManagment.Data.Entities.Identity;
 using SchoolManagment.Data.Helper;
+using SchoolManagment.Data.Resources;
 using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Authentication.Commands.Handler
@@ -23,6 +23,7 @@ namespace SchoolManagment.Core.Features.Authentication.Commands.Handler
         private readonly IAuthenticationService authenticationService;
 
         #endregion
+
         #region Constructor
         public AuthenticationCommandHandler(IStringLocalizer<SharedResource> localizer,
                                             SignInManager<ApplicationUser> signInManager,
@@ -38,6 +39,7 @@ namespace SchoolManagment.Core.Features.Authentication.Commands.Handler
             this.authenticationService = authenticationService;
         }
         #endregion
+
         #region Handlers
         public async Task<Response<JwtAuthModel>> Handle(SignInCommand request, CancellationToken cancellationToken)
         {
