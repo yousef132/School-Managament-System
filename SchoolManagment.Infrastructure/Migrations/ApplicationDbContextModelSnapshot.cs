@@ -151,7 +151,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                         .IsUnique()
                         .HasFilter("[InsId] IS NOT NULL");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.DepartmentSubject", b =>
@@ -166,7 +166,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("DeptId");
 
-                    b.ToTable("DepartmentSubjects");
+                    b.ToTable("DepartmentSubjects", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Functions.GetTop3InstructorSalariesByDept", b =>
@@ -199,7 +199,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                     b.Property<int>("rn")
                         .HasColumnType("int");
 
-                    b.ToTable("GetTop3InstructorSalariesByDept");
+                    b.ToTable("GetTop3InstructorSalariesByDept", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Identity.ApplicationUser", b =>
@@ -349,7 +349,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserRefreshTokens");
+                    b.ToTable("UserRefreshTokens", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Instructor", b =>
@@ -390,7 +390,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("SupervisorId");
 
-                    b.ToTable("Instructor");
+                    b.ToTable("Instructor", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Student", b =>
@@ -423,7 +423,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("DeptId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.StudentSubject", b =>
@@ -441,7 +441,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("StudId");
 
-                    b.ToTable("StudentSubjects");
+                    b.ToTable("StudentSubjects", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Subject", b =>
@@ -463,7 +463,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasKey("SubId");
 
-                    b.ToTable("Subjects");
+                    b.ToTable("Subjects", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.SubjectInsturctor", b =>
@@ -478,7 +478,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("InsId");
 
-                    b.ToTable("SubjectInsturctor");
+                    b.ToTable("SubjectInsturctor", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Views.DepartmentView", b =>
@@ -497,7 +497,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                     b.Property<int>("Students")
                         .HasColumnType("int");
 
-                    b.ToTable("DepartmentView");
+                    b.ToTable("DepartmentView", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -556,7 +556,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                     b.HasOne("SchoolManagment.Data.Entities.Instructor", "Instructor")
                         .WithOne("DepartmentManage")
                         .HasForeignKey("SchoolManagment.Data.Entities.Department", "InsId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Instructor");
                 });
@@ -595,7 +595,8 @@ namespace SchoolManagment.Infrastructure.Migrations
                 {
                     b.HasOne("SchoolManagment.Data.Entities.Department", "Department")
                         .WithMany("Instructors")
-                        .HasForeignKey("DeptId");
+                        .HasForeignKey("DeptId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("SchoolManagment.Data.Entities.Instructor", "Supervisor")
                         .WithMany("SupervisedInstructors")
@@ -612,7 +613,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                     b.HasOne("SchoolManagment.Data.Entities.Department", "Department")
                         .WithMany("Students")
                         .HasForeignKey("DeptId")
-                        .OnDelete(DeleteBehavior.Restrict);
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.Navigation("Department");
                 });
@@ -645,7 +646,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                         .IsRequired();
 
                     b.HasOne("SchoolManagment.Data.Entities.Subject", "Subject")
-                        .WithMany("SubjectInsturctors")
+                        .WithMany("SubjectInstructors")
                         .HasForeignKey("SubId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -690,7 +691,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.Navigation("StudentSubjects");
 
-                    b.Navigation("SubjectInsturctors");
+                    b.Navigation("SubjectInstructors");
                 });
 #pragma warning restore 612, 618
         }

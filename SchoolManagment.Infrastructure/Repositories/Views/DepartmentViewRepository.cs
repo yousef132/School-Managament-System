@@ -6,10 +6,10 @@ using SchoolManagment.Infrastructure.InfrastructureBases;
 
 namespace SchoolManagment.Infrastructure.Repositories.Views
 {
-    public class DepartmentViewRepository : GenericRepositoryAsync<DepartmentView>, IViewRepository<DepartmentView>
+    public class DepartmentViewRepository : GenericRepositoryAsync<DepartmentStudentsCount>, IViewRepository<DepartmentStudentsCount>
     {
         #region Fields & Properties
-        private readonly DbSet<DepartmentView> departments;
+        private readonly DbSet<DepartmentStudentsCount> departments;
 
         #endregion
 
@@ -19,7 +19,7 @@ namespace SchoolManagment.Infrastructure.Repositories.Views
         public DepartmentViewRepository(ApplicationDbContext context) :
             base(context)
         {
-            departments = context.Set<DepartmentView>();
+            departments = context.Set<DepartmentStudentsCount>();
         }
         #endregion
 

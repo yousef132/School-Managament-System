@@ -36,10 +36,15 @@ namespace SchoolManagment.Api.Controllers
         public async Task<IActionResult> Edit([FromBody] EditStudentCommand command)
             => NewResult(await mediator.Send(command));
 
+
         [HttpDelete(Router.StudentRouting.Delete)]
         [Authorize(Policy = Policies.DeleteStudent)]
         public async Task<IActionResult> Delete([FromRoute] int id)
             => NewResult(await mediator.Send(new DeleteStudentCommand(id)));
+
+        [HttpPost(Router.StudentRouting.AddStudentToDepartment)]
+        public async Task<IActionResult> AddStudentToDepartment([FromForm] AddStudentToDepartmentCommand command)
+            => NewResult(await mediator.Send(command));
 
         [HttpGet(Router.StudentRouting.Pagination)]
         public async Task<IActionResult> GetAllStudentsWithPagination([FromQuery] GetStudentsWithPaginationQuery specs)

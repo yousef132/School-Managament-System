@@ -2,18 +2,27 @@
 
 namespace SchoolManagment.Data.Entities
 {
-	public class DepartmentSubject
-	{
-		public int DeptId { get; set; }
-		public int SubId { get; set; }
-		[ForeignKey("DeptId")]
-		[InverseProperty(nameof(Department.DepartmentSubjects))]
+    public class DepartmentSubject
+    {
+        public DepartmentSubject(int deptId, int subId)
+        {
+            DeptId = deptId;
+            SubId = subId;
+        }
+        public DepartmentSubject()
+        {
 
-		public Department Department { get; set; }
-		[ForeignKey("SubId")]
-		[InverseProperty(nameof(Subject.DepartmentSubjects))]
+        }
+        public int DeptId { get; set; }
+        public int SubId { get; set; }
+        [ForeignKey("DeptId")]
+        [InverseProperty(nameof(Department.DepartmentSubjects))]
 
-		public Subject Subject { get; set; }
+        public Department Department { get; set; }
+        [ForeignKey("SubId")]
+        [InverseProperty(nameof(Subject.DepartmentSubjects))]
 
-	}
+        public Subject Subject { get; set; }
+
+    }
 }

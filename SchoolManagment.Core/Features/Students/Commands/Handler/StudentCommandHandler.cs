@@ -12,12 +12,13 @@ namespace SchoolManagment.Core.Features.Students.Commands.Handler
     public class StudentCommandHandler : ResponseHandler,
         IRequestHandler<AddStudentCommand, Response<string>>,
         IRequestHandler<EditStudentCommand, Response<string>>,
-        IRequestHandler<DeleteStudentCommand, Response<string>>
+        IRequestHandler<DeleteStudentCommand, Response<string>>,
+        IRequestHandler<AddStudentToDepartmentCommand, Response<string>>
     {
         #region Fields
         private readonly IStudentService studentService;
         private readonly IMapper mapper;
-        private readonly IStringLocalizer<SharedResource> stringLocalizer;
+        private readonly IStringLocalizer<SharedResource> localizer;
         #endregion
 
         #region Constructor
@@ -27,7 +28,7 @@ namespace SchoolManagment.Core.Features.Students.Commands.Handler
         {
             this.studentService = studentService;
             this.mapper = mapper;
-            this.stringLocalizer = stringLocalizer;
+            this.localizer = stringLocalizer;
         }
         #endregion
 
@@ -77,6 +78,20 @@ namespace SchoolManagment.Core.Features.Students.Commands.Handler
                 return Deleted<string>("Deleted Successfully");
 
             return BadRequest<string>();
+        }
+
+        public async Task<Response<string>> Handle(AddStudentToDepartmentCommand request, CancellationToken cancellationToken)
+        {
+            var result = await studentService.AddStudentToDepartment(request.StudentId, request.DepartmentId);
+
+            return result switch
+            {
+                "StudentNotFound" => NotFound<string>(localizer[SharedResourcesKeys.NotFound]),
+                "DepartmentNotFound" => NotFound<string>(localizer[SharedResourcesKeys.NotFound]),
+                "StudentAlreadyInDepartment" => NotFound<string>(localizer[SharedResourcesKeys.StudentAlreadyInDepartment]),
+                "Failed" => NotFound<string>(localizer[SharedResourcesKeys.Failed]),
+                _ => Success("")
+            };
         }
         #endregion
 

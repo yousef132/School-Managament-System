@@ -13,6 +13,7 @@
 
 
             public const string List = $"{Prefix}List";
+            public const string AddStudentToDepartment = $"{Prefix}Add-Student-To-Department";
             public const string GetById = $"{Prefix}" + "{id}";
             public const string Create = $"{Prefix}" + "Create";
             public const string Edit = $"{Prefix}" + "Edit";
@@ -26,15 +27,34 @@
             public const string Prefix = $"{Rule}Instructor/";
 
             public const string Create = $"{Prefix}" + "Create";
+            public const string GetAllInstructors = $"{Prefix}" + "GetAllInstructors";
+            public const string GetById = $"{Prefix}" + "GetInstructorById/{id}";
+        }
+        public static class Subject
+        {
+            public const string Prefix = $"{Rule}Subject/";
+
+            public const string Create = $"{Prefix}" + "Create";
+            public const string AddToDepartment = $"{Prefix}" + "Add-To-Department";
+            public const string Edit = $"{Prefix}" + "Edit";
+            public const string GetSubjectWithDepartments = $"{Prefix}" + "Get-Subject-With-Departments";
+            public const string AddInstructor = $"{Prefix}" + "Add-Instructor";
+            public const string GetTopStudentInEachSubject = $"{Prefix}" + "GetTopStudentInEachSubject";
+            public const string GetSubjectsStudentsCount = $"{Prefix}" + "Get-Subjects-Students-Count";
+            public const string Delete = $"{Prefix}" + "Delete/{id}";
         }
 
         public static class Department
         {
             public const string Prefix = $"{Rule}Department/";
             public const string GetById = $"{Prefix}" + "{id}";
+            public const string Delete = $"{Prefix}" + "Delete/{id}";
             public const string DepartmentStudentCountById = $"{Prefix}Department-Student-Count-ById" + "/{id}";
             public const string DepartmentStudentCount = $"{Prefix}Department-Student-Count";
             public const string GetTop3InstructorByDepartment = $"{Prefix}Get-Top3-Instructor-By-Department";
+            public const string Create = $"{Prefix}Create";
+            public const string Update = $"{Prefix}Update";
+            public const string GetDepartmentsList = $"{Prefix}GetDepartmentsList";
 
         }
 

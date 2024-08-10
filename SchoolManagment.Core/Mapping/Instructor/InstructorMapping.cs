@@ -7,6 +7,7 @@ namespace SchoolManagment.Core.Mapping.Instructor
         public InstructorMapping()
         {
             AddInstructorMapping();
+            GetInstructorQueryMapping();
         }
     }
 }

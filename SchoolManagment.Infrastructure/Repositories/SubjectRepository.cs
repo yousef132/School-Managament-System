@@ -6,25 +6,26 @@ using SchoolManagment.Infrastructure.InfrastructureBases;
 
 namespace SchoolManagment.Infrastructure.Repositories
 {
-	public class SubjectRepository : GenericRepositoryAsync<Subject>, ISubjectRepository
-	{
+    public class SubjectRepository : GenericRepositoryAsync<Subject>, ISubjectRepository
+    {
 
-		#region Fields
-		private readonly DbSet<Subject> subjects;
+        #region Fields
+        private readonly DbSet<Subject> subjects;
 
-		#endregion
+        #endregion
 
-		#region Constructor
-		public SubjectRepository(ApplicationDbContext context)
-			: base(context)
-		{
-			subjects = context.Set<Subject>();
-		}
-		#endregion
+        #region Constructor
+        public SubjectRepository(ApplicationDbContext context)
+            : base(context)
+        {
+            subjects = context.Set<Subject>();
+        }
+
+        #endregion
 
 
-		#region Functions
+        #region Functions
 
-		#endregion
-	}
+        #endregion
+    }
 }

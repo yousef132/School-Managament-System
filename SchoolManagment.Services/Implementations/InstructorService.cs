@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities;
 using SchoolManagment.Infrastructure.Abstracts;
 using SchoolManagment.Services.Abstracts;
@@ -54,5 +55,13 @@ namespace SchoolManagment.Services.Implementations
             }
         }
 
+        public Task<bool> IsExist(int id)
+            => instructorRepository.GetTableAsNotTracked().AnyAsync(x => x.InstId == id);
+
+        public async Task<IReadOnlyList<Instructor>> GetAllInstructorsAsync()
+            => await instructorRepository.GetTableAsNotTracked().ToListAsync();
+
+        public async Task<Instructor?> GetInstructorByIdAsync(int id)
+            => await instructorRepository.GetByIdAsync(id);
     }
 }

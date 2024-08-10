@@ -50,8 +50,11 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
         public async Task<Response<List<GetStudentsResponse>>> Handle(GetStudentsQuery request, CancellationToken cancellationToken)
         {
             var students = await studentService.GetStudentsAsync();
+
             var mappedStudents = mapper.Map<List<GetStudentsResponse>>(students);
+
             Log.Information("Get students from handler", students.Count());
+
             return Success(mappedStudents, new { Count = mappedStudents.Count() });
         }
 

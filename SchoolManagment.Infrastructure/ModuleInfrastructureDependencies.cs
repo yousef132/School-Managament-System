@@ -30,7 +30,7 @@ namespace SchoolManagment.Infrastructure
             services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
             #region Views
-            services.AddScoped<IViewRepository<DepartmentView>, DepartmentViewRepository>();
+            services.AddScoped<IViewRepository<DepartmentStudentsCount>, DepartmentViewRepository>();
             #endregion
 
             #region Procedures

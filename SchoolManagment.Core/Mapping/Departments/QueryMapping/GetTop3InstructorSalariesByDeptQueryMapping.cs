@@ -1,7 +1,7 @@
 ﻿using SchoolManagment.Core.Features.Departments.Queries.Responses;
 using SchoolManagment.Data.Entities.Functions;
 
-namespace SchoolManagment.Core.Mapping.Department
+namespace SchoolManagment.Core.Mapping.Departments
 {
     public partial class DepartmentProfile
     {

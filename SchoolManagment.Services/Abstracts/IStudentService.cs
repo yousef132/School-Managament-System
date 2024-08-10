@@ -5,23 +5,27 @@ namespace SchoolManagment.Services.Abstracts
 {
     public interface IStudentService
     {
-        public Task<List<Student>> GetStudentsAsync();
-        public Task<Student> GetStudentByIdAsync(int id);
+        Task<List<Student>> GetStudentsAsync();
+        Task<Student> GetStudentByIdAsync(int id);
 
         #region GetWithSpecifications
-        public Task<List<Student>> GetStudentsWithSpecificationsAsync(StudentSpecification specs);
-        public Task<Student> GetStudentByIdWithSpecificationsAsync(int id);
+        Task<List<Student>> GetStudentsWithSpecificationsAsync(StudentSpecification specs);
+        Task<Student> GetStudentByIdWithSpecificationsAsync(int id);
         #endregion
 
 
-        public Task<string> AddAsync(Student student);
+        Task<string> AddAsync(Student student);
 
-        public Task<bool> IsNameEnExist(string name);
-        public Task<bool> IsNameArExist(string name);
-        public Task<bool> IsNameArExistExcludeItself(string name, int id);
-        public Task<bool> IsNameEnExistExcludeItself(string name, int id);
+        Task<bool> IsNameEnExist(string name);
+        Task<bool> IsNameArExist(string name);
+        Task<bool> IsNameArExistExcludeItself(string name, int id);
+        Task<bool> IsNameEnExistExcludeItself(string name, int id);
 
-        public Task<string> EditStudentAsync(Student student);
-        public Task<string> DeleteStudentAsync(Student student);
+        Task<string> EditStudentAsync(Student student);
+        Task<string> DeleteStudentAsync(Student student);
+
+        Task<string> AddStudentToDepartment(int studentId, int departmentId);
+
+
     }
 }
