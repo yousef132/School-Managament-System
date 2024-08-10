@@ -25,11 +25,11 @@ namespace SchoolManagment.Services.Implementations
         private readonly IDataProtector protector;
         private readonly JWT jwt;
 
-        public AuthenticationService(UserManager<ApplicationUser> userManager
-                                    , IOptions<JWT> jwt
-                                    , IRefreshTokenRepository refreshTokenRepository,
-                                       IEmailService email,
-                                       IGenericRepositoryAsync<ApplicationUser> genericRepository,
+        public AuthenticationService(UserManager<ApplicationUser> userManager,
+                                      IOptions<JWT> jwt,
+                                      IRefreshTokenRepository refreshTokenRepository,
+                                      IEmailService email,
+                                      IGenericRepositoryAsync<ApplicationUser> genericRepository,
                                       IDataProtectionProvider protector)
         {
             this.userManager = userManager;
@@ -83,7 +83,6 @@ namespace SchoolManagment.Services.Implementations
             };
             #endregion
         }
-
         private async Task<JwtSecurityToken> GenerateJWTToken(ApplicationUser user)
         {
             var userRoles = await userManager.GetRolesAsync(user);
@@ -186,11 +185,6 @@ namespace SchoolManagment.Services.Implementations
             var handler = new JwtSecurityTokenHandler();
             var response = handler.ReadJwtToken(accessToken);
             return response;
-            //bool tokenValidationResult = await ValidateToken(accessToken);
-            //if (!tokenValidationResult)
-            //    throw new SecurityTokenInvalidSignatureException();
-            //return validatedToken;
-
         }
         private string GenerateRefreshToken()
         {
@@ -199,7 +193,6 @@ namespace SchoolManagment.Services.Implementations
             generator.GetBytes(randomNumber);
             return Convert.ToBase64String(randomNumber);
         }
-
         public async Task<bool> ValidateAccessToken(string accessToken)
         {
 
@@ -232,7 +225,6 @@ namespace SchoolManagment.Services.Implementations
                 ClockSkew = TimeSpan.Zero
             };
         }
-
         public async Task<string> ConfirmEmail(int userId, string code)
         {
             var user = await userManager.FindByIdAsync(userId.ToString());
@@ -247,7 +239,6 @@ namespace SchoolManagment.Services.Implementations
 
             return "Success";
         }
-
         public async Task<string> SendResetPasswordCode(string email)
         {
             var transaction = genericRepository.BeginTransaction();
@@ -285,7 +276,6 @@ namespace SchoolManagment.Services.Implementations
                 return "Failed";
             }
         }
-
         public async Task<string> ResetPassword(string code, string email)
         {
             var user = await userManager.FindByEmailAsync(email);
@@ -298,7 +288,6 @@ namespace SchoolManagment.Services.Implementations
                 return "Success";
             return "Failed";
         }
-
         public async Task<string> UpdatePassword(string email, string password)
         {
             var transaction = genericRepository.BeginTransaction();

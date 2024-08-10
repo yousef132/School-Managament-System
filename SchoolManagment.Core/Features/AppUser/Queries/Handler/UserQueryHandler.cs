@@ -6,8 +6,8 @@ using Microsoft.Extensions.Localization;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.AppUser.Queries.Models;
 using SchoolManagment.Core.Features.AppUser.Queries.Responses;
-using SchoolManagment.Core.Resources;
 using SchoolManagment.Data.Entities.Identity;
+using SchoolManagment.Data.Resources;
 
 namespace SchoolManagment.Core.Features.AppUser.Queries.Handler
 {

@@ -1,4 +1,4 @@
-﻿namespace SchoolManagment.Core.Resources
+﻿namespace SchoolManagment.Data.Resources
 {
     public class SharedResource
     {

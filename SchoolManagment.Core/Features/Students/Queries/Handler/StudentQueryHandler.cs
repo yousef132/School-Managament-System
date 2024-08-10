@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 using SchoolManagment.Core.Bases;
 using SchoolManagment.Core.Features.Students.Queries.Models;
 using SchoolManagment.Core.Features.Students.Queries.Responses;
-using SchoolManagment.Core.Resources;
+using SchoolManagment.Data.Resources;
 using SchoolManagment.Infrastructure.Specifications.Student;
 using SchoolManagment.Services.Abstracts;
 using Serilog;

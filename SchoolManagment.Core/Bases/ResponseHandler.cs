@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Localization;
-using SchoolManagment.Core.Resources;
+using SchoolManagment.Data.Resources;
 
 namespace SchoolManagment.Core.Bases
 {
