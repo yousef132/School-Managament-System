@@ -104,10 +104,13 @@ namespace SchoolManagment.Services.Implementations
                 if (user == null)
                     return "UserIsNull";
 
-                foreach (var role in request.Roles)
-                    if (roleManager.Roles.Any(r => r.Id != role.Id && r.Name != role.Name))
-                        return "InvalidRole";
 
+                foreach (var role in request.Roles)
+                {
+                    var existingRole = await roleManager.Roles.FirstOrDefaultAsync(r => r.Id == role.Id || r.Name == role.Name);
+                    if (existingRole == null)
+                        return "InvalidRole";
+                }
                 var userRoles = await userManager.GetRolesAsync(user);
                 var removeResult = await userManager.RemoveFromRolesAsync(user, userRoles);
                 if (!removeResult.Succeeded)

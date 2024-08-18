@@ -135,11 +135,12 @@ namespace SchoolManagment.Services.Implementations
 
             #region Read And Validate Refresh Token  
 
-            var userRefreshTokenRecord = await unitOfWork.Repository<UserRefreshToken>()
-                        .GetTableAsNotTracked()
-                        .FirstOrDefaultAsync(x => x.Token == accessToken &&
-                                             x.RefreshToken == refreshToken &&
-                                             x.UserId == int.Parse(userId));
+            var userRefreshTokenRecord = await unitOfWork
+                                              .Repository<UserRefreshToken>()
+                                              .GetTableAsNotTracked()
+                                              .FirstOrDefaultAsync(x => x.Token == accessToken &&
+                                                                   x.RefreshToken == refreshToken &&
+                                                                   x.UserId == int.Parse(userId));
 
             if (userRefreshTokenRecord == null)
                 throw new SecurityTokenException("Invalid Refresh Token Operation");
@@ -156,7 +157,6 @@ namespace SchoolManagment.Services.Implementations
             #endregion
 
             // right here you have a valid refresh token with an invalid access token
-
             //  update the access token of the current refresh token record
             var newAccessToken = new JwtSecurityTokenHandler().WriteToken(await GenerateJWTToken(user));
 

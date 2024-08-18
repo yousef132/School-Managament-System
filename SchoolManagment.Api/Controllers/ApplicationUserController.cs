@@ -59,7 +59,7 @@ namespace SchoolManagment.Api.Controllers
         [HttpPut]
         [Route(Router.ApplicationUserRouting.ChangePassword)]
         [SwaggerOperation(Summary = "تغيير كلمة مرور المستخدم")]
-
+        [Authorize(Roles = $"{Roles.User},{Roles.Admin}")]
         public async Task<IActionResult> UpdateUserPassword([FromBody] UpdateUserPasswordCommand command)
             => NewResult(await mediator.Send(command));
 

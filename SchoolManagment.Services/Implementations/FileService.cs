@@ -8,7 +8,6 @@ namespace SchoolManagment.Services.Implementations
     public class FileService : IFileService
     {
         private readonly IWebHostEnvironment webHostEnvironment;
-
         public FileService(IWebHostEnvironment webHostEnvironment)
         {
             this.webHostEnvironment = webHostEnvironment;

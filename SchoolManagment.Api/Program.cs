@@ -106,9 +106,12 @@ namespace SchoolManagment.Api
                 app.UseSwagger();
                 app.UseSwaggerUI();
             }
-            app.UseStaticFiles();
             app.UseSwagger();
             app.UseSwaggerUI();
+
+
+
+            app.UseStaticFiles();
 
             #region Localization Middleware
             var options = app.Services.GetService<IOptions<RequestLocalizationOptions>>();
