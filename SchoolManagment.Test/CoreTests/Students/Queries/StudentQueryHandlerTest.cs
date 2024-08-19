@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using Moq;
 using SchoolManagment.Core.Features.Students.Queries.Handler;
 using SchoolManagment.Core.Features.Students.Queries.Models;
+using SchoolManagment.Core.Features.Students.Queries.Responses;
 using SchoolManagment.Core.Mapping.Students;
 using SchoolManagment.Data.Entities;
 using SchoolManagment.Data.Resources;
@@ -31,7 +32,7 @@ namespace SchoolManagment.Test.CoreTests.Students.Queries
         }
 
         [Fact]
-        public async Task GetStudents_WhenListIsNotNullOrEmpty_ShouldReturnCorrectList()
+        public async Task HandleStudentList_WhenListIsNotNullOrEmpty_ShouldReturnCorrectList()
         {
             // Arrange
             // faking that student list is empty
@@ -45,17 +46,100 @@ namespace SchoolManagment.Test.CoreTests.Students.Queries
                     NameEn = "ali",
                 }
             });
-
             var query = new GetStudentsQuery();
+            var handler = new StudentQueryHandler(studentService.Object, mapper, stringLocalizer.Object, loggerr.Object);
+            // Act 
+            var result = await handler.Handle(query, default);
+
+            // Assert 
+            result.Data.Should().NotBeNullOrEmpty();
+            result.Data.Should().BeOfType<List<GetStudentsResponse>>();
+        }
+
+
+        [Theory]
+        [InlineData(39045)]
+        public async Task HandleGetStudentById_WhenStudentNotFound_ShouldReturn404StatusCode(int id)
+        {
+            // Arrange
+            var studentList = new List<Student>()
+           {
+                 new Student
+                 {
+                    DeptId = 1,
+                    StudId = 2,
+                    NameAr = "على",
+                    NameEn = "ali",
+                 },
+                 new Student
+                 {
+                    DeptId = 1,
+                    StudId = 3124,
+                    NameAr = "على",
+                    NameEn = "mohamed",
+                    Department = new Department()
+                    {
+                        DeptId = 2,
+                        NameEn = "cs"
+                    }
+                 }
+           };
+
+
+
+            studentService.Setup(s => s.GetStudentByIdWithSpecificationsAsync(id))
+                        .Returns(Task.FromResult(studentList.FirstOrDefault(s => s.StudId == id)));
+
+
+            var query = new GetStudentByIdQuery(id);
             var handler = new StudentQueryHandler(studentService.Object, mapper, stringLocalizer.Object, loggerr.Object);
 
 
             // Act 
             var result = await handler.Handle(query, default);
 
-            // Assert 
-            result.Data.Should().NotBeNullOrEmpty();
-
+            result.StatusCode.Should().Be(System.Net.HttpStatusCode.NotFound);
         }
+
+        [Theory]
+        [InlineData(3124)]
+        public async Task HandleGetStudentById_WhenStudentFound_ShouldReturn200StatusCode(int id)
+        {
+            // Arrange 
+            var studentList = new List<Student>()
+            {
+                 new Student
+                 {
+                    DeptId = 1,
+                    StudId = 2,
+                    NameAr = "على",
+                    NameEn = "ali",
+                 },
+                 new Student
+                 {
+                    DeptId = 1,
+                    StudId = 3124,
+                    NameAr = "على",
+                    NameEn = "mohamed",
+                    Department = new Department()
+                    {
+                        DeptId = 2,
+                        NameEn = "cs"
+                    }
+                 }
+            };
+
+            studentService.Setup(s => s.GetStudentByIdWithSpecificationsAsync(id))
+                        .Returns(Task.FromResult(studentList.FirstOrDefault(s => s.StudId == id)));
+            var query = new GetStudentByIdQuery(id);
+            var handler = new StudentQueryHandler(studentService.Object, mapper, stringLocalizer.Object, loggerr.Object);
+
+
+            // Act 
+            var result = await handler.Handle(query, default);
+
+            result.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
+        }
+
     }
 }
