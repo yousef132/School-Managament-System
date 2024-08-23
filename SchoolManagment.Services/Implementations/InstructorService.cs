@@ -26,19 +26,20 @@ namespace SchoolManagment.Services.Implementations
 
         public async Task<string> AddInstructorAsync(Instructor instructor, IFormFile image)
         {
-            // Construct the base URL for the current request
-            var request = httpContext.HttpContext.Request;
-            var baseUrl = $"{request.Scheme}://{request.Host}";
 
-            // Upload the image file and get the image path
-            string imagePath = await fileService.UploadFileAsync("InstructorImages", image);
-
-            // Check if the image upload was successful
-            if (imagePath == "NoImage" || imagePath == "FailedToUploadImage")
-                return imagePath;
 
             try
             {
+                // Construct the base URL for the current request
+                var request = httpContext.HttpContext.Request;
+                var baseUrl = $"{request.Scheme}://{request.Host}";
+
+                // Upload the image file and get the image path
+                string imagePath = await fileService.UploadFileAsync("InstructorImages", image);
+
+                // Check if the image upload was successful
+                if (imagePath == "NoImage" || imagePath == "FailedToUploadImage")
+                    return imagePath;
                 // Set the image path for the instructor
                 instructor.ImagePath = $"{baseUrl}{imagePath}";
 

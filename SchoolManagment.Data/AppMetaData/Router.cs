@@ -7,7 +7,7 @@
         public const string Rule = $"{Root}/{Version}/";
         public static class StudentRouting
         {
-            public const string Prefix = $"{Rule}student/";
+            public const string Prefix = $"{Rule}students/";
 
 
             public const string List = $"{Prefix}List";
@@ -20,17 +20,17 @@
 
 
         }
-        public static class Instructor
+        public static class InstructorRouting
         {
-            public const string Prefix = $"{Rule}instructor/";
+            public const string Prefix = $"{Rule}instructors/";
 
             public const string Create = $"{Prefix}" + "create";
             public const string GetAllInstructors = $"{Prefix}" + "all-instructors";
             public const string GetById = $"{Prefix}" + "instructor-by-id/{id}";
         }
-        public static class Subject
+        public static class SubjectRouting
         {
-            public const string Prefix = $"{Rule}subject/";
+            public const string Prefix = $"{Rule}subjects/";
 
             public const string Create = $"{Prefix}" + "create";
             public const string AddToDepartment = $"{Prefix}" + "add-to-department";
@@ -42,9 +42,9 @@
             public const string Delete = $"{Prefix}" + "delete/{id}";
         }
 
-        public static class Department
+        public static class DepartmentRouting
         {
-            public const string Prefix = $"{Rule}department/";
+            public const string Prefix = $"{Rule}departments/";
             public const string GetById = $"{Prefix}" + "{id}";
             public const string Delete = $"{Prefix}" + "delete/{id}";
             public const string DepartmentStudentCountById = $"{Prefix}department-student-count-by-id" + "/{id}";
@@ -58,7 +58,7 @@
 
         public static class ApplicationUserRouting
         {
-            public const string Prefix = $"{Rule}user/";
+            public const string Prefix = $"{Rule}users/";
             public const string Create = $"{Prefix}create";
             public const string Delete = $"{Prefix}delete";
             public const string ChangePassword = $"{Prefix}change-password";

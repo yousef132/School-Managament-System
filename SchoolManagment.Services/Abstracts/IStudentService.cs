@@ -1,4 +1,5 @@
-﻿using SchoolManagment.Data.Entities;
+﻿using Microsoft.AspNetCore.Http;
+using SchoolManagment.Data.Entities;
 using SchoolManagment.Infrastructure.Specifications.Student;
 
 namespace SchoolManagment.Services.Abstracts
@@ -14,7 +15,7 @@ namespace SchoolManagment.Services.Abstracts
         #endregion
 
 
-        Task<string> AddAsync(Student student);
+        Task<string> AddAsync(Student student, IFormFile? image);
 
         Task<bool> IsNameEnExist(string name);
         Task<bool> IsNameArExist(string name);

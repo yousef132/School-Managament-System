@@ -19,16 +19,19 @@ namespace SchoolManagment.Core.Features.AppUser.Queries.Handler
         private readonly IStringLocalizer<SharedResource> localizer;
         private readonly IMapper mapper;
         private readonly UserManager<ApplicationUser> userManager;
+        private readonly RoleManager<Role> roleManager;
         #endregion
 
         #region Constructor
         public UserQueryHandler(IStringLocalizer<SharedResource> localizer,
                                 IMapper mapper,
-                                UserManager<ApplicationUser> userManager) : base(localizer)
+                                UserManager<ApplicationUser> userManager,
+                                RoleManager<Role> roleManager) : base(localizer)
         {
             this.localizer = localizer;
             this.mapper = mapper;
             this.userManager = userManager;
+            this.roleManager = roleManager;
         }
         #endregion
 
@@ -36,15 +39,19 @@ namespace SchoolManagment.Core.Features.AppUser.Queries.Handler
         public async Task<Response<List<GetUserListResponse>>> Handle(GetUserListQuery request, CancellationToken cancellationToken)
         {
             var users = await userManager.Users.ToListAsync();
-
             var mappedUsers = mapper.Map<List<GetUserListResponse>>(users);
-
+            for (int i = 0; i < users.Count; i++)
+            {
+                var roles = await userManager.GetRolesAsync(users[i]);
+                mappedUsers[i].Roles.AddRange(roles);
+            }
             return Success(mappedUsers);
         }
 
         public async Task<Response<GetUserByIdResponse>> Handle(GetUserByIdQuery request, CancellationToken cancellationToken)
         {
             var result = await userManager.FindByIdAsync(request.Id.ToString());
+
 
             if (result == null)
                 return NotFound<GetUserByIdResponse>(localizer[SharedResourcesKeys.UserNotFound]);

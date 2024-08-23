@@ -18,6 +18,7 @@ namespace SchoolManagment.Data.Entities
         [MaxLength(300)]
         public string? Address { get; set; }
         public string? Phone { get; set; }
+        public string? ImagePath { get; set; }
 
         public int? DeptId { get; set; }
 

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Http;
 using SchoolManagment.Core.Bases;
 
 namespace SchoolManagment.Core.Features.AppUser.Commands.Models
@@ -13,5 +14,6 @@ namespace SchoolManagment.Core.Features.AppUser.Commands.Models
         public string ConfirmPassword { get; set; }
         public string? Country { get; set; }
         public string? Phone { get; set; }
+        public IFormFile? Image { get; set; }
     }
 }

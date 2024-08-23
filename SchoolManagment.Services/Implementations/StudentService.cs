@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using SchoolManagment.Data.Entities;
 using SchoolManagment.Infrastructure.InfrastructureBases;
 using SchoolManagment.Infrastructure.Specifications.Student;
@@ -12,12 +13,16 @@ namespace SchoolManagment.Services.Implementations
 
         #region Fields
         private readonly IUnitOfWork unitOfWork;
+        private readonly IFileService fileService;
+        private readonly IHttpContextAccessor httpContext;
         #endregion
 
         #region Constructor
-        public StudentService(IUnitOfWork unitOfWork)
+        public StudentService(IUnitOfWork unitOfWork, IFileService fileService, IHttpContextAccessor httpContext)
         {
             this.unitOfWork = unitOfWork;
+            this.fileService = fileService;
+            this.httpContext = httpContext;
         }
         #endregion
 
@@ -31,10 +36,36 @@ namespace SchoolManagment.Services.Implementations
 
 
 
-        public async Task<string> AddAsync(Student student)
+        public async Task<string> AddAsync(Student student, IFormFile? image)
         {
-            await unitOfWork.Repository<Student>().AddAsync(student);
-            return "Success";
+            try
+            {
+                if (image is not null)
+                {
+                    var request = httpContext.HttpContext.Request;
+                    var baseUrl = $"{request.Scheme}://{request.Host}";
+
+                    // Upload the image file and get the image path
+                    string imagePath = await fileService.UploadFileAsync("StudentImages", image);
+
+                    // Check if the image upload was successful
+                    if (imagePath == "NoImage" || imagePath == "FailedToUploadImage")
+                        return imagePath;
+                    // Set the image path for the instructor
+                    student.ImagePath = $"{baseUrl}{imagePath}";
+                }
+
+                // Add the instructor to the repository
+                await unitOfWork.Repository<Student>().AddAsync(student);
+
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Failed To Add Instructor", ex.Message);
+
+                return "FailedToAddInstructor";
+            }
         }
 
         public async Task<bool> IsNameEnExist(string name)

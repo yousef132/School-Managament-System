@@ -38,7 +38,7 @@ namespace SchoolManagment.Core.Features.Students.Commands.Handler
         {
             var student = mapper.Map<Student>(request);
 
-            string result = await studentService.AddAsync(student);
+            string result = await studentService.AddAsync(student, request.Image);
 
             if (result == "Success")
                 return Created(result);

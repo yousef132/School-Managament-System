@@ -18,7 +18,7 @@ namespace SchoolManagment.Test.CoreTests.Students.Queries
         private readonly Mock<IStudentService> studentService;
         private readonly IMapper mapper;
         private readonly Mock<IStringLocalizer<SharedResource>> stringLocalizer;
-        private readonly Mock<ILogger<StudentQueryHandler>> loggerr;
+        private readonly Mock<ILogger<StudentQueryHandler>> logger;
         private readonly StudentProfile studentProfile;
 
         public StudentQueryHandlerTest()
@@ -26,10 +26,12 @@ namespace SchoolManagment.Test.CoreTests.Students.Queries
             studentProfile = new StudentProfile();
             studentService = new();
             stringLocalizer = new();
-            loggerr = new();
+            logger = new();
             var mappingConfigs = new MapperConfiguration(c => c.AddProfile(studentProfile));
             mapper = new Mapper(mappingConfigs);
         }
+
+        #region Testing
 
         [Fact]
         public async Task HandleStudentList_WhenListIsNotNullOrEmpty_ShouldReturnCorrectList()
@@ -47,7 +49,7 @@ namespace SchoolManagment.Test.CoreTests.Students.Queries
                 }
             });
             var query = new GetStudentsQuery();
-            var handler = new StudentQueryHandler(studentService.Object, mapper, stringLocalizer.Object, loggerr.Object);
+            var handler = new StudentQueryHandler(studentService.Object, mapper, stringLocalizer.Object, logger.Object);
             // Act 
             var result = await handler.Handle(query, default);
 
@@ -92,7 +94,7 @@ namespace SchoolManagment.Test.CoreTests.Students.Queries
 
 
             var query = new GetStudentByIdQuery(id);
-            var handler = new StudentQueryHandler(studentService.Object, mapper, stringLocalizer.Object, loggerr.Object);
+            var handler = new StudentQueryHandler(studentService.Object, mapper, stringLocalizer.Object, logger.Object);
 
 
             // Act 
@@ -132,7 +134,7 @@ namespace SchoolManagment.Test.CoreTests.Students.Queries
             studentService.Setup(s => s.GetStudentByIdWithSpecificationsAsync(id))
                         .Returns(Task.FromResult(studentList.FirstOrDefault(s => s.StudId == id)));
             var query = new GetStudentByIdQuery(id);
-            var handler = new StudentQueryHandler(studentService.Object, mapper, stringLocalizer.Object, loggerr.Object);
+            var handler = new StudentQueryHandler(studentService.Object, mapper, stringLocalizer.Object, logger.Object);
 
 
             // Act 
@@ -140,6 +142,6 @@ namespace SchoolManagment.Test.CoreTests.Students.Queries
 
             result.StatusCode.Should().Be(System.Net.HttpStatusCode.OK);
         }
-
+        #endregion
     }
 }

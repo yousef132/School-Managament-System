@@ -19,8 +19,7 @@ namespace SchoolManagment.Api.Controllers
         [Route(Router.ApplicationUserRouting.Create)]
         [AllowAnonymous]
         [SwaggerOperation(Summary = "إضافة مستخدم")]
-
-        public async Task<IActionResult> Create([FromBody] AddUserCommand command)
+        public async Task<IActionResult> Create([FromForm] AddUserCommand command)
              => NewResult(await mediator.Send(command));
 
 
@@ -43,7 +42,6 @@ namespace SchoolManagment.Api.Controllers
         [HttpPut]
         [Route(Router.ApplicationUserRouting.Edit)]
         [SwaggerOperation(Summary = "تحديث معلومات المستخدم")]
-
         public async Task<IActionResult> UpdateUser([FromBody] UpdateUserCommand command)
             => NewResult(await mediator.Send(command));
 
@@ -51,10 +49,8 @@ namespace SchoolManagment.Api.Controllers
         [HttpDelete]
         [Route(Router.ApplicationUserRouting.Delete)]
         [SwaggerOperation(Summary = "حذف مستخدم")]
-
         public async Task<IActionResult> DeleteUser(int id)
             => NewResult(await mediator.Send(new DeleteUserCommand(id)));
-
 
         [HttpPut]
         [Route(Router.ApplicationUserRouting.ChangePassword)]
@@ -62,10 +58,6 @@ namespace SchoolManagment.Api.Controllers
         [Authorize(Roles = $"{Roles.User},{Roles.Admin}")]
         public async Task<IActionResult> UpdateUserPassword([FromBody] UpdateUserPasswordCommand command)
             => NewResult(await mediator.Send(command));
-
-
-
-
 
     }
 }
