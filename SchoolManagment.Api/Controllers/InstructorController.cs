@@ -14,21 +14,21 @@ namespace SchoolManagment.Api.Controllers
     public class InstructorController : AppControllerBase
     {
 
-        [HttpPost(Router.Instructor.Create)]
+        [HttpPost(Router.InstructorRouting.Create)]
         [SwaggerOperation(Summary = "إضافة مدرب")]
 
         public async Task<IActionResult> CreateInstructor([FromForm] AddInstructorCommand command)
              => NewResult(await mediator.Send(command));
 
 
-        [HttpGet(Router.Instructor.GetAllInstructors)]
+        [HttpGet(Router.InstructorRouting.GetAllInstructors)]
         [SwaggerOperation(Summary = "الحصول على جميع المدربين")]
 
         public async Task<IActionResult> GetAllInstructors()
             => NewResult(await mediator.Send(new GetAllInstructorsQuery()));
 
 
-        [HttpPost(Router.Instructor.GetById)]
+        [HttpPost(Router.InstructorRouting.GetById)]
         [SwaggerOperation(Summary = "الحصول على مدرب بواسطة المعرف")]
 
         public async Task<IActionResult> GetInstructorById([FromRoute] int id)

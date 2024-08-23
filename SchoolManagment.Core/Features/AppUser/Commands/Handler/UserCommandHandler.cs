@@ -42,7 +42,7 @@ namespace SchoolManagment.Core.Features.AppUser.Commands.Handler
         public async Task<Response<string>> Handle(AddUserCommand request, CancellationToken cancellationToken)
         {
             var mappedUser = mapper.Map<ApplicationUser>(request);
-            var result = await userService.AddUserAsync(mappedUser, request.Password);
+            var result = await userService.AddUserAsync(mappedUser, request.Password, request.Image);
             return result switch
             {
                 "UserNameAlreadyExists" => BadRequest<string>(localizer[SharedResourcesKeys.UserNameAlreadyExists]),

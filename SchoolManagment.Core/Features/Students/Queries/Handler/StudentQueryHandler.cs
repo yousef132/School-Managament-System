@@ -61,9 +61,8 @@ namespace SchoolManagment.Core.Features.Students.Queries.Handler
         public async Task<Response<GetSingleStudentResponse>> Handle(GetStudentByIdQuery request, CancellationToken cancellationToken)
         {
             var student = await studentService.GetStudentByIdWithSpecificationsAsync(request.Id);
-            string s = stringLocalizer[SharedResourcesKeys.Required];
             if (student == null)
-                return NotFound<GetSingleStudentResponse>(s);
+                return NotFound<GetSingleStudentResponse>(stringLocalizer[SharedResourcesKeys.Required]);
             var mappedStudent = mapper.Map<GetSingleStudentResponse>(student);
 
             return Success(mappedStudent);

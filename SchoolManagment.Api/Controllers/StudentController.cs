@@ -31,10 +31,10 @@ namespace SchoolManagment.Api.Controllers
 
 
         [HttpPost(Router.StudentRouting.Create)]
-        [Authorize(Policy = Policies.CreateStudent)]
+        // [Authorize(Policy = Policies.CreateStudent)]
         [SwaggerOperation(Summary = "إضافة طالب")]
 
-        public async Task<IActionResult> Create([FromBody] AddStudentCommand command)
+        public async Task<IActionResult> Create([FromForm] AddStudentCommand command)
             => NewResult(await mediator.Send(command));
 
 
