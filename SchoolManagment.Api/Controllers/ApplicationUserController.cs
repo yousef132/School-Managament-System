@@ -59,5 +59,13 @@ namespace SchoolManagment.Api.Controllers
         public async Task<IActionResult> UpdateUserPassword([FromBody] UpdateUserPasswordCommand command)
             => NewResult(await mediator.Send(command));
 
+
+        [HttpGet(Router.ApplicationUserRouting.CurrentUser)]
+        [SwaggerOperation(Summary = "بيانات المستخدم الحالى")]
+        [Authorize]
+        public async Task<IActionResult> GetCurrentUser()
+            => NewResult(await mediator.Send(new GetCurrentUserQuery(GetCurrentUserEmail())));
+
+
     }
 }

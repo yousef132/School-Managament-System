@@ -10,6 +10,7 @@ namespace SchoolManagment.Core.Mapping.AppUser
             GetUsersListMapping();
             GetUserByIdMapping();
             UpdateUserMapping();
+            GetCurrentUserMapping();
         }
     }
 }

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolManagment.Core.Bases;
 using System.Net;
+using System.Security.Claims;
 
 namespace SchoolManagment.Api.Bases
 {
@@ -36,6 +37,10 @@ namespace SchoolManagment.Api.Bases
             }
         }
         #endregion
+
+
+        internal string GetCurrentUserEmail()
+            => User.FindFirstValue(ClaimTypes.Email);
     }
 
 }
