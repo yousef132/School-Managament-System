@@ -64,6 +64,7 @@
             public const string ChangePassword = $"{Prefix}change-password";
             public const string Edit = $"{Prefix}edit";
             public const string List = $"{Prefix}list";
+            public const string CurrentUser = $"{Prefix}current-user";
             public const string GetById = $"{Prefix}" + "{id}";
         }
 

@@ -13,6 +13,7 @@ namespace SchoolManagment.Core.Features.AppUser.Queries.Handler
 {
     public class UserQueryHandler : ResponseHandler,
             IRequestHandler<GetUserListQuery, Response<List<GetUserListResponse>>>,
+            IRequestHandler<GetCurrentUserQuery, Response<GetCurrentUserResponse>>,
             IRequestHandler<GetUserByIdQuery, Response<GetUserByIdResponse>>
     {
         #region Fields
@@ -60,6 +61,13 @@ namespace SchoolManagment.Core.Features.AppUser.Queries.Handler
 
             return Success(mappedUser);
 
+        }
+
+        public async Task<Response<GetCurrentUserResponse>> Handle(GetCurrentUserQuery request, CancellationToken cancellationToken)
+        {
+            var user = await userManager.FindByEmailAsync(request.Email);
+
+            return Success(mapper.Map<GetCurrentUserResponse>(user));
         }
         #endregion
     }
