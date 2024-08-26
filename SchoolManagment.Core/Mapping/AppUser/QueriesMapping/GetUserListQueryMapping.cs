@@ -7,7 +7,8 @@ namespace SchoolManagment.Core.Mapping.AppUser
     {
         public void GetUsersListMapping()
         {
-            CreateMap<ApplicationUser, GetUserListResponse>().ReverseMap();
+            CreateMap<ApplicationUser, GetUserListResponse>();
+
         }
     }
 }

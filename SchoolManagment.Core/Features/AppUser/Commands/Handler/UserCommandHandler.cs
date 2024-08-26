@@ -61,7 +61,7 @@ namespace SchoolManagment.Core.Features.AppUser.Commands.Handler
                 return NotFound<string>(localizer[SharedResourcesKeys.UserNotFound]);
 
             var mappedUser = mapper.Map(request, user);
-
+            mappedUser.LastUpdate = DateTime.UtcNow;
             var result = await userManager.UpdateAsync(mappedUser);
 
             if (!result.Succeeded)
