@@ -13,20 +13,18 @@ namespace SchoolManagment.Infrastructure.Seeder
             if (await userManager.Users.CountAsync() == 0)
             {
 
-                var defaultuser = new ApplicationUser
+                var defaultUser = new ApplicationUser
                 {
                     UserName = "admin",
                     Email = "admin@project.com",
                     FullName = "schoolProject",
-                    Country = "Egypt",
                     PhoneNumber = "123456",
-                    Address = "Egypt",
                     EmailConfirmed = true,
                     PhoneNumberConfirmed = true
                 };
 
-                await userManager.CreateAsync(defaultuser, "Aa@123.123");
-                await userManager.AddToRoleAsync(defaultuser, Roles.Admin);
+                await userManager.CreateAsync(defaultUser, "Aa@123.123");
+                await userManager.AddToRoleAsync(defaultUser, Roles.Admin);
             }
         }
     }
