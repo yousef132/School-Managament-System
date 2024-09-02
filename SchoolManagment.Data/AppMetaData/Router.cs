@@ -14,7 +14,7 @@
             public const string AddStudentToDepartment = $"{Prefix}add-student-to-department";
             public const string GetById = $"{Prefix}" + "{id}";
             public const string Create = $"{Prefix}" + "create";
-            public const string Edit = $"{Prefix}" + "edit";
+            public const string Edit = $"{Prefix}" + "update";
             public const string Delete = $"{Prefix}" + "delete/{id}";
             public const string Pagination = $"{Prefix}" + "pagination";
 
@@ -25,8 +25,9 @@
             public const string Prefix = $"{Rule}instructors/";
 
             public const string Create = $"{Prefix}" + "create";
-            public const string GetAllInstructors = $"{Prefix}" + "all-instructors";
-            public const string GetById = $"{Prefix}" + "instructor-by-id/{id}";
+            public const string GetAllInstructors = $"{Prefix}list";
+            public const string GetById = $"{Prefix}" + "{id}";
+            public const string Delete = $"{Prefix}" + "delete/{id}";
         }
         public static class SubjectRouting
         {
@@ -34,9 +35,9 @@
 
             public const string Create = $"{Prefix}" + "create";
             public const string AddToDepartment = $"{Prefix}" + "add-to-department";
-            public const string Edit = $"{Prefix}" + "edit";
-            public const string GetSubjectWithDepartments = $"{Prefix}" + "subject-with-departments";
-            public const string AddInstructor = $"{Prefix}" + "add-instructor";
+            public const string Edit = $"{Prefix}" + "update";
+            public const string GetSubjectWithDepartments = $"{Prefix}" + "list";
+            public const string AddInstructor = $"{Prefix}" + "add-instructor-to-department";
             public const string GetTopStudentInEachSubject = $"{Prefix}" + "top-student-in-each-subject";
             public const string GetSubjectsStudentsCount = $"{Prefix}" + "subjects-students-count";
             public const string Delete = $"{Prefix}" + "delete/{id}";
@@ -52,7 +53,7 @@
             public const string GetTop3InstructorByDepartment = $"{Prefix}top3-instructor-by-department";
             public const string Create = $"{Prefix}create";
             public const string Update = $"{Prefix}update";
-            public const string GetDepartmentsList = $"{Prefix}departments-list";
+            public const string GetDepartmentsList = $"{Prefix}list";
 
         }
 
@@ -62,7 +63,7 @@
             public const string Create = $"{Prefix}create";
             public const string Delete = $"{Prefix}delete";
             public const string ChangePassword = $"{Prefix}change-password";
-            public const string Edit = $"{Prefix}edit";
+            public const string Edit = $"{Prefix}update";
             public const string List = $"{Prefix}list";
             public const string CurrentUser = $"{Prefix}current-user";
             public const string GetById = $"{Prefix}" + "{id}";
@@ -84,10 +85,10 @@
         public static class Authorization
         {
             public const string Prefix = $"{Rule}authorization/";
-            public const string AddRole = $"{Prefix}add-role";
-            public const string EditRole = $"{Prefix}edit-role";
-            public const string DeleteRole = $"{Prefix}delete-role" + "/{id}";
-            public const string RolesList = $"{Prefix}roles-list";
+            public const string AddRole = $"{Prefix}create";
+            public const string EditRole = $"{Prefix}update";
+            public const string DeleteRole = $"{Prefix}delete" + "/{id}";
+            public const string RolesList = $"{Prefix}list";
             public const string UpdateUserRoles = $"{Prefix}update-user-roles";
             public const string ManageUserClaims = $"{Prefix}" + "manage-user-claims/{userId}";
             public const string UpdateUserClaims = $"{Prefix}" + "update-user-claims";

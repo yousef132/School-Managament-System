@@ -151,7 +151,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                         .IsUnique()
                         .HasFilter("[InsId] IS NOT NULL");
 
-                    b.ToTable("Departments");
+                    b.ToTable("Departments", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.DepartmentSubject", b =>
@@ -166,7 +166,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("DeptId");
 
-                    b.ToTable("DepartmentSubjects");
+                    b.ToTable("DepartmentSubjects", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Functions.GetTop3InstructorSalariesByDept", b =>
@@ -199,7 +199,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                     b.Property<int>("rn")
                         .HasColumnType("int");
 
-                    b.ToTable("GetTop3InstructorSalariesByDept");
+                    b.ToTable("GetTop3InstructorSalariesByDept", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Identity.ApplicationUser", b =>
@@ -359,7 +359,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserRefreshTokens");
+                    b.ToTable("UserRefreshTokens", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Instructor", b =>
@@ -400,7 +400,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("SupervisorId");
 
-                    b.ToTable("Instructor");
+                    b.ToTable("Instructor", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Student", b =>
@@ -436,7 +436,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("DeptId");
 
-                    b.ToTable("Students");
+                    b.ToTable("Students", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.StudentSubject", b =>
@@ -454,7 +454,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("StudId");
 
-                    b.ToTable("StudentSubjects");
+                    b.ToTable("StudentSubjects", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Subject", b =>
@@ -476,7 +476,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasKey("SubId");
 
-                    b.ToTable("Subjects");
+                    b.ToTable("Subjects", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.SubjectInsturctor", b =>
@@ -491,7 +491,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                     b.HasIndex("InsId");
 
-                    b.ToTable("SubjectInsturctor");
+                    b.ToTable("SubjectInsturctor", (string)null);
                 });
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Views.DepartmentStudentsCount", b =>
@@ -510,7 +510,7 @@ namespace SchoolManagment.Infrastructure.Migrations
                     b.Property<int>("Students")
                         .HasColumnType("int");
 
-                    b.ToTable("DepartmentStudentsCount");
+                    b.ToTable("DepartmentStudentsCount", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -595,7 +595,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
             modelBuilder.Entity("SchoolManagment.Data.Entities.Identity.ApplicationUser", b =>
                 {
-                    b.OwnsOne("SchoolManagment.Data.Entities.Identity.Address", "Address", b1 =>
+                    b.OwnsOne("SchoolManagment.Data.Entities.Identity.ApplicationUser.Address#SchoolManagment.Data.Entities.Identity.Address", "Address", b1 =>
                         {
                             b1.Property<int>("ApplicationUserId")
                                 .HasColumnType("int");
@@ -622,7 +622,7 @@ namespace SchoolManagment.Infrastructure.Migrations
 
                             b1.HasKey("ApplicationUserId");
 
-                            b1.ToTable("AspNetUsers");
+                            b1.ToTable("AspNetUsers", (string)null);
 
                             b1.WithOwner()
                                 .HasForeignKey("ApplicationUserId");

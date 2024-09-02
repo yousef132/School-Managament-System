@@ -14,8 +14,6 @@ namespace SchoolManagment.Data.Entities.Identity
         public DateTime? DateOfBirth { get; set; }
         public string Gender { get; set; }
 
-
-
         [EncryptColumn]
         public string? Code { get; set; }
         public ICollection<UserRefreshToken> userRefreshTokens { get; set; } = new HashSet<UserRefreshToken>();

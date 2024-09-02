@@ -1,6 +1,7 @@
 ﻿using FluentValidation;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using SchoolManagment.Core.Bases;
 using Serilog;
 using System.Net;
@@ -41,6 +42,11 @@ namespace SchoolManagment.Core.Middleware
                         response.StatusCode = (int)HttpStatusCode.Unauthorized;
                         break;
 
+                    case SecurityTokenException e:
+                        responseModel.Message = ex.Message;
+                        response.StatusCode = (int)HttpStatusCode.NoContent;
+                        responseModel.StatusCode = HttpStatusCode.NoContent;
+                        break;
                     case ValidationException e:
                         // custom validation ex
                         responseModel.Message = ex.Message;

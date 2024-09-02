@@ -8,7 +8,10 @@ using SchoolManagment.Services.Abstracts;
 
 namespace SchoolManagment.Core.Features.Instructor.Commands.Handler
 {
-    public class InstructorCommandHandler : ResponseHandler, IRequestHandler<AddInstructorCommand, Response<string>>
+    public class InstructorCommandHandler : ResponseHandler,
+        IRequestHandler<AddInstructorCommand, Response<string>>,
+        IRequestHandler<DeleteInstructorCommand, Response<string>>
+
     {
 
         #region Fileds
@@ -40,6 +43,21 @@ namespace SchoolManagment.Core.Features.Instructor.Commands.Handler
                 "FailedToUploadImage" => BadRequest<string>(_localizer[SharedResourcesKeys.FailedToUploadImage]),
                 "FailedToAddInstructor" => BadRequest<string>(_localizer[SharedResourcesKeys.Failed]),
                 _ => Success("")
+            };
+        }
+
+        public async Task<Response<string>> Handle(DeleteInstructorCommand request, CancellationToken cancellationToken)
+        {
+            var instructor = await _instructorService.GetInstructorByIdAsync(request.Id);
+            if (instructor == null)
+                return NotFound<string>(_localizer[SharedResourcesKeys.NotFound]);
+
+            var result = await _instructorService.DeleteInstructor(instructor);
+
+            return result switch
+            {
+                "Error" => BadRequest<string>(_localizer[SharedResourcesKeys.Failed]),
+                _ => Success<string>(_localizer[SharedResourcesKeys.Success])
             };
         }
         #endregion

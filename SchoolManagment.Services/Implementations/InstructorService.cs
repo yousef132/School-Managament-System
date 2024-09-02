@@ -64,5 +64,33 @@ namespace SchoolManagment.Services.Implementations
 
         public async Task<Instructor?> GetInstructorByIdAsync(int id)
             => await unitOfWork.Repository<Instructor>().GetByIdAsync(id);
+
+        public async Task<string> DeleteInstructor(Instructor instructor)
+        {
+            try
+            {
+                #region Getting all instructors that this instructor supervises
+                var instructors = await unitOfWork.
+                                            Repository<Instructor>()
+                                            .GetTableAsTracked()
+                                            .Where(i => i.SupervisorId == instructor.InstId)
+                                            .ToListAsync();
+
+                foreach (var inst in instructors)
+                    inst.SupervisorId = null;
+
+                #endregion
+
+                // DeleteAsync contains save changes
+                await unitOfWork.Repository<Instructor>().DeleteAsync(instructor);
+                return "Success";
+            }
+            catch (Exception ex)
+            {
+                Log.Error("Can't Delete Instructor", ex.Message);
+                return "Error";
+                throw;
+            }
+        }
     }
 }

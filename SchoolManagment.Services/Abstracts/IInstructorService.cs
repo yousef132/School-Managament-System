@@ -15,5 +15,7 @@ namespace SchoolManagment.Services.Abstracts
 
         Task<IReadOnlyList<Instructor>> GetAllInstructorsAsync();
         Task<Instructor?> GetInstructorByIdAsync(int id);
+
+        Task<string> DeleteInstructor(Instructor instructor);
     }
 }
