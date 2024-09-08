@@ -13,7 +13,8 @@ namespace SchoolManagment.Core.Features.Subject.Queries.Handler
     internal class SubjectQueryHandler : ResponseHandler,
         IRequestHandler<GetSubjectWithDepartmentsQuery, Response<IReadOnlyList<GetSubjectWithDepartments>>>,
         IRequestHandler<GetNumberOfStudentsForSubjectsQuery, Response<IReadOnlyList<GetNumberOfStudentsForSubjectResponse>>>,
-        IRequestHandler<GetTopStudentInEachSubjectQuery, Response<IReadOnlyList<GetTopStudentInEachSubjectResponse>>>
+        IRequestHandler<GetTopStudentInEachSubjectQuery, Response<IReadOnlyList<GetTopStudentInEachSubjectResponse>>>,
+        IRequestHandler<GetSubjectByIdQuery, Response<GetSubjectByIdResponse>>
 
     {
 
@@ -45,6 +46,18 @@ namespace SchoolManagment.Core.Features.Subject.Queries.Handler
         {
             var result = await subjectService.GetTopStudentInEachSubject();
             return Success(result);
+        }
+
+        public async Task<Response<GetSubjectByIdResponse>> Handle(GetSubjectByIdQuery request, CancellationToken cancellationToken)
+        {
+            var subject = await subjectService.GetSubjectById(request.Id);
+
+            if (subject == null)
+                return NotFound<GetSubjectByIdResponse>(localizer[SharedResourcesKeys.NotFound]);
+
+            var mappedSubject = mapper.Map<GetSubjectByIdResponse>(subject);
+
+            return Success(mappedSubject);
         }
     }
 }

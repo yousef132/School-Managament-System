@@ -9,6 +9,7 @@ namespace SchoolManagment.Core.Mapping.Subject
             AddSubjectCommandMapping();
             EditSubjectCommandMapping();
             GetSubjectWithDepartmentMapping();
+            GetSubjectByIdMapping();
         }
     }
 }

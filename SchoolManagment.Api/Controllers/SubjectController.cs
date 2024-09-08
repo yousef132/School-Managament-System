@@ -64,6 +64,12 @@ namespace SchoolManagment.Api.Controllers
         public async Task<IActionResult> GetTopStudentInEachSubject()
             => NewResult(await mediator.Send(new GetTopStudentInEachSubjectQuery()));
 
+        [HttpGet(Router.SubjectRouting.GetById)]
+        [SwaggerOperation(Summary = "الحصول على الماده بواسطه المعرف")]
+
+        public async Task<IActionResult> GetSubjectById(int id)
+            => NewResult(await mediator.Send(new GetSubjectByIdQuery(id)));
+
 
     }
 }

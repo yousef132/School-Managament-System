@@ -23,4 +23,15 @@ namespace SchoolManagment.Core.Mapping.Subject
         }
 
     }
+    public partial class SubjectProfile : Profile
+    {
+        public void GetSubjectByIdMapping()
+        {
+            CreateMap<Data.Entities.Subject, GetSubjectByIdResponse>()
+             .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Localize(src.SubjectNameAr, src.SubjectNameEn)))
+             .ForMember(dest => dest.Id, opt => opt.MapFrom(src => src.SubId));
+
+        }
+
+    }
 }

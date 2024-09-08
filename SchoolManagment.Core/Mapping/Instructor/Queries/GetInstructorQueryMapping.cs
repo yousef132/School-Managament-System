@@ -6,7 +6,8 @@ namespace SchoolManagment.Core.Mapping.Instructor
     {
         public void GetInstructorQueryMapping()
         {
-            CreateMap<Data.Entities.Instructor, GetInstructorResponse>();
+            CreateMap<Data.Entities.Instructor, GetInstructorResponse>()
+                .ForMember(dest => dest.Name, opt => opt.MapFrom(src => src.Localize(src.NameAr, src.NameEn)));
         }
     }
 }

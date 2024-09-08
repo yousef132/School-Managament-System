@@ -41,6 +41,8 @@
             public const string GetTopStudentInEachSubject = $"{Prefix}" + "top-student-in-each-subject";
             public const string GetSubjectsStudentsCount = $"{Prefix}" + "subjects-students-count";
             public const string Delete = $"{Prefix}" + "delete/{id}";
+            public const string GetById = $"{Prefix}" + "{id}";
+
         }
 
         public static class DepartmentRouting
